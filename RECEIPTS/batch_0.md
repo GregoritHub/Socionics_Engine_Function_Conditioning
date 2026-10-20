@@ -123,3 +123,34 @@ If it does not survive and GitHub is still empty, do not assume its receipt or t
 source directive can be recovered from GitHub. Report the actual missing source
 state. The requested four-hour schedule is still to be created after this R5 record;
 no later batch is executed now.
+
+## Publication resolved — 20 October 2026
+
+The user separately authorized fixing GitHub saving for the existing Batch 0
+commits, verifying the upload, and stopping. This is publication repair only;
+Batch 1 was not started and the original engine remains read-only.
+
+Both existing snapshots were published through the connected GitHub app, with
+their exact file bytes and original order preserved. Terminal Git authentication
+was not installed or changed. The API publication has different commit IDs:
+
+| Original local commit | Published commit | Identical Git tree |
+| --- | --- | --- |
+| `8b60aec44241ea28e9d558a04056494546da0690` | `8df3b74eddf70fb139e3c1916d298224f58441bc` | `e4d89252ed040c77a6a864e050b9594395ddc15c` |
+| `73296a64c2e728539869cd91d33d1132fe8d5acc` | `361f2e6445b89bad0e2530bcb93f105249041547` | `7306d48bdf8c9e1d826a0f540d940d84d87699d1` |
+
+The empty repository was initialized with the existing .gitignore only, at
+`ac10116c322d93430814451a1e34ac707b4b119d`, before publishing those two commits.
+The main ref update was a fast-forward with the expected previous head, never a
+force push. The remote main ref and complete six-file tree were read back through
+GitHub, and `git fetch origin main` downloaded the actual published objects.
+For each snapshot, every path, mode, blob ID, and file byte matched its local
+original. Both Git tree hashes above matched exactly. All 206 frozen engine files
+were unchanged, and the read clone's working tree was clean.
+
+The earlier refusal section is retained as historical evidence; its statement
+that publication was incomplete is superseded by this resolution. This final
+receipt-only note records the repair. The two accepted snapshots above retain
+their original bytes. The four-hour schedule was created in the initial session
+and was not modified during publication repair. Next eligible batch remains 1;
+this repair session stops without executing it.
