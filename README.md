@@ -50,11 +50,20 @@ the generator with a fixture that routes one actor's output into another actor's
 paid use requires a separate author ruling after that finding. A1 does not
 authorize that replacement.
 
+### Amendment A2 — Batch 3
+
+[Directive Amendment A2](DIRECTIVE_AMENDMENT_A2_I4_monotone.md) preserves the
+fixed definition of `kept` and restates I4 as monotonicity under history growth.
+An existing True use remains True when transactions are appended; False may
+become True. The last use at a repeated seat remains False. The author clears
+the Batch 3 contradiction and authorizes a fresh two-failure allowance. Its
+first-half, repeated-seat, and forged-reordering witnesses govern Batch 3.
+
 The destination was empty at the start of Batch 0, including the stated directive
 path. Batch 0 preserved the supplied Markdown directive in this README's appendix
 and recorded its original SHA-256 in `RECEIPTS/batch_0.md`. That original text is
-retained in Git history. The operative appendix below is now version 1.2 with
-Amendment A1 incorporated; the original digest does not describe this revision.
+retained in Git history. The operative appendix below is now version 1.3 with
+Amendments A1 and A2 incorporated; the original digest does not describe this revision.
 
 The user's session instruction permits a schedule that starts the assistant every
 four hours. Each started session reads receipts and performs its own single batch;
@@ -65,17 +74,19 @@ and the exact input-revision-to-producing-transaction actor link. The named
 `hle_unified/world_records.py` is absent at the pinned commit; the receipt records
 the actual record definitions consulted.
 
-## Directive appendix (v1.2)
+## Directive appendix (v1.3)
 
 The content between the following markers is the supplied directive as amended
-by [Amendment A1](DIRECTIVE_AMENDMENT_A1_world_source.md). The amendment governs
-the original Batch 2 stop clearance and the `world` source ruling.
+by [Amendment A1](DIRECTIVE_AMENDMENT_A1_world_source.md) and
+[Amendment A2](DIRECTIVE_AMENDMENT_A2_I4_monotone.md). A1 governs the original
+Batch 2 stop clearance and the `world` source ruling. A2 governs the Batch 3
+contradiction clearance and I4 under history growth.
 The explicit user instruction permitting assistant-starting schedules governs R4.
 
 <!-- BEGIN SUPPLIED DIRECTIVE -->
 # Batch Directive — Function Conditioning Ledger v2
 
-Version 1.2 — 20 October 2026 — incorporates Amendment A1
+Version 1.3 — 20 October 2026 — incorporates Amendments A1 and A2
 Read repository (never written): https://github.com/GregoritHub/Socionics_Engine
 Write repository (the only place you commit): https://github.com/GregoritHub/Socionics_Engine_Function_Conditioning
 
@@ -211,9 +222,9 @@ Definition (fixed; do not reinterpret): a use is **kept** when the same actor la
 Steps:
 1. `retention.py` adds `kept: bool` to each Batch 2 record.
 2. `tests/test_03_kept.py`:
-   - **I4** `kept` is monotone: ordering records by transaction index, once an (actor, seat) pair has a kept=True record, no later record for that pair is kept=False;
-   - **positive:** a history where an actor repeats a seat shows kept=True on the earlier use;
-   - **negative:** a history where every (actor, seat) occurs once shows kept=False everywhere; a forged duplicate transaction is rejected.
+   - **I4 (Amendment A2):** `kept` is monotone under history growth: for any prefix of a history and the full history, every prefix use with kept=True remains kept=True in the full history. Appending transactions may change False to True, never True to False. Compute kept on the first half of each generated history's transactions and on the whole, and assert every prefix-True use is whole-True;
+   - **positive:** a history where an actor repeats a seat shows kept=True on every use at that seat except the last, and False on the last. A sequence ending `[..., True, False]` is normal;
+   - **negative:** a history where every (actor, seat) occurs once shows kept=False everywhere; a forged duplicate transaction is rejected; a forged reordering placing a repeat before the use it would mark is rejected (retention cannot point backward in transaction order).
 
 **Proving command:** `python -m unittest tests.test_03_kept -v`
 **Pass line:** `OK`.

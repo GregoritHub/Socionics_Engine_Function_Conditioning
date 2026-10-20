@@ -43,6 +43,7 @@ automatically fields on the `ObjectVersion` dataclass.
 | `ref.identity.namespace` | `ObjectVersion.ref.identity` (`ObjectId`) | `u5.profile` identifies committed actor type profiles. | `E:85`; `C:54` |
 | `ref.revision` | `ObjectVersion.ref` | Exact positive revision number. Profiles must be revision 1 and unique by actor. | `E:86` |
 | `previous` | `ObjectVersion` | Exact immediate predecessor reference or `None` on revision 1. Its presence selects wallet updates rather than wallet initialization. | `C:21`; schema `hle_unified/records.py:310,325–327` |
+| `at.tick`, `at.order` (Batch 3 / R6) | `Transaction.at` (`hle.contracts.Moment`) | Committed logical journal position, not wall time or paid-work extent. The native store assigns `Moment(len(journal), 0)` on commit and requires the same sequence on restore. A complete history or its prefix therefore has `at.tick ==` its zero-based transaction index and `at.order == 0`. Retention rejects reordered or missing transactions instead of sorting them. Within a transaction, completed uses retain the existing audit's ordered block sequence. | `hle_unified/records.py:397–403`; `baseline/HLE_Rebuild_R21B/hle/contracts.py:84–92`; `hle_unified/compact.py:294–300,302–320,372–376`. Exercised by `tests/test_03_kept.py`'s timestamp, prefix, reordering, and forged-moment witnesses. |
 
 ## Derived values yielded by `blocks(d)`
 
