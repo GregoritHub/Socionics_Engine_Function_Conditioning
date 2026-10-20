@@ -90,3 +90,36 @@ added verbatim to this receipt and committed alone, with no push retry this sess
 Next eligible batch: 1. It has not been started. Batches 1–5 were not executed in
 this session. At the next session, read all receipts before consulting the supplied
 directive source in README.md. A prior R9 stop takes precedence over continuation.
+
+## Publication refusal (R5)
+
+Local accepted batch commit: `8b60aec44241ea28e9d558a04056494546da0690`.
+
+Command:
+
+```sh
+git push -u origin main
+```
+
+Complete output (verbatim):
+
+```text
+fatal: could not read Username for 'https://github.com': No such device or address
+```
+
+Exit status: 128.
+
+The terminal has no usable GitHub username/credential for this push. Local
+acceptance is unchanged. No alternate publication route or push retry was attempted
+this session. This refusal is added to the receipt and committed as a receipt-only
+follow-up under R5. Remote publication is NOT complete; the GitHub repository has
+no Batch 0 receipt from this session.
+
+Local write clone: /workspace/scratch/d5be342785cd/Socionics_Engine_Function_Conditioning
+Local read clone: /workspace/scratch/d5be342785cd/Socionics_Engine
+
+If this local clone survives, its committed receipts establish Batch 0 acceptance.
+If it does not survive and GitHub is still empty, do not assume its receipt or the
+source directive can be recovered from GitHub. Report the actual missing source
+state. The requested four-hour schedule is still to be created after this R5 record;
+no later batch is executed now.
