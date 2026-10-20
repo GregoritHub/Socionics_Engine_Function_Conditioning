@@ -287,3 +287,100 @@ with the existing remote tree and an expected-head, non-forced ref update.
 Publication is verified after saving; this receipt does not preclaim that outcome.
 The continuation schedule was disabled because this blocker requires a directive
 ruling rather than another unattended attempt. Wait for instruction.
+
+## Cleared by Amendment A1
+
+Date: 20 October 2026. Fresh Batch 2 attempt status: ACCEPTED on the first
+proving attempt. Failed proving attempts under the fresh allowance: 0. Repair
+attempts: 0.
+
+Directive Amendment A1 was committed by the author at published head
+`86e677e9d963f06b214eb015ee0f611df3b6a6b7`. It expressly clears the original
+R9 stop above while preserving its evidence and rules that an exact input
+revision produced by a transaction with `actor=None` has `source="world"`.
+This section supersedes only the old stopping instruction; it does not erase or
+reinterpret either recorded failure. No other R9 stop existed at session start.
+
+### Implementation
+
+Created `conditioning_v2/__init__.py` and `conditioning_v2/audit.py`. The public
+`uses(transactions)` function first calls the unchanged engine
+`conditioning_audit.completed_use`, then walks the same committed operations and
+the canonical `energy_audit.blocks` output to attach Batch 2 fields. It does not
+copy engine code or alter execution.
+
+Each route is paired with its exact indexed `source.N` revision. That revision
+joins to the transaction that committed the matching exact `version.ref`:
+`None` maps to `world`, the consuming actor maps to `self`, and another actor
+must be present in the committed profile set. No Account owner, payer, writer,
+name, or latest-head substitution is used. Semantic sources must be contiguous,
+one per route, agree with `source_input`, and remain unchanged across operation
+revisions.
+
+Seat and dimensionality are derived from the consuming actor's immutable TIM and
+the block element. For actor-id sources only, source seat and relation are derived
+from the source actor's committed TIM; the kernel landing position must equal the
+receiving seat. Every derived record is validated before return. Finally, counts
+by actor and element must exactly equal the already reconstructed
+`completed_use` totals, including `world` uses.
+
+The tests exercise all three source adapters. Accepted histories positively
+witness `world`. Copies with a source transaction attributed to the consumer or
+another committed actor witness `self` and actor-id relation fields. An unknown
+producer actor is rejected with `unknown provenance actor`. A transaction whose
+route element conflicts with its unchanged seat-time charge is rejected by the
+engine audit with `raw hop time differs from CT table`.
+
+### Proving command
+
+```sh
+python -m unittest tests.test_02_fields -v
+```
+
+Complete combined output of fresh attempt 1:
+
+```text
+test_01_i1_i2_i3_i5_on_every_history (tests.test_02_fields.FieldTests.test_01_i1_i2_i3_i5_on_every_history) ... ok
+test_02_self_actor_and_world_source_adapters (tests.test_02_fields.FieldTests.test_02_self_actor_and_world_source_adapters) ... ok
+test_03_unknown_provenance_actor_is_rejected (tests.test_02_fields.FieldTests.test_03_unknown_provenance_actor_is_rejected) ... ok
+test_04_element_seat_contract_forgery_is_rejected (tests.test_02_fields.FieldTests.test_04_element_seat_contract_forgery_is_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 32.157s
+
+OK
+```
+
+Exit status: 0. Pass line: `OK`. All four test methods passed.
+
+### Generated-history source finding
+
+| History | Completed-use records | Actor-id sources | `world` | `self` |
+| --- | ---: | ---: | ---: | ---: |
+| `legacy-r4-seed-17` | 46 | 0 | 46 | 0 |
+| `legacy-r4-seed-29` | 46 | 0 | 46 | 0 |
+| `legacy-r4-seed-43` | 46 | 0 | 46 | 0 |
+| `legacy-r4-seed-61` | 46 | 0 | 46 | 0 |
+| `grade-v1-seed-17` | 46 | 0 | 46 | 0 |
+| `grade-v1-seed-29` | 46 | 0 | 46 | 0 |
+| `grade-v1-seed-43` | 46 | 0 | 46 | 0 |
+| `grade-v1-seed-61` | 46 | 0 | 46 | 0 |
+
+Finding required by A1: **no cross-actor delivery observed in generated histories**.
+`world` is not cross-actor delivery. The accepted generator and manifest were not
+changed. Replacing them requires the separate author ruling described by A1.
+
+### Invariance and commit scope
+
+After implementation, `python -m unittest tests.test_00_setup -v` again passed
+all 3 tests and `OK` in 0.057s. All 206 frozen files and the exact read-repository
+file set still match. The original engine remains clean and read-only at
+`fdede6f16721f06422d0798a79d84170969b83f8`.
+
+Only `conditioning_v2/__init__.py`, `conditioning_v2/audit.py`,
+`tests/test_02_fields.py`, and this appended receipt section are in the Batch 2
+commit. They are UTF-8 permitted text files below 200 KB. No checkpoint, journal,
+engine source, workflow, schedule, pricing, selection, or feedback is included.
+
+Commit message: `batch 2: v2 fields — seat, dim, source, relation`.
+Next eligible batch is Batch 3. It was not started in this session.

@@ -7,38 +7,20 @@ sys.dont_write_bytecode = True
 unittest = __import__("unittest")
 json = __import__("json")
 hashlib = __import__("hashlib")
+replace = __import__("dataclasses").replace
 Population = __import__("hle_unified.population", fromlist=["Population"]).Population
-audit = __import__("hle_unified.conditioning_audit", fromlist=["completed_use"])
-data = __import__("hle_unified.energy_audit", fromlist=["data"]).data
+conditioning = __import__("hle_unified.conditioning_audit", fromlist=["completed_use"])
+energy = __import__("hle_unified.energy_audit", fromlist=["data", "TIME"])
+material = __import__("hle_unified.material", fromlist=["attributes"])
+model_a = __import__("hle.model_a", fromlist=["fields", "position_of"])
+relations = __import__("hle.relations", fromlist=["relation", "landing_position"])
+v2 = __import__("conditioning_v2.audit", fromlist=["uses"])
 
 PROJECT = pathlib.Path(__file__).resolve().parents[1]
+ELEMENTS = conditioning.ELEMENTS
 
 
-def semantic_sources(d):
-    """Inspect the full declared semantic input set, not context/evidence inputs.
-
-    Repair attempt: the primary source alone might omit another recorded
-    producer. Include every source.N and require the primary to agree.
-    This cannot turn an actorless source into self-production.
-    """
-    numbered = sorted((int(k[7:]), ref) for k, ref in d.items()
-                      if k.startswith("source.") and k[7:].isdigit())
-    if [i for i, _ in numbered] != list(range(len(numbered))):
-        raise ValueError("noncontiguous semantic source revisions")
-    refs = tuple(ref for _, ref in numbered)
-    primary = d.get("source_input")
-    if refs and primary not in refs:
-        raise ValueError("primary semantic revision differs from input set")
-    return refs or ((primary,) if primary is not None else ())
-
-
-class ProvenancePreconditionTests(unittest.TestCase):
-    """Batch 2 must not invent a producer for supplied actorless seed revisions.
-
-    These are prerequisite witnesses, not an implementation of uses() or I1-I5.
-    A failed precondition prevents starting that implementation.
-    """
-
+class FieldTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.histories = []
@@ -49,47 +31,121 @@ class ProvenancePreconditionTests(unittest.TestCase):
             population = Population.restore(raw.decode())
             if population.checkpoint().encode() != raw:
                 raise AssertionError("checkpoint restore changed bytes")
-            txs = population.engine.world.journal()
-            profiles, counts = audit.completed_use(txs)
-            producers = {v.ref: tx for tx in txs for v in tx.versions}
-            cls.histories.append((row["name"], txs, profiles, producers))
+            cls.histories.append((row["name"], population.engine.world.journal()))
 
-    def test_01_exact_revision_join_preserves_recorded_producer(self):
-        # Positive witness: generated paid operation revisions have real actors.
-        for name, txs, profiles, producers in self.histories:
-            witnesses = [(v, tx) for tx in txs for v in tx.versions
-                         if data(v).get("record_type") == "operation"
-                         and data(v).get("completed", 0) > 0]
-            self.assertTrue(witnesses, name)
-            for v, tx in witnesses:
-                self.assertIs(producers[v.ref], tx)
-                self.assertIn(tx.actor, profiles)
-                self.assertEqual(tx.actor, data(v)["actor"])
+    @staticmethod
+    def _first_source(txs):
+        producers = {v.ref: (i, tx) for i, tx in enumerate(txs) for v in tx.versions}
+        for tx in txs:
+            for version in tx.versions:
+                d = energy.data(version)
+                if (d.get("record_type") == "operation" and "route_count" in d
+                        and d.get("completed", 0) > 0):
+                    ref = v2._semantic_sources(d)[0]
+                    index, producer = producers[ref]
+                    return index, producer, d["actor"]
+        raise AssertionError("no completed routed source witness")
 
-    def test_02_consumed_semantic_revisions_have_recorded_producers(self):
-        # The required source domain is "self" or a committed producing actor.
-        # A nullable Transaction.actor cannot be converted to either honestly.
-        for name, txs, profiles, producers in self.histories:
+    @staticmethod
+    def _with_producer_actor(txs, actor):
+        index, producer, consumer = FieldTests._first_source(txs)
+        altered = list(txs)
+        altered[index] = replace(producer, actor=actor)
+        return altered, consumer
+
+    def test_01_i1_i2_i3_i5_on_every_history(self):
+        for name, txs in self.histories:
             with self.subTest(history=name):
-                checked = 0
-                for tx in txs:
-                    for v in tx.versions:
-                        d = data(v)
-                        if (d.get("record_type") != "operation"
-                                or "route_count" not in d or v.ref.revision != 1):
-                            continue
-                        refs = semantic_sources(d)
-                        self.assertTrue(refs, "missing semantic source revision")
-                        for ref in refs:
-                            self.assertIn(ref, producers, "missing exact input revision")
-                            producer = producers[ref]
-                            self.assertIn(
-                                producer.actor, profiles,
-                                "unresolved_input_producer: " + name + "; "
-                                + str(ref) + "; producing transaction=" + producer.key
-                                + "; recorded actor=" + repr(producer.actor))
-                            checked += 1
-                self.assertGreater(checked, 0, "no semantic source witness")
+                profiles, expected = conditioning.completed_use(txs)
+                rows = v2.uses(txs)
+                observed = {actor: dict.fromkeys(ELEMENTS, 0) for actor in profiles}
+                actor_sources = 0
+                for row in rows:
+                    self.assertEqual(row["seat"],
+                                     model_a.position_of(row["tim"], row["element"]))
+                    self.assertEqual(row["dim"],
+                                     model_a.fields(row["seat"])["dimensionality"])
+                    self.assertTrue(row["source"] in ("self", "world")
+                                    or row["source"] in profiles)
+                    if row["source"] in profiles:
+                        actor_sources += 1
+                        source_tim = profiles[row["source"]]
+                        self.assertNotEqual(row["source"], row["actor"])
+                        self.assertEqual(row["source_seat"],
+                                         model_a.position_of(source_tim, row["element"]))
+                        self.assertEqual(row["relation"],
+                                         relations.relation(source_tim, row["tim"]))
+                        self.assertEqual(
+                            relations.landing_position(source_tim, row["source_seat"],
+                                                       row["tim"]), row["seat"])
+                    else:
+                        self.assertIsNone(row["source_seat"])
+                        self.assertIsNone(row["relation"])
+                    observed[row["actor"]][row["element"]] += 1
+                self.assertEqual(observed, expected)
+                self.assertEqual(actor_sources, 0)
+                self.assertTrue(rows)
+                self.assertTrue(all(row["source"] == "world" for row in rows))
+
+    def test_02_self_actor_and_world_source_adapters(self):
+        _, txs = self.histories[0]
+        profiles, _ = conditioning.completed_use(txs)
+
+        world_rows = v2.uses(txs)
+        self.assertTrue(any(row["source"] == "world" for row in world_rows))
+
+        _, _, consumer = self._first_source(txs)
+        self_rows = v2.uses(self._with_producer_actor(txs, consumer)[0])
+        self.assertTrue(any(row["source"] == "self" for row in self_rows))
+
+        other = next(actor for actor in profiles if actor != consumer)
+        other_rows = v2.uses(self._with_producer_actor(txs, other)[0])
+        received = [row for row in other_rows if row["source"] == other]
+        self.assertTrue(received)
+        self.assertTrue(all(row["source_seat"] is not None
+                            and row["relation"] is not None for row in received))
+
+    def test_03_unknown_provenance_actor_is_rejected(self):
+        _, txs = self.histories[0]
+        profiles, _ = conditioning.completed_use(txs)
+        exemplar = next(iter(profiles))
+        forged = type(exemplar)("forged", "actor")
+        altered, _ = self._with_producer_actor(txs, forged)
+        with self.assertRaisesRegex(ValueError, "unknown provenance actor"):
+            v2.uses(altered)
+
+    def test_04_element_seat_contract_forgery_is_rejected(self):
+        _, txs = self.histories[0]
+        identity = field = replacement = None
+        for tx in txs:
+            for version in tx.versions:
+                d = energy.data(version)
+                keys = sorted(k for k in d if k.startswith("route.0.path.")
+                              and k != "route.0.path.0")
+                if d.get("record_type") == "operation" and keys:
+                    field = keys[0]
+                    charge = d["route.0.charges." + str(int(field.rsplit(".", 1)[1]) - 1)]
+                    replacement = next(
+                        element for element in ELEMENTS
+                        if energy.TIME[model_a.position_of(d["tim"], element) - 1] != charge)
+                    identity = version.ref.identity
+                    break
+            if identity is not None:
+                break
+        self.assertIsNotNone(identity, "no routed seat-contract witness")
+
+        altered = []
+        for tx in txs:
+            versions = []
+            for version in tx.versions:
+                if version.ref.identity == identity:
+                    d = energy.data(version)
+                    d[field] = replacement
+                    version = replace(version, attributes=material.attributes(d))
+                versions.append(version)
+            altered.append(replace(tx, versions=tuple(versions)))
+        with self.assertRaisesRegex(ValueError, "raw hop time differs from CT table"):
+            v2.uses(altered)
 
 
 if __name__ == "__main__":
