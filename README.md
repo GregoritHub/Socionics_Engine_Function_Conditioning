@@ -29,14 +29,32 @@ grep. No engine runtime behavior is changed.
 
 ## Receipts and directive source
 
-Read `RECEIPTS/` before starting a session. Run exactly one eligible batch and stop.
-If any receipt contains the sentence `Stopped under R9`, report that batch and end.
+Read `RECEIPTS/` and the applicable directive amendments before applying the stop
+check. Run exactly one eligible batch and stop. An uncleared `Stopped under R9`
+in any receipt requires reporting that batch and ending the session.
 After Batch 5, report completion and stop; there is no Batch 6.
 
+### Amendment A1 — next session
+
+[Directive Amendment A1](DIRECTIVE_AMENDMENT_A1_world_source.md) is the author's
+ruling for actorless input revisions. It clears only the original Batch 2 R9 stop
+recorded on 20 October 2026. The next session must preserve that failure record,
+append a section headed `Cleared by Amendment A1` to `RECEIPTS/batch_2.md`, and
+re-attempt Batch 2 with a fresh allowance of two proving failures and one repair.
+Any new R9 stop in that fresh attempt remains binding; A1 does not clear it.
+
+Record the number of actor-id sources in every generated history. If all are
+zero, record `no cross-actor delivery observed in generated histories`; Batch 2
+still passes when its proving command passes, and Batch 3 proceeds. Replacing
+the generator with a fixture that routes one actor's output into another actor's
+paid use requires a separate author ruling after that finding. A1 does not
+authorize that replacement.
+
 The destination was empty at the start of Batch 0, including the stated directive
-path. To keep Batch 0 within its permitted file list, the supplied Markdown
-directive is preserved verbatim in the source appendix below; its SHA-256 is
-recorded in `RECEIPTS/batch_0.md`. That receipt points subsequent sessions here.
+path. Batch 0 preserved the supplied Markdown directive in this README's appendix
+and recorded its original SHA-256 in `RECEIPTS/batch_0.md`. That original text is
+retained in Git history. The operative appendix below is now version 1.2 with
+Amendment A1 incorporated; the original digest does not describe this revision.
 
 The user's session instruction permits a schedule that starts the assistant every
 four hours. Each started session reads receipts and performs its own single batch;
@@ -47,15 +65,17 @@ and the exact input-revision-to-producing-transaction actor link. The named
 `hle_unified/world_records.py` is absent at the pinned commit; the receipt records
 the actual record definitions consulted.
 
-## Supplied directive source (verbatim)
+## Directive appendix (v1.2)
 
-The content between the following markers is the original supplied Markdown.
+The content between the following markers is the supplied directive as amended
+by [Amendment A1](DIRECTIVE_AMENDMENT_A1_world_source.md). The amendment governs
+the original Batch 2 stop clearance and the `world` source ruling.
 The explicit user instruction permitting assistant-starting schedules governs R4.
 
 <!-- BEGIN SUPPLIED DIRECTIVE -->
 # Batch Directive — Function Conditioning Ledger v2
 
-Version 1.0 — 20 October 2026
+Version 1.2 — 20 October 2026 — incorporates Amendment A1
 Read repository (never written): https://github.com/GregoritHub/Socionics_Engine
 Write repository (the only place you commit): https://github.com/GregoritHub/Socionics_Engine_Function_Conditioning
 
@@ -154,17 +174,29 @@ Steps:
 Precondition: the provenance row in `FIELDS.md` is resolved. If it says UNRESOLVED, resolve it now by reading the two named modules and adding a test that demonstrates the link on a generated history; if you cannot, stop under R9.
 
 Steps:
-1. `conditioning_v2/audit.py` exposes `uses(transactions)` returning a list of records, one per completed hop or seat-content block, each with: `actor`, `tim`, `element`, `seat` (via `hle.model_a.position_of`), `dim` (via `hle.model_a.fields`), `source` (`"self"` or the producing actor's id per the provenance field), `source_seat` and `relation` (via `hle.relations.relation` / `landing_position` when `source != "self"`, else `None`).
+1. `conditioning_v2/audit.py` exposes `uses(transactions)` returning a list of records, one per completed hop or seat-content block, each with: `actor`, `tim`, `element`, `seat` (via `hle.model_a.position_of`), `dim` (via `hle.model_a.fields`), `source` (the three values below), `source_seat` and `relation` (via `hle.relations.relation` / `landing_position` only when `source` is an actor id, else `None`).
+
+   | `source` | When | Conditioning event? |
+   |---|---|---|
+   | `"self"` | The exact consumed revision was committed by a transaction whose `actor` is the consuming actor. | No |
+   | `<actor id>` | The exact consumed revision was committed by a transaction whose `actor` is a different committed actor. | Yes, when the receiving seat has `dim ≤ 2` |
+   | `"world"` | The exact consumed revision was committed by a transaction whose `actor` is `None` — a declared or supplied revision (fixture seeds, supplied prior associations, initial world material). | No |
+
+   Resolve the exact consumed `ObjectRef` to the matching `version.ref` and its
+   producing `Transaction.actor`, as declared in `FIELDS.md`. `None` maps to
+   `"world"`. Do not infer a producer from `Account.owner`, the paying actor,
+   the `writer` label, or the revision's name.
+
 2. It must reuse `conditioning_audit.completed_use`'s counting logic, not reimplement it. The simplest correct form is: call the existing function for totals, then walk the same transactions to attach fields, and assert the two agree.
 3. `tests/test_02_fields.py`:
    - **I1** every record's `seat`/`dim` is consistent with its actor's TIM;
-   - **I2** every `source` is `"self"` or a committed actor;
-   - **I3** when `source != "self"`, `relation` equals the kernel's `relation(source_tim, actor_tim)` and `landing_position(source, source_seat, actor) == seat`;
-   - **I5** summing records by (actor, element) reproduces `conditioning_audit.completed_use` counts exactly, on every history;
-   - **negative:** a transaction with a forged `actor` on its provenance is rejected with a named error; a transaction whose element is not at the claimed seat for that TIM is rejected.
+   - **I2** every `source` is `"self"`, `"world"`, or a committed actor id;
+   - **I3** only when `source` is an actor id, `relation` equals the kernel's `relation(source_tim, actor_tim)` and `landing_position(source, source_seat, actor) == seat`;
+   - **I5** summing records by (actor, element), including `"world"` uses, reproduces `conditioning_audit.completed_use` counts exactly, on every history;
+   - **negative:** a transaction with a forged `actor` on its provenance is rejected with a named error; a transaction whose element is not at the claimed seat for that TIM is rejected; a revision with `actor = None` must resolve to `"world"`, never to an actor id or `"self"`.
 
 **Proving command:** `python -m unittest tests.test_02_fields -v`
-**Pass line:** `OK`, and at least one history shows ≥ 1 record with `source != "self"`. If every record is `"self"` on every history, that is a finding, not a failure: write it in `RECEIPTS/batch_2.md` as "no cross-actor delivery observed in generated histories" and continue.
+**Pass line:** `OK`. Record the number of uses with `source` = an actor id for every history. If every history has zero such uses, that is a finding, not a failure: write "no cross-actor delivery observed in generated histories" in `RECEIPTS/batch_2.md` and continue to Batch 3 in the next session. `"world"` is not cross-actor delivery. Replacing the Batch 1 generator with a fixture that routes one actor's output into another actor's paid use requires a separate author ruling after this finding.
 **Commit message:** `batch 2: v2 fields — seat, dim, source, relation`
 
 ---
@@ -194,9 +226,14 @@ Steps:
 **Inputs:** Batches 2–3.
 **May create:** `conditioning_v2/measures.py`, `conditioning_v2/tables.py`, `TABLES/per_actor.md`, `TABLES/per_population.md`, `TABLES/dcnh_two_ways.md`, `tests/test_04_measures.py`, `RECEIPTS/batch_4.md`.
 
-Per actor: use profile by (seat, source∈{self,other}, kept); conditioning index = received uses at dim ≤ 2 ÷ all uses at dim ≤ 2; hold index = kept received ÷ received; supplier map for each seat with dim ≤ 2; and the existing Phase 7 axis loads/tilts/greatest-load cells computed **twice** — once on all uses (must match `conditioning_audit.observations` exactly), once on received-and-kept uses only.
+Per actor: use profile by (seat, source∈{self,world,other}, kept); conditioning index = received uses at dim ≤ 2 ÷ all uses at dim ≤ 2; hold index = kept received ÷ received; supplier map for each seat with dim ≤ 2; and the existing Phase 7 axis loads/tilts/greatest-load cells computed **twice** — once on all uses (must match `conditioning_audit.observations` exactly), once on received-and-kept uses only.
 
 Per population: coverage = fraction of (actor, seat) pairs with dim ≤ 2 that received ≥ 1 use from an actor holding that element at dim ≥ 3; coverage per episode index; supplier concentration; sterile ordered pairs (zero received uses either direction); benefit-relation received uses in pairs vs. in the triad.
+
+**Amendment A1 source scope:** conditioning index, hold index, supplier map,
+coverage and sterile pairs are computed over uses with `source` = an actor id
+only. `"world"` uses appear in the use profile as their own column and in the
+all-use DCNH, and nowhere else.
 
 `tests/test_04_measures.py`: all-use DCNH equals Phase 7's `observations` row for every actor on every history (**I5 again, at the table level**); every table cell traces to a record (spot-check 20 cells by recomputation); inactive actors appear in denominators and are labeled.
 
