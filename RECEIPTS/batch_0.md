@@ -1,0 +1,92 @@
+# Batch 0 receipt
+
+Date: 20 October 2026 (America/New_York).
+Batch: 0 — setup, field declaration, invariance witness.
+Status: ACCEPTED locally; first proving attempt passed with 3 tests and OK.
+
+## Starting state and scope
+
+- Read repository: https://github.com/GregoritHub/Socionics_Engine
+- Read clone commit: `fdede6f16721f06422d0798a79d84170969b83f8`.
+- Write repository: https://github.com/GregoritHub/Socionics_Engine_Function_Conditioning
+- The write repository cloned successfully but was empty: no commits, no receipts,
+  and no `BATCH_DIRECTIVE_Function_Conditioning_v1.md`. Git printed:
+  `warning: You appear to have cloned an empty repository.`
+- Used the user's attached `BATCH_DIRECTIVE_Function_Conditioning_v1.md`.
+  SHA-256: `db1e275a137b10025e6079e8d7cb35e5cb4f07c698a3018715e0081179705199`.
+  Its exact bytes are retained between the `BEGIN SUPPLIED DIRECTIVE` and
+  `END SUPPLIED DIRECTIVE` HTML comment markers in README.md. Future sessions
+  read that source appendix because the named root directive file was absent.
+  This uses only the files Batch 0 permits.
+- The user's explicit session instruction authorizes a recurring assistant session
+  every four hours; each session executes exactly one batch. It does not authorize
+  GitHub Actions or other independent repository writers. The schedule is created
+  after the Batch 0 publication attempt, as requested.
+
+## Deliverables and findings
+
+- README.md records the pinned engine commit, setup and source directive.
+- Ignored engine_path.txt points to the absolute sibling read-clone path.
+  After a fresh clone, recreate this local path file; do not commit it.
+- .gitignore contains engine_path.txt, __pycache__/, *.pyc, OUT/.
+- ENGINE_FREEZE.sha256 lists all 206 files under hle_unified/ and
+  baseline/HLE_Rebuild_R21B/hle/, including both source sets in full.
+  File paths are relative to the read clone; manifest size is 21,771 bytes.
+- FIELDS.md covers the raw fields read by both audits, the revision metadata,
+  every blocks(d) value, and the input-revision provenance join.
+- The third blocks(d) tuple entry is energy or None, not seat. The seat is derived
+  from TIM and element. The source index uses zero-based seats for table lookup;
+  Model A public positions are 1–8.
+- The requested hle_unified/world_records.py is absent. Read the actual legacy
+  baseline/HLE_Rebuild_R21B/hle/world_records.py, native hle_unified/records.py,
+  and hle_unified/compact.py. The legacy message schema is not the native schema.
+- Revision-level provenance is structurally resolved: an exact input ObjectRef
+  joins to the matching committed version.ref and its enclosing Transaction.actor.
+  FIELDS.md records exact source lines, nullable actors, semantic source.N versus
+  broader input.N, and the distinction from writer and revision lineage. No
+  generated-history delivery or per-block source attribution is claimed in Batch 0.
+- tests/test_00_setup.py contains exactly three tests and the exact R2 preamble.
+  Bytecode writes are disabled before engine imports so the read clone gains no
+  cache files. The freeze check compares the complete file set as well as hashes.
+- No read-repository files were copied into the write repository, no engine
+  behavior was edited, and no engine code imports this project.
+
+## Proving command
+
+Run from the write repository:
+
+```sh
+python -m unittest tests.test_00_setup -v
+```
+
+Complete combined output of attempt 1:
+
+```text
+test_01_imports_resolve_to_read_clone (tests.test_00_setup.SetupTests.test_01_imports_resolve_to_read_clone) ... ok
+test_02_every_frozen_file_is_unchanged (tests.test_00_setup.SetupTests.test_02_every_frozen_file_is_unchanged) ... ok
+test_03_no_reverse_import_reference (tests.test_00_setup.SetupTests.test_03_no_reverse_import_reference) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.056s
+
+OK
+```
+
+Exit status: 0.
+Pass line recorded: `OK`; test count: 3.
+Failed proving attempts: 0. Repair attempts: 0.
+
+## Commit and continuation
+
+Commit message: `batch 0: setup, FIELDS.md, engine freeze`.
+Only the Batch 0 allowlist is staged; .gitignore is explicitly permitted by Batch 0.
+All committed files are small UTF-8 text and below 200,000 bytes. Engine source
+files remain only in the read clone; the freeze contains hashes and paths only.
+
+This receipt and its deliverables are committed together after the successful
+proof. The subsequent push result is reported to the user; a refusal will be
+added verbatim to this receipt and committed alone, with no push retry this session.
+
+Next eligible batch: 1. It has not been started. Batches 1–5 were not executed in
+this session. At the next session, read all receipts before consulting the supplied
+directive source in README.md. A prior R9 stop takes precedence over continuation.
