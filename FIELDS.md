@@ -88,3 +88,19 @@ claiming a generated-history or cross-actor delivery witness.
 transaction version: `halted` (`E:107`), `active` (`110`), and that action's `actor`
 and `key` (`113`) and `kind` (`117`). They select the actor/job being checked and
 must not be presented as additional raw transaction fields.
+
+## Batch 4 observation inputs (R6)
+
+| Field/link | Record carrying it | Meaning and use | Pinned source |
+| --- | --- | --- | --- |
+| `events[].actor`, `events[].key`, `events[].episode` | Restored `Population.events` checkpoint state, not transaction attributes | Actor identity, exact episode request key, and zero-based actor-local episode count at that scheduler turn. Repeated turns at the same actor/key must agree on episode. Join operation `(actor, key)` using only the declared request key family: request key, `:movement`, `:feedback` (and `:admission` for legacy selection). Do not infer episodes from name digits. Cumulative coverage at index e pools uses whose actor-local episode is <= e; it is not a wall-clock snapshot. | `hle_unified/population.py:56–60,78–80,98,124,145,160,170–177,180–211`; workflow key construction `hle_unified/workflow_selection_execution.py:94`. Positive and forged/missing joins are tested in `tests/test_04_measures.py`. |
+| Operation `key` (additional use) | Operation attributes | The already-declared job key joins the paid block's operation to the exact scheduler episode key family above. Every paid-use record must have exactly one episode attribution. | `hle_unified/workflow_execution.py:158–166`; `hle_unified/workflow_selection_execution.py:94`; existing `key` declaration above. |
+| `ObjectId.namespace`, `ObjectId.key` | Actor identities | Stable display ID `namespace:key`; does not infer TIM, source, or provenance. | `hle_unified/records.py:19–26`. |
+| `relation`, `landing_permutation` | Read-only kernel relation label JSON keyed by `sender_tim:receiver_tim` | Human relation label and eight-position sender-to-receiver landing permutation. Validate against `hle.relations.landing_permutation` before displaying a label. `benefit` means sender is receiver's benefactor; `benefit_inverse` is the reverse. | `baseline/HLE_Rebuild_R21B/baseline/crossing/sources/relation_labels.json`; `project_sources/HLE_Final_Build_Companion_Theory_v1_0.txt:564–565`; `hle/relations.py:29–34`. Read by path, never copied. |
+
+Batch 4 trace IDs are zero-based occurrence indices in the unchanged Batch 3
+record sequence, linked to transaction index, operation reference, and block end.
+An empty trace is an observed zero only within the declared complete history.
+Coverage denominators include all committed profile actors, including actors
+with zero completed uses (labeled inactive). A ratio with a zero denominator is
+displayed as N/A, never as a measured zero.
