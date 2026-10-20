@@ -7,7 +7,10 @@ sys.dont_write_bytecode = True
 json = __import__("json")
 hashlib = __import__("hashlib")
 Fraction = __import__("fractions").Fraction
+argparse = __import__("argparse")
 Population = __import__("hle_unified.population", fromlist=["Population"]).Population
+OperationStore = __import__("hle_unified.operations", fromlist=["OperationStore"]).OperationStore
+ObjectId = __import__("hle_unified.records", fromlist=["ObjectId"]).ObjectId
 measures = __import__("conditioning_v2.measures", fromlist=["history"])
 PROJECT = pathlib.Path(__file__).resolve().parents[1]
 
@@ -27,22 +30,38 @@ def table(header, rows):
     return "\n".join([line(header), line(["---"] * len(header)), *(line(r) for r in rows)]) + "\n"
 
 
-def load_histories():
+def load_histories(manifest_path="HISTORIES.json"):
     result = []
-    for manifest in json.loads((PROJECT / "HISTORIES.json").read_text()):
+    document = json.loads((PROJECT / manifest_path).read_text())
+    entries = document["histories"] if isinstance(document, dict) else document
+    for manifest in entries:
         raw = (PROJECT / "OUT" / (manifest["name"] + ".checkpoint")).read_bytes()
         if hashlib.sha256(raw).hexdigest() != manifest["checkpoint_sha256"]:
             raise ValueError("checkpoint differs from accepted manifest")
-        population = Population.restore(raw.decode())
-        if population.checkpoint().encode() != raw:
-            raise ValueError("checkpoint restore changed bytes")
-        transactions = population.engine.world.journal()
-        observation = measures.history(transactions, population.events)
+        if manifest.get("checkpoint_codec") == "OperationStore":
+            world = OperationStore.restore(raw.decode())
+            if world.checkpoint().encode() != raw:
+                raise ValueError("checkpoint restore changed bytes")
+            transactions = world.journal()
+            event_records = (document["event_sets"][manifest["events_ref"]]
+                             if "events_ref" in manifest else manifest["events"])
+            if "events_ref" in manifest and hashlib.sha256(
+                    json.dumps(event_records, sort_keys=True).encode()).hexdigest() != manifest["events_ref"]:
+                raise ValueError("episode event set differs from manifest hash")
+            events = tuple(dict(actor=ObjectId(*e["actor"].split(":", 1)),
+                                key=e["key"], episode=e["episode"])
+                           for e in event_records)
+        else:
+            population = Population.restore(raw.decode())
+            if population.checkpoint().encode() != raw:
+                raise ValueError("checkpoint restore changed bytes")
+            transactions, events = population.engine.world.journal(), population.events
+        observation = measures.history(transactions, events)
         actors = {measures.actor_name(a): t for a, t in observation["profiles"].items()}
         if len(transactions) != manifest["transactions"] or actors != manifest["actors"]:
             raise ValueError("history population differs from accepted manifest")
         result.append(dict(manifest=manifest, observation=observation,
-                           transactions=transactions, events=tuple(population.events)))
+                           transactions=transactions, events=tuple(events)))
     return result
 
 
@@ -79,7 +98,8 @@ def render(histories):
                                   ",".join(str(dcnh["formula_sums"][c]) for c in 'DCNH'),
                                   compare, ids(trace)))
         for i, (row, loc) in enumerate(zip(data["records"], data["locations"])):
-            source = row["source"] if row["source"] in ("self", "world") else measures.actor_name(row["source"])
+            source = (row["source"] if row["source"] in ("self", "world")
+                      else "(" + ", ".join(measures.actor_name(s) for s in row["source"]) + ")")
             ref = loc["operation"]
             trace_rows.append((name, "u" + str(i), loc["transaction"],
                                measures.actor_name(ref.identity) + "@" + str(ref.revision),
@@ -168,12 +188,40 @@ Use IDs refer to per_actor.md's trace in the same history.
 
 """ + table(("History", "Actor", "TIM", "Status", "View", "Uses", "Loads", "Tilts", "Axis cells",
               "Greatest-load cells", "Formula sums", "Comparison", "Use IDs"), dcnh_rows)
-    return {"per_actor.md": actor_text, "per_population.md": pop_text, "dcnh_two_ways.md": dcnh_text}
+    outputs = {"per_actor.md": actor_text, "per_population.md": pop_text, "dcnh_two_ways.md": dcnh_text}
+    if histories and "composition" in histories[0]["manifest"]:
+        for name, text in outputs.items():
+            text = text.replace("Batch 4", "Batch 6").replace("actor-id sources", "non-empty actor tuples")
+            text = text.replace("squared total received uses (all receiver seats)",
+                                "squared total supplier incidences (all receiver seats)")
+            text = text.replace("Cumulative through each actor-local episode index, pooled across actors; not a wall-clock snapshot.",
+                                "Cumulative through explicitly recorded harness episodes, including preparation; not scheduler episodes.")
+            text = text.replace("Benefit pairs within the triad versus triad total", "Benefit-family pairs within the composition")
+            text = text.replace("Pair-subset counts are observations WITHIN the same triad, not independent two-actor experiments. Benefit-family totals include benefit and benefit_inverse directions. The accepted manifest has no standalone pair histories; their comparison is unavailable, not zero.",
+                                "Pair counts are within the recorded composition. The requested IEE/SLI/LIE triad is not producible; a standalone pair-versus-that-triad comparison is unavailable, not zero.")
+            text = text.replace("Triad benefit-family uses", "Composition benefit-family uses")
+            text = text.replace("Use IDs refer to per_actor.md's trace", "Use IDs refer to the matching composition's per-actor trace")
+            outputs[name] = text + "\nA3/A4: any exact operation input counts, including collective evidence. A use counts once in its receiver profile and once per listed supplier in supplier/pair counts.\n"
+    return outputs
 
 
 def main():
-    histories = load_histories()
-    outputs = render(histories)
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--histories", default="HISTORIES.json")
+    parser.add_argument("--suffix", default=None)
+    args = parser.parse_args()
+    histories = load_histories(args.histories)
+    suffix = args.suffix if args.suffix is not None else ("" if args.histories == "HISTORIES.json" else "_delivery")
+    if any(c not in "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_-" for c in suffix):
+        raise ValueError("invalid output suffix")
+    groups = {}
+    for history in histories:
+        groups.setdefault(history["manifest"].get("composition", ""), []).append(history)
+    outputs = {}
+    for composition, items in groups.items():
+        prefix = composition + "_" if composition else ""
+        for name, text in render(items).items():
+            outputs[prefix + pathlib.Path(name).stem + suffix + ".md"] = text
     for name, text in outputs.items():
         if len(text.encode()) >= 200000:
             raise ValueError("table exceeds R3: " + name)
@@ -185,7 +233,10 @@ def main():
     print("Histories: " + str(len(histories)), flush=True)
     print("All-use DCNH exactly matches Phase 7 for every actor.", flush=True)
     print("A1-literal conditioning scope is degenerate; zero denominators are N/A.", flush=True)
-    print("Standalone pair comparison unavailable: no pair histories in accepted manifest.", flush=True)
+    if args.histories == "HISTORIES.json":
+        print("Standalone pair comparison unavailable: no pair histories in accepted manifest.", flush=True)
+    else:
+        print("Delivery tables are separated by composition; unavailable compositions remain in the manifest.", flush=True)
 
 
 if __name__ == "__main__":

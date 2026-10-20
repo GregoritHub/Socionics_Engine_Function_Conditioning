@@ -66,18 +66,19 @@ class FieldTests(unittest.TestCase):
                     self.assertEqual(row["dim"],
                                      model_a.fields(row["seat"])["dimensionality"])
                     self.assertTrue(row["source"] in ("self", "world")
-                                    or row["source"] in profiles)
-                    if row["source"] in profiles:
+                                    or isinstance(row["source"], tuple))
+                    if isinstance(row["source"], tuple):
                         actor_sources += 1
-                        source_tim = profiles[row["source"]]
-                        self.assertNotEqual(row["source"], row["actor"])
-                        self.assertEqual(row["source_seat"],
-                                         model_a.position_of(source_tim, row["element"]))
-                        self.assertEqual(row["relation"],
-                                         relations.relation(source_tim, row["tim"]))
-                        self.assertEqual(
-                            relations.landing_position(source_tim, row["source_seat"],
-                                                       row["tim"]), row["seat"])
+                        self.assertTrue(row["source"])
+                        self.assertEqual(row["source"], tuple(sorted(set(row["source"]))))
+                        self.assertEqual(len(row["source"]), len(row["source_seat"]))
+                        self.assertEqual(len(row["source"]), len(row["relation"]))
+                        for sender, seat, relation in zip(row["source"], row["source_seat"], row["relation"]):
+                            source_tim = profiles[sender]
+                            self.assertNotEqual(sender, row["actor"])
+                            self.assertEqual(seat, model_a.position_of(source_tim, row["element"]))
+                            self.assertEqual(relation, relations.relation(source_tim, row["tim"]))
+                            self.assertEqual(relations.landing_position(source_tim, seat, row["tim"]), row["seat"])
                     else:
                         self.assertIsNone(row["source_seat"])
                         self.assertIsNone(row["relation"])
@@ -100,7 +101,7 @@ class FieldTests(unittest.TestCase):
 
         other = next(actor for actor in profiles if actor != consumer)
         other_rows = v2.uses(self._with_producer_actor(txs, other)[0])
-        received = [row for row in other_rows if row["source"] == other]
+        received = [row for row in other_rows if row["source"] == (other,)]
         self.assertTrue(received)
         self.assertTrue(all(row["source_seat"] is not None
                             and row["relation"] is not None for row in received))

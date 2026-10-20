@@ -32,7 +32,8 @@ grep. No engine runtime behavior is changed.
 Read `RECEIPTS/` and the applicable directive amendments before applying the stop
 check. Run exactly one eligible batch and stop. An uncleared `Stopped under R9`
 in any receipt requires reporting that batch and ending the session.
-After Batch 5, report completion and stop; there is no Batch 6.
+Batch 6 is authorized by the extension and A3/A4 below. After its accepted
+receipt, report completion and stop; no further batch or feedback is authorized.
 
 ### Amendment A1 — next session
 
@@ -62,8 +63,8 @@ first-half, repeated-seat, and forged-reordering witnesses govern Batch 3.
 The destination was empty at the start of Batch 0, including the stated directive
 path. Batch 0 preserved the supplied Markdown directive in this README's appendix
 and recorded its original SHA-256 in `RECEIPTS/batch_0.md`. That original text is
-retained in Git history. The operative appendix below is now version 1.3 with
-Amendments A1 and A2 incorporated; the original digest does not describe this revision.
+retained in Git history. The operative appendix below is version 1.6, with A1/A2 incorporated and
+the linked Batch 6 extension and A3/A4 rulings taking precedence; the original digest does not describe this revision.
 
 The user's session instruction permits a schedule that starts the assistant every
 four hours. Each started session reads receipts and performs its own single batch;
@@ -74,7 +75,24 @@ and the exact input-revision-to-producing-transaction actor link. The named
 `hle_unified/world_records.py` is absent at the pinned commit; the receipt records
 the actual record definitions consulted.
 
-## Directive appendix (v1.3)
+### Batch 6 and Amendments A3/A4
+
+- [Batch 6](DIRECTIVE_BATCH_6_cross_actor_delivery.md) authorizes the delivery compositions.
+- [A3](DIRECTIVE_AMENDMENT_A3_operation_provenance.md) defines operation-level exact-input provenance and receipt hygiene.
+- [A4](DIRECTIVE_AMENDMENT_A4_tuple_scope.md) accepts Step 1 and authorizes tuple-aware measures, tests and table entry point within the byte-identity guard.
+
+These rulings supersede the historical appendix's stop after Batch 5, scalar
+source representation, and unchanged-module restriction. `source` is self,
+world, or a non-empty sorted tuple of other committed actors. Relation and
+source-seat tuples align with those actors. One received use counts once in
+its receiver profile and once per listed supplier in supplier/pair tables.
+The original three tables and REPORT.md must regenerate identically from
+HISTORIES.json. The generator, manifest, retention and read engine stay unchanged.
+Step 1 is accepted; do not run the probe again. Read RECEIPTS/batch_6.md for
+Steps 2–4 acceptance and the final stopping point. The owner explicitly authorized
+publication of directive deliverables to this repository on 20 October 2026.
+
+## Directive appendix (v1.6)
 
 The content between the following markers is the supplied directive as amended
 by [Amendment A1](DIRECTIVE_AMENDMENT_A1_world_source.md) and
@@ -86,7 +104,7 @@ The explicit user instruction permitting assistant-starting schedules governs R4
 <!-- BEGIN SUPPLIED DIRECTIVE -->
 # Batch Directive — Function Conditioning Ledger v2
 
-Version 1.3 — 20 October 2026 — incorporates Amendments A1 and A2
+Version 1.6 — 20 October 2026 — incorporates A1/A2; linked Batch 6 and A3/A4 override the historical text below
 Read repository (never written): https://github.com/GregoritHub/Socionics_Engine
 Write repository (the only place you commit): https://github.com/GregoritHub/Socionics_Engine_Function_Conditioning
 

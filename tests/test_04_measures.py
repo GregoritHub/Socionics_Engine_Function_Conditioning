@@ -67,8 +67,8 @@ class MeasureTests(unittest.TestCase):
         for cell in markdown_rows("per_population.md", "Population summary")[:6]:
             data = self.by_name[cell["History"]]["observation"]
             covered = {(r["actor"], r["seat"]) for r in data["records"]
-                       if r["source"] in data["profiles"] and r["dim"] <= 2
-                       and model.fields(r["source_seat"])["dimensionality"] >= 3}
+                       if isinstance(r["source"], tuple) and r["dim"] <= 2
+                       and any(model.fields(p)["dimensionality"] >= 3 for p in r["source_seat"])}
             denom = sum(model.fields(p)["dimensionality"] <= 2
                         for _ in data["profiles"] for p in range(1, 9))
             self.assertEqual(cell["Coverage"], tables.ratio((len(covered), denom)))
@@ -83,11 +83,12 @@ class MeasureTests(unittest.TestCase):
         def row(actor, element, source, kept):
             tim = profiles[actor]
             seat = model.position_of(tim, element)
-            other = source in profiles
+            source = (source,) if source in profiles else source
+            other = isinstance(source, tuple)
             return dict(actor=actor, tim=tim, element=element, seat=seat,
                         dim=model.fields(seat)["dimensionality"], source=source,
-                        source_seat=model.position_of(profiles[source], element) if other else None,
-                        relation=relations.relation(profiles[source], tim) if other else None, kept=kept)
+                        source_seat=tuple(model.position_of(profiles[s], element) for s in source) if other else None,
+                        relation=tuple(relations.relation(profiles[s], tim) for s in source) if other else None, kept=kept)
         records = [row(alice, "si", bob, True), row(alice, "si", bob, False),
                    row(alice, "te", eve, True), row(alice, "te", eve, False),
                    row(bob, "ne", alice, False), row(alice, "se", eve, False),
@@ -134,7 +135,7 @@ class MeasureTests(unittest.TestCase):
 
     def test_05_missing_or_forged_measure_inputs_are_rejected(self):
         profiles, rows, episodes, _ = self.positive_fixture()
-        for changed, message in ((dict(rows[0], source=ObjectId("forged", "unknown")), "invalid actor-id source"),
+        for changed, message in ((dict(rows[0], source=(ObjectId("forged", "unknown"),)), "invalid actor-id source"),
                                  (dict(rows[0], dim=99), "seat-dimension mismatch"),
                                  (dict(rows[0], kept="True"), "kept must be Boolean")):
             with self.assertRaisesRegex(ValueError, message):

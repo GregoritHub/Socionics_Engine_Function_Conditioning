@@ -11,33 +11,39 @@ relations = __import__("hle.relations", fromlist=["relation", "landing_position"
 
 
 def _semantic_sources(d):
-    """Return one exact semantic source revision per declared route."""
-    indexed = sorted((int(k[7:]), ref) for k, ref in d.items()
-                     if k.startswith("source.") and k[7:].isdigit())
-    if [i for i, _ in indexed] != list(range(len(indexed))):
-        raise ValueError("noncontiguous semantic source revisions")
-    refs = tuple(ref for _, ref in indexed)
-    if len(refs) != d["route_count"]:
-        raise ValueError("semantic source count differs from route count")
-    if refs and d.get("source_input") != refs[0]:
-        raise ValueError("primary semantic source differs from route source")
-    return refs
+    """A3: every exact consumed revision on the operation, deduplicated.
+
+    Keep the helper name for existing callers. Sources no longer correspond
+    one-to-one with routes. Broad input.N evidence counts under this ruling.
+    """
+    refs = [ref for _, ref in sorted(
+        (int(k[7:]), ref) for k, ref in d.items()
+        if k.startswith("source.") and k[7:].isdigit())]
+    if "source_input" in d:
+        refs.append(d["source_input"])
+    refs.extend(ref for _, ref in sorted(
+        (int(k[6:]), ref) for k, ref in d.items()
+        if k.startswith("input.") and k[6:].isdigit()))
+    return tuple(dict.fromkeys(refs))
 
 
-def _block_routes(d):
-    """Attach route indexes to the engine audit's canonical block sequence."""
-    indexes = [None]
-    for route in range(d["route_count"]):
-        prefix = "route." + str(route) + ".path."
-        paths = sorted(int(k[len(prefix):]) for k in d if k.startswith(prefix))
-        if paths != list(range(len(paths))) or not paths:
-            raise ValueError("noncontiguous raw path")
-        indexes.extend([route] * len(paths))  # arrivals plus one content block
-    indexes.append(None)
-    result = energy.blocks(d)
-    if len(indexes) != len(result):
-        raise ValueError("route/block attribution mismatch")
-    return tuple(zip(result, indexes))
+def _operation_source(refs, consumer, producers, profiles):
+    """Resolve only exact revisions; other actors take priority over self."""
+    others, has_self = set(), False
+    for ref in refs:
+        producer = producers.get(ref)
+        if producer is None:
+            raise ValueError("missing exact provenance revision")
+        actor = producer.actor
+        if actor is None:
+            continue
+        if actor not in profiles:
+            raise ValueError("unknown provenance actor")
+        if actor == consumer:
+            has_self = True
+        else:
+            others.add(actor)
+    return tuple(sorted(others)) if others else "self" if has_self else "world"
 
 
 def _validate_record(record, profiles):
@@ -57,21 +63,30 @@ def _validate_record(record, profiles):
         if record["source_seat"] is not None or record["relation"] is not None:
             raise ValueError("non-actor source has relation fields")
         return
-    if source not in profiles or source == actor:
+    if (type(source) is not tuple or not source
+            or any(s not in profiles or s == actor for s in source)
+            or source != tuple(sorted(set(source)))):
         raise ValueError("invalid actor-id source")
-    source_tim = profiles[source]
-    source_seat = model_a.position_of(source_tim, record["element"])
-    if record["source_seat"] != source_seat:
+    source_seats = tuple(model_a.position_of(profiles[s], record["element"])
+                         for s in source)
+    if record["source_seat"] != source_seats:
         raise ValueError("source element-seat mismatch")
-    expected_relation = relations.relation(source_tim, record["tim"])
-    if record["relation"] != expected_relation:
+    expected_relations = tuple(relations.relation(profiles[s], record["tim"])
+                               for s in source)
+    if record["relation"] != expected_relations:
         raise ValueError("source relation mismatch")
-    if relations.landing_position(source_tim, source_seat, record["tim"]) != expected_seat:
-        raise ValueError("source landing-position mismatch")
+    for sender, source_seat in zip(source, source_seats):
+        if relations.landing_position(profiles[sender], source_seat,
+                                      record["tim"]) != expected_seat:
+            raise ValueError("source landing-position mismatch")
 
 
 def uses(transactions):
-    """Derive one observation per completed routed hop or content block."""
+    """Derive paid uses with A3 operation-level, exact-revision provenance.
+
+    source_seat and relation tuples align with the sorted source actor tuple.
+    Completed-use counting remains the native audit's canonical block count.
+    """
     transactions = tuple(transactions)
     profiles, expected = conditioning.completed_use(transactions)
 
@@ -94,31 +109,24 @@ def uses(transactions):
             before, after = previous.get("completed", 0), d["completed"]
             if "route_count" in d:
                 source_refs = _semantic_sources(d)
-                if previous and _semantic_sources(previous) != source_refs:
+                if previous and set(_semantic_sources(previous)) != set(source_refs):
                     raise ValueError("changed semantic source revisions")
-                for (start, end, _, element), route in _block_routes(d):
-                    if route is None or element is None or not before < end <= after:
+                source = None
+                for start, end, _, element in energy.blocks(d):
+                    if element is None or not before < end <= after:
                         continue
-                    source_ref = source_refs[route]
-                    producer = producers.get(source_ref)
-                    if producer is None:
-                        raise ValueError("missing exact provenance revision")
-                    if producer.actor is None:
-                        source = "world"
-                    elif producer.actor == d["actor"]:
-                        source = "self"
-                    elif producer.actor in profiles:
-                        source = producer.actor
-                    else:
-                        raise ValueError("unknown provenance actor")
+                    if source is None:
+                        source = _operation_source(source_refs, d["actor"],
+                                                   producers, profiles)
 
                     seat = model_a.position_of(d["tim"], element)
                     if source in ("self", "world"):
                         source_seat = relation = None
                     else:
-                        source_tim = profiles[source]
-                        source_seat = model_a.position_of(source_tim, element)
-                        relation = relations.relation(source_tim, d["tim"])
+                        source_seat = tuple(model_a.position_of(profiles[s], element)
+                                            for s in source)
+                        relation = tuple(relations.relation(profiles[s], d["tim"])
+                                         for s in source)
                     record = dict(actor=d["actor"], tim=d["tim"], element=element,
                                   seat=seat,
                                   dim=model_a.fields(seat)["dimensionality"],

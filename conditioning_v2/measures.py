@@ -67,7 +67,7 @@ def summarize(profiles, records, episodes, episode_indices):
         except KeyError as exc:
             raise ValueError("incomplete use record") from exc
 
-    received = tuple(i for i, r in enumerate(records) if r["source"] in profiles)
+    received = tuple(i for i, r in enumerate(records) if isinstance(r["source"], tuple))
     by_actor = {}
     for actor, tim in sorted(profiles.items()):
         all_ids = tuple(i for i, r in enumerate(records) if r["actor"] == actor)
@@ -81,7 +81,8 @@ def summarize(profiles, records, episodes, episode_indices):
             profile.setdefault((r["seat"], source, r["kept"]), []).append(i)
         for i in weak:
             r = records[i]
-            suppliers[r["seat"]].setdefault(r["source"], []).append(i)
+            for sender in r["source"]:
+                suppliers[r["seat"]].setdefault(sender, []).append(i)
         by_actor[actor] = dict(tim=tim, active=bool(all_ids), all_ids=all_ids,
                               profile=profile, incoming=incoming, held=held,
                               conditioning=(len(weak), len(weak)), conditioning_ids=weak,
@@ -91,7 +92,8 @@ def summarize(profiles, records, episodes, episode_indices):
 
     denominator = tuple((a, p) for a in sorted(profiles) for p in WEAK)
     qualifying = tuple(i for i in received if records[i]["dim"] <= 2
-                       and model.fields(records[i]["source_seat"])["dimensionality"] >= 3)
+                       and any(model.fields(seat)["dimensionality"] >= 3
+                               for seat in records[i]["source_seat"]))
 
     def coverage(ids):
         ids = tuple(ids)
@@ -101,16 +103,20 @@ def summarize(profiles, records, episodes, episode_indices):
 
     supplier_ids = {}
     for i in received:
-        supplier_ids.setdefault(records[i]["source"], []).append(i)
-    concentration = (sum(len(ids) ** 2 for ids in supplier_ids.values()), len(received) ** 2)
+        for sender in records[i]["source"]:
+            supplier_ids.setdefault(sender, []).append(i)
+    # A multi-supplier use contributes once to each supplier's share, while
+    # receiver profiles and coverage still count the use only once (A4).
+    concentration = (sum(len(ids) ** 2 for ids in supplier_ids.values()),
+                     sum(len(ids) for ids in supplier_ids.values()) ** 2)
     pairs = []
     for sender in sorted(profiles):
         for receiver in sorted(profiles):
             if sender == receiver:
                 continue
-            forward = tuple(i for i in received if records[i]["source"] == sender
+            forward = tuple(i for i in received if sender in records[i]["source"]
                             and records[i]["actor"] == receiver)
-            reverse = tuple(i for i in received if records[i]["source"] == receiver
+            reverse = tuple(i for i in received if receiver in records[i]["source"]
                             and records[i]["actor"] == sender)
             pairs.append(dict(sender=sender, receiver=receiver,
                               relation=relation_name(profiles[sender], profiles[receiver]),
