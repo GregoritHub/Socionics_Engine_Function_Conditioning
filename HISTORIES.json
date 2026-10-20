@@ -1,0 +1,274 @@
+[
+  {
+    "actors": {
+      "workshop:alice": "iee",
+      "workshop:bob": "sli",
+      "workshop:eve": "lie"
+    },
+    "checkpoint_sha256": "67b84259159b00fe1e5f2de33cca155b80290063a715de26c24d04771d1ef86b",
+    "completed_paid_uses": {
+      "workshop:alice": 6,
+      "workshop:bob": 21,
+      "workshop:eve": 19
+    },
+    "finite_stop": {
+      "counts": {
+        "workshop:alice": 2,
+        "workshop:bob": 2,
+        "workshop:eve": 2
+      },
+      "done": true,
+      "episodes": 3,
+      "reasons": {
+        "workshop:alice": "unchanged_retained_result",
+        "workshop:bob": "unchanged_retained_result",
+        "workshop:eve": "unchanged_retained_result"
+      },
+      "turns": 18
+    },
+    "model": "legacy-r4",
+    "name": "legacy-r4-seed-17",
+    "seeds": {
+      "fixture": 17
+    },
+    "transactions": 216
+  },
+  {
+    "actors": {
+      "workshop:alice": "iee",
+      "workshop:bob": "sli",
+      "workshop:eve": "lie"
+    },
+    "checkpoint_sha256": "9dcf83e973882a3be6c20be08e8ca1e167e8ecd1aa591bb8816410c531cce6df",
+    "completed_paid_uses": {
+      "workshop:alice": 6,
+      "workshop:bob": 21,
+      "workshop:eve": 19
+    },
+    "finite_stop": {
+      "counts": {
+        "workshop:alice": 2,
+        "workshop:bob": 2,
+        "workshop:eve": 2
+      },
+      "done": true,
+      "episodes": 3,
+      "reasons": {
+        "workshop:alice": "unchanged_retained_result",
+        "workshop:bob": "unchanged_retained_result",
+        "workshop:eve": "unchanged_retained_result"
+      },
+      "turns": 18
+    },
+    "model": "legacy-r4",
+    "name": "legacy-r4-seed-29",
+    "seeds": {
+      "fixture": 29
+    },
+    "transactions": 216
+  },
+  {
+    "actors": {
+      "workshop:alice": "iee",
+      "workshop:bob": "sli",
+      "workshop:eve": "lie"
+    },
+    "checkpoint_sha256": "79f7b78caf0a12523ec32664dc9c072da131ea583a0ad7d1b0ad1bfda8418bfc",
+    "completed_paid_uses": {
+      "workshop:alice": 6,
+      "workshop:bob": 21,
+      "workshop:eve": 19
+    },
+    "finite_stop": {
+      "counts": {
+        "workshop:alice": 2,
+        "workshop:bob": 2,
+        "workshop:eve": 2
+      },
+      "done": true,
+      "episodes": 3,
+      "reasons": {
+        "workshop:alice": "unchanged_retained_result",
+        "workshop:bob": "unchanged_retained_result",
+        "workshop:eve": "unchanged_retained_result"
+      },
+      "turns": 18
+    },
+    "model": "legacy-r4",
+    "name": "legacy-r4-seed-43",
+    "seeds": {
+      "fixture": 43
+    },
+    "transactions": 216
+  },
+  {
+    "actors": {
+      "workshop:alice": "iee",
+      "workshop:bob": "sli",
+      "workshop:eve": "lie"
+    },
+    "checkpoint_sha256": "6d33d982528bec531e3fe43dbea8176451bfbdc6d470ef6c4904a264774ea2a8",
+    "completed_paid_uses": {
+      "workshop:alice": 6,
+      "workshop:bob": 21,
+      "workshop:eve": 19
+    },
+    "finite_stop": {
+      "counts": {
+        "workshop:alice": 2,
+        "workshop:bob": 2,
+        "workshop:eve": 2
+      },
+      "done": true,
+      "episodes": 3,
+      "reasons": {
+        "workshop:alice": "unchanged_retained_result",
+        "workshop:bob": "unchanged_retained_result",
+        "workshop:eve": "unchanged_retained_result"
+      },
+      "turns": 18
+    },
+    "model": "legacy-r4",
+    "name": "legacy-r4-seed-61",
+    "seeds": {
+      "fixture": 61
+    },
+    "transactions": 216
+  },
+  {
+    "actors": {
+      "workshop:alice": "iee",
+      "workshop:bob": "sli",
+      "workshop:eve": "lie"
+    },
+    "checkpoint_sha256": "28abae8a8a576f9189288f8a9f2df0ad201f4a466d725c8d1d1ee23ca335ef73",
+    "completed_paid_uses": {
+      "workshop:alice": 6,
+      "workshop:bob": 21,
+      "workshop:eve": 19
+    },
+    "finite_stop": {
+      "counts": {
+        "workshop:alice": 2,
+        "workshop:bob": 2,
+        "workshop:eve": 2
+      },
+      "done": true,
+      "episodes": 3,
+      "reasons": {
+        "workshop:alice": "unchanged_retained_result",
+        "workshop:bob": "unchanged_retained_result",
+        "workshop:eve": "unchanged_retained_result"
+      },
+      "turns": 18
+    },
+    "model": "grade-v1",
+    "name": "grade-v1-seed-17",
+    "seeds": {
+      "fixture": 17
+    },
+    "transactions": 216
+  },
+  {
+    "actors": {
+      "workshop:alice": "iee",
+      "workshop:bob": "sli",
+      "workshop:eve": "lie"
+    },
+    "checkpoint_sha256": "b49b8cebdbbefd0fed4905b22ae8d41d9fdcae8755febebc2ca1d5b523b003c7",
+    "completed_paid_uses": {
+      "workshop:alice": 6,
+      "workshop:bob": 21,
+      "workshop:eve": 19
+    },
+    "finite_stop": {
+      "counts": {
+        "workshop:alice": 2,
+        "workshop:bob": 2,
+        "workshop:eve": 2
+      },
+      "done": true,
+      "episodes": 3,
+      "reasons": {
+        "workshop:alice": "unchanged_retained_result",
+        "workshop:bob": "unchanged_retained_result",
+        "workshop:eve": "unchanged_retained_result"
+      },
+      "turns": 18
+    },
+    "model": "grade-v1",
+    "name": "grade-v1-seed-29",
+    "seeds": {
+      "fixture": 29
+    },
+    "transactions": 216
+  },
+  {
+    "actors": {
+      "workshop:alice": "iee",
+      "workshop:bob": "sli",
+      "workshop:eve": "lie"
+    },
+    "checkpoint_sha256": "09a2d1411ad9eea8dc648558961d6ab9a3a9b9a10faaf552a34e5904427d9033",
+    "completed_paid_uses": {
+      "workshop:alice": 6,
+      "workshop:bob": 21,
+      "workshop:eve": 19
+    },
+    "finite_stop": {
+      "counts": {
+        "workshop:alice": 2,
+        "workshop:bob": 2,
+        "workshop:eve": 2
+      },
+      "done": true,
+      "episodes": 3,
+      "reasons": {
+        "workshop:alice": "unchanged_retained_result",
+        "workshop:bob": "unchanged_retained_result",
+        "workshop:eve": "unchanged_retained_result"
+      },
+      "turns": 18
+    },
+    "model": "grade-v1",
+    "name": "grade-v1-seed-43",
+    "seeds": {
+      "fixture": 43
+    },
+    "transactions": 216
+  },
+  {
+    "actors": {
+      "workshop:alice": "iee",
+      "workshop:bob": "sli",
+      "workshop:eve": "lie"
+    },
+    "checkpoint_sha256": "764e91002767ece728b9a1ac1d2dee72ef1a83b6ed952159871380dcdba1eff9",
+    "completed_paid_uses": {
+      "workshop:alice": 6,
+      "workshop:bob": 21,
+      "workshop:eve": 19
+    },
+    "finite_stop": {
+      "counts": {
+        "workshop:alice": 2,
+        "workshop:bob": 2,
+        "workshop:eve": 2
+      },
+      "done": true,
+      "episodes": 3,
+      "reasons": {
+        "workshop:alice": "unchanged_retained_result",
+        "workshop:bob": "unchanged_retained_result",
+        "workshop:eve": "unchanged_retained_result"
+      },
+      "turns": 18
+    },
+    "model": "grade-v1",
+    "name": "grade-v1-seed-61",
+    "seeds": {
+      "fixture": 61
+    },
+    "transactions": 216
+  }
+]
