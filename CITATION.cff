@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+message: "Please cite this repository and identify the engine commit when referring to these generated observations."
+title: "Socionics_Engine_Function_Conditioning"
+authors:
+  - name: "GregoritHub"
+repository-code: "https://github.com/GregoritHub/Socionics_Engine_Function_Conditioning"
+version: "directive-v1.7"
+date-released: "2026-10-20"
+abstract: >-
+  Observation-only Function Conditioning Ledger v2, Batch 7 under Amendment A5.
+  Engine repository: https://github.com/GregoritHub/Socionics_Engine
+  Pinned engine commit: fdede6f16721f06422d0798a79d84170969b83f8.
+  Reports generated workloads with wide and narrow exact-revision provenance;
+  does not assign subtypes or make claims about people.
