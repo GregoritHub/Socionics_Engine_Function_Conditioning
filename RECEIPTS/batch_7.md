@@ -1172,3 +1172,140 @@ records the publication blocker. The read repository remains clean and pinned.
 Continuation requires authenticated terminal Git, or an explicit exception to
 R4 allowing connector publication with different commit hashes. No acceptance
 or outside-review readiness is claimed.
+
+## Amendment A7 — stopped receipt published; gate resumed
+
+Client date: 20 October 2026. A7 clarifies R4 and authorizes connector transport.
+The earlier stops and authentication record above remain unchanged.
+
+local `2bb8e3ad941f67e42668b5edcdec90f57ee39f1a` → published
+`f140c3c071ff0d33b825c844a2e6ea4bd06238ba`.
+
+The connector prepared the stopped receipt on `batch-7-receipt-publication`
+from expected remote head `561028c4a1039a3dc71eac89cc5017dd0ab40980`.
+After fetching that publication, every tracked file's Git blob hash and mode
+matched the local record: `git diff --exit-code` between the two trees returned
+0. Both tree hashes are `269b5502a13d2289ef46a7d16f7a09f01e2e822c`.
+Receipt SHA-256: `f04f5e8c25dd6e85264675425acc072087bb5a9717e953280d21b02918faa0a6`.
+
+Main was updated with `force=false`, expected head equal to the Batch 6 hash
+above, and target equal to the published stopped receipt. A read-only
+`git ls-remote origin refs/heads/main` verified the published hash. This completed
+A7's first required action before the corrected proving command was run.
+
+The A6 proving command is unchanged. Its initial pre-commit run uses the explicit
+prospective-tree baseline documented above; the no-argument committed-tree
+reproduction will also run before acceptance publication. No scientific
+implementation change is authorized or made in this continuation.
+
+
+## Corrected A6 gate — first attempt passed under A7
+
+Client date: 20 October 2026. Exit status: 0. No repair was required; neither
+failure in the fresh A6 allowance was consumed. The stopped receipt was already
+published before this command began.
+
+Command:
+
+```sh
+python tools/reproduce.py && python -m unittest discover -s tests -v && python tools/path_check.py
+```
+
+The pre-commit environment explicitly set `REPRODUCE_BASE_TREE` to prospective
+Git tree `e8a7c74ef1c0f4b6e20fd907a90783323d6ceefb` and
+`PYTHONDONTWRITEBYTECODE=1`. This did not alter the no-argument reviewer command.
+Full output:
+
+```text
+PASS: python -S -m unittest tests.test_00_setup -v
+PASS: python -S generate/histories.py
+PASS: python -S generate/histories_delivery.py
+PASS: python -S -m unittest discover -s tests -v
+PASS: python -S -m conditioning_v2.tables
+PASS: python -S -m conditioning_v2.tables --histories HISTORIES_DELIVERY.json
+REPRODUCED: 11 files identical
+test_01_imports_resolve_to_read_clone (test_00_setup.SetupTests.test_01_imports_resolve_to_read_clone) ... ok
+test_02_every_frozen_file_is_unchanged (test_00_setup.SetupTests.test_02_every_frozen_file_is_unchanged) ... ok
+test_03_no_reverse_import_reference (test_00_setup.SetupTests.test_03_no_reverse_import_reference) ... ok
+test_04_standard_library_only_after_all_project_imports (test_00_setup.SetupTests.test_04_standard_library_only_after_all_project_imports) ... ok
+test_01_manifest_matched_seeds_types_and_dual_pair (test_01_histories.HistoryTests.test_01_manifest_matched_seeds_types_and_dual_pair) ... ok
+test_02_restore_hash_paid_use_finite_stop_and_regeneration (test_01_histories.HistoryTests.test_02_restore_hash_paid_use_finite_stop_and_regeneration) ... ok
+test_03_missing_and_forged_paid_evidence_rejected (test_01_histories.HistoryTests.test_03_missing_and_forged_paid_evidence_rejected) ... ok
+test_01_i1_i2_i3_i5_on_every_history (test_02_fields.FieldTests.test_01_i1_i2_i3_i5_on_every_history) ... ok
+test_02_self_actor_and_world_source_adapters (test_02_fields.FieldTests.test_02_self_actor_and_world_source_adapters) ... ok
+test_03_unknown_provenance_actor_is_rejected (test_02_fields.FieldTests.test_03_unknown_provenance_actor_is_rejected) ... ok
+test_04_element_seat_contract_forgery_is_rejected (test_02_fields.FieldTests.test_04_element_seat_contract_forgery_is_rejected) ... ok
+test_01_i4_first_half_and_nonempty_paid_prefix_on_every_history (test_03_kept.KeptTests.test_01_i4_first_half_and_nonempty_paid_prefix_on_every_history) ... ok
+test_02_repeated_seats_are_true_except_last_and_preserve_batch2 (test_03_kept.KeptTests.test_02_repeated_seats_are_true_except_last_and_preserve_batch2) ... ok
+test_03_unique_seats_are_false_and_missing_payment_is_rejected (test_03_kept.KeptTests.test_03_unique_seats_are_false_and_missing_payment_is_rejected) ... ok
+test_04_forged_duplicate_transaction_is_rejected (test_03_kept.KeptTests.test_04_forged_duplicate_transaction_is_rejected) ... ok
+test_05_repeat_moved_before_earlier_use_is_rejected (test_03_kept.KeptTests.test_05_repeat_moved_before_earlier_use_is_rejected) ... ok
+test_06_declared_moment_fields_and_forged_moments (test_03_kept.KeptTests.test_06_declared_moment_fields_and_forged_moments) ... ok
+test_01_i5_full_observation_equals_phase7_on_every_actor_history (test_04_measures.MeasureTests.test_01_i5_full_observation_equals_phase7_on_every_actor_history) ... ok
+test_02_twenty_saved_table_cells_recomputed_from_records (test_04_measures.MeasureTests.test_02_twenty_saved_table_cells_recomputed_from_records) ... ok
+test_03_positive_supplier_coverage_hold_concentration_and_inactive (test_04_measures.MeasureTests.test_03_positive_supplier_coverage_hold_concentration_and_inactive) ... ok
+test_04_inactive_history_appears_in_rendered_denominators (test_04_measures.MeasureTests.test_04_inactive_history_appears_in_rendered_denominators) ... ok
+test_05_missing_or_forged_measure_inputs_are_rejected (test_04_measures.MeasureTests.test_05_missing_or_forged_measure_inputs_are_rejected) ... ok
+test_06_episode_join_has_positive_and_negative_witnesses (test_04_measures.MeasureTests.test_06_episode_join_has_positive_and_negative_witnesses) ... ok
+test_07_relation_labels_and_generated_table_artifacts (test_04_measures.MeasureTests.test_07_relation_labels_and_generated_table_artifacts) ... ok
+test_00_a5_preserved_measurements_guard (test_06_delivery.DeliveryTests.test_00_a5_preserved_measurements_guard) ... ok
+test_01_matched_compositions_codec_calls_and_limits (test_06_delivery.DeliveryTests.test_01_matched_compositions_codec_calls_and_limits) ... ok
+test_02_i1_i2_i3_i5_and_real_pair_delivery (test_06_delivery.DeliveryTests.test_02_i1_i2_i3_i5_and_real_pair_delivery) ... ok
+test_03_i4_prefix_monotonicity_repeat_duplicate_and_order (test_06_delivery.DeliveryTests.test_03_i4_prefix_monotonicity_repeat_duplicate_and_order) ... ok
+test_04_forged_provenance_and_seat_witnesses_still_reject (test_06_delivery.DeliveryTests.test_04_forged_provenance_and_seat_witnesses_still_reject) ... ok
+test_05_multi_supplier_counting_and_tuple_negatives (test_06_delivery.DeliveryTests.test_05_multi_supplier_counting_and_tuple_negatives) ... ok
+test_06_tables_report_traceability_and_size (test_06_delivery.DeliveryTests.test_06_tables_report_traceability_and_size) ... ok
+test_01_narrow_and_wide_inputs_positive_and_negative (test_07_review.ReviewTests.test_01_narrow_and_wide_inputs_positive_and_negative) ... ok
+test_02_conditioning_includes_world_and_self_weak_uses (test_07_review.ReviewTests.test_02_conditioning_includes_world_and_self_weak_uses) ... ok
+test_03_readings_preserve_i1_i4_i5_and_narrow_is_subset (test_07_review.ReviewTests.test_03_readings_preserve_i1_i4_i5_and_narrow_is_subset) ... ok
+test_04_relation_display_names_do_not_drive_measures (test_07_review.ReviewTests.test_04_relation_display_names_do_not_drive_measures) ... ok
+test_05_review_hygiene_sizes_docs_and_historical_receipts (test_07_review.ReviewTests.test_05_review_hygiene_sizes_docs_and_historical_receipts) ... ok
+
+----------------------------------------------------------------------
+Ran 36 tests in 290.641s
+
+OK
+PATHS: clean
+```
+
+The reproduction's internal full suite also passed: 36 tests in 287.844 seconds.
+The A5 guard passed, preserving both manifests, historical receipts, all existing
+wide measurements except the conditioning-index column, and zero Batch 1 tuple
+sources under both readings. The complete numeric before/after remains above.
+Existing scientific implementation, tables, reports and historical receipts were
+also checked against the saved candidate SHA-256 values and remained identical.
+
+This records the passing pre-commit gate. Committed-tree reproduction is the
+remaining acceptance check before publication.
+
+## Batch 7 acceptance — committed-tree reproduction passed
+
+Status: ACCEPTED under A5/A6/A7. The earlier stops remain part of the audit trail.
+Local implementation commit: `dcc5a000516445ca5aa73b09d05af98df61b7400`.
+Its tree is `3e25ceba63a0bf94c91020c446079932f174a269`.
+
+The ordinary reviewer command `python tools/reproduce.py` ran with
+`REPRODUCE_BASE_TREE` unset and bytecode writing disabled. Exit status: 0.
+It compared against committed HEAD, not the prospective tree. Full output:
+
+```text
+PASS: python -S -m unittest tests.test_00_setup -v
+PASS: python -S generate/histories.py
+PASS: python -S generate/histories_delivery.py
+PASS: python -S -m unittest discover -s tests -v
+PASS: python -S -m conditioning_v2.tables
+PASS: python -S -m conditioning_v2.tables --histories HISTORIES_DELIVERY.json
+REPRODUCED: 11 files identical
+```
+
+Internal suite: 36 tests in 280.287 seconds, OK. Total reproduction time:
+403.350 seconds. `git diff --exit-code` returned 0 and `git status --short`
+was empty afterward. Thus the tested committed implementation regenerated all
+tables and both reports without changing any tracked file.
+
+This acceptance entry and the receipt index are documentation-only additions.
+The publication includes 60 tracked files; the largest is 186752 bytes. The
+manifests, Batch 1 non-index cells, all-use DCNH and earlier receipts remain
+preserved as checked by the gate. No LICENSE, feedback rule, fixture extension,
+or engine modification was added. Publication verification is recorded below
+after comparing the connector tree with the corresponding local commit.
