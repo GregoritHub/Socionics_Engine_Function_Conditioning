@@ -110,14 +110,14 @@ def episode_events(transactions):
     return [dict(actor=measures.actor_name(a), key=k, episode=0) for a, k in sorted(joins)]
 
 
-def first_delivery(transactions, observation):
+def first_delivery(transactions, observation, reading="wide"):
     producers = {v.ref: (i, tx.actor) for i, tx in enumerate(transactions) for v in tx.versions}
     for i in observation["received"]:
         row, loc = observation["records"][i], observation["locations"][i]
         version = next(v for v in transactions[loc["transaction"]].versions if v.ref == loc["operation"])
         d = measures.energy.data(version)
         exact = []
-        for ref in audit._semantic_sources(d):
+        for ref in audit._semantic_sources(d, reading):
             index, producer = producers[ref]
             if producer in row["source"]:
                 exact.append(dict(ref=argument(ref), producer=measures.actor_name(producer), transaction=index))
@@ -146,107 +146,9 @@ def composition_status():
 
 
 def report(histories):
-    representatives = {}
-    for h in histories:
-        representatives.setdefault(h["manifest"]["composition"], h)
-    # Collapse rows across seeds only when the full observed measures agree.
-    for h in histories:
-        other = representatives[h["manifest"]["composition"]]["observation"]
-        for field in ("actors", "coverage", "concentration", "pairs", "episode_coverage"):
-            if h["observation"][field] != other[field]:
-                raise ValueError("seed-dependent result requires explicit per-seed report rows")
-    first = representatives["pair"]["manifest"]["first_delivery"]
-    evidence = first["exact_inputs"][0]
-    text = """# Function Conditioning — delivery report
-
-## 1. Fixture and first delivery
-
-The accepted Step 1 fixture is `tests_u11.fixtures.circuit11(flat=False)`;
-Step 1 was not rerun. Its existing setup/group/join and circuit APIs generated
-matched pair compositions on seeds 17, 29, 43 and 61, legacy-r4 only.
-Each history is one harness episode including preparation. The same fixture
-work limits apply in both compositions. Seeds choose finite, nonbinding budgets;
-these are deterministic budget replicates, not distinct stochastic workloads.
-
-"""
-    text += (f"In `pair-seed-17`, use u{first['use']} at transaction {first['transaction']} "
-             f"(`{first['operation']}`) is received by {first['actor']} ({first['tim']}), "
-             f"{first['element']} at seat {first['seat']}, dim {first['dim']}. "
-             f"Supplier {first['sources'][0]} holds it at seat {first['source_seats'][0]}; "
-             f"relation: {first['relations'][0]}. Exact input `{evidence['ref']}` was "
-             f"committed by that supplier at transaction {evidence['transaction']}.\n\n")
-    text += ("Sources: [manifest](HISTORIES_DELIVERY.json), each history's exact calls, "
-             "parameters and first-delivery join; [pair trace](TABLES/pair_per_actor_delivery.md#use-trace).\n\n")
-    text += "## 2. Actor indices\n\nThe following values hold at every seed. Conditioning retains the accepted\nA1-literal ratio: received weak uses divided by received weak uses. It is\ndegenerate when defined. Hold is kept received / received.\n\n"
-    rows = []
-    for composition, h in representatives.items():
-        for actor, row in h["observation"]["actors"].items():
-            rows.append((composition, measures.actor_name(actor), row["tim"],
-                         "active" if row["active"] else "inactive", tables.ratio(row["conditioning"]), tables.ratio(row["hold"])))
-    text += tables.table(("Composition", "Actor", "TIM", "Status", "Conditioning (A1 literal)", "Hold"), rows)
-    text += "\nSources: Actor indices in the [pair](TABLES/pair_per_actor_delivery.md#actor-indices) and [pair-sterile](TABLES/pair-sterile_per_actor_delivery.md#actor-indices) tables.\n\n"
-    text += "## 3. Coverage across compositions\n\n"
-    rows = [(c, tables.ratio(h["observation"]["coverage"]["ratio"])) for c, h in representatives.items()]
-    rows.append(("triad (IEE/SLI/LIE)", "N/A — not producible"))
-    text += tables.table(("Composition", "Coverage at every seed and through episode 0"), rows)
-    ratios = [h["observation"]["coverage"]["ratio"] for h in representatives.values()]
-    comparison = "differs" if len(set(ratios)) > 1 else "is identical"
-    text += (f"\nCoverage {comparison} across the supported pair compositions at matched seeds. "
-             "This is the observed composition contrast; the requested pair-versus-triad "
-             "presence comparison is unavailable.\n\n"
-             "Pair means Alice and Bob participate in the collective. The fixture also "
-             "commits inactive Eve=SLI; her weak seats remain in the denominator. These "
-             "are not worlds containing only two actor profiles. `setup11(tim=)` changes "
-             "Alice only; group/join cannot make Eve a LIE.\n\n"
-             "Sources: Population summary and episode rows in the [pair](TABLES/pair_per_population_delivery.md) "
-             "and [pair-sterile](TABLES/pair-sterile_per_population_delivery.md) tables; "
-             "the manifest records the unavailable triad.\n\n")
-    text += "## 4. Sterile pairs and prediction\n\n"
-    rows = []
-    for c, h in representatives.items():
-        for pair in h["observation"]["pairs"]:
-            rows.append((c, measures.actor_name(pair["sender"]), measures.actor_name(pair["receiver"]),
-                         pair["relation"], len(pair["forward"]), len(pair["reverse"]), pair["sterile"]))
-    text += tables.table(("Composition", "Source", "Receiver", "Relation", "Forward", "Reverse", "Sterile"), rows)
-    text += ("\nEvery row holds across seeds. The directive predicts conflict is sterile both ways; "
-             "no separate yield-table artifact was located. `pair-sterile` names that prediction. "
-             "These counts use A3/A4 provenance. Inactive Eve's zeros do not establish "
-             "intrinsic relation sterility.\n\n"
-             "Sources: Ordered pairs in both composition population tables.\n\n")
-    text += "## 5. DCNH all-use versus received-and-kept\n\n"
-    rows = []
-    for c, h in representatives.items():
-        for actor, row in h["observation"]["actors"].items():
-            rows.append((c, measures.actor_name(actor), row["tim"], len(row["all_ids"]), len(row["held"]),
-                         "agree" if row["all_dcnh"] == row["received_kept_dcnh"] else "diverge"))
-    text += tables.table(("Composition", "Actor", "TIM", "All uses", "Received and kept", "Comparison"), rows)
-    text += ("\nThese comparisons hold at every seed. Inactive Eve's agreement is between empty "
-             "observations. All-use rows equal native Phase 7 observations exactly.\n\n"
-             "Sources: [pair DCNH](TABLES/pair_dcnh_two_ways_delivery.md) and "
-             "[pair-sterile DCNH](TABLES/pair-sterile_dcnh_two_ways_delivery.md).\n\n")
-    text += """## 6. Limits
-
-A3/A4 provenance counts **any exact operation input, including collective
-evidence such as an invitation**. This is broader than delivery of one route's
-semantic content. Every paid block of such an operation shares its producer
-tuple. A listed producer need not have produced that block's information element;
-its source seat is derived from its TIM. No causal learning claim follows.
-
-These are generated, supplied circuit workloads, not historical observations.
-The existing circuit includes paid damage to renew its supplied demand; no new
-demand rule was added. The paired comparison changes Alice's TIM with Bob fixed;
-it does not isolate a third member's presence. A true IEE/SLI/LIE triad was not
-producible with the authorized fixture calls. Background Eve remains SLI and
-inactive. Four matched seeds vary only nonbinding budgets, so they do not
-establish workload robustness. The fixture has operation-specific work limits,
-not a Population scheduler quantum; the manifest records the exact common limits.
-
-The accepted conditioning-index denominator is still degenerate. Undefined
-ratios remain N/A. No feedback, energy regeneration, practice pricing, Model G
-seats, or new demand formation was added. The read repository is unchanged;
-the accepted Batch 1 outputs regenerate byte-identically. Nothing is closed.
-"""
-    return text
+    """Batch 7 report renderer; history generation and manifests are unchanged."""
+    reports = __import__("conditioning_v2.reports", fromlist=["delivery"])
+    return reports.delivery(histories)
 
 
 def main():
@@ -276,7 +178,7 @@ def main():
             entries.append(entry)
             histories.append(dict(manifest=entry, observation=obs, transactions=txs, events=native_events))
             print(name + ": " + str(len(txs)) + " transactions; " + str(len(obs["received"]))
-                  + " received; coverage " + tables.ratio(obs["coverage"]["ratio"]), flush=True)
+                  + " received wide; coverage wide " + tables.ratio(obs["coverage"]["ratio"]), flush=True)
     # Lossless JSON sharing, not a compressed payload: the same explicit
     # actor/key/episode records otherwise repeat once for every matched seed.
     event_sets = {}
