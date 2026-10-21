@@ -3,6 +3,8 @@ ENGINE = pathlib.Path(__file__).resolve().parents[1] / "engine_path.txt"
 ROOT = pathlib.Path(ENGINE.read_text().strip())
 sys.path[:0] = [str(ROOT), str(ROOT / "baseline/HLE_Rebuild_R21B")]
 
+# Historical Batch 6 Step 1 fixture qualification; not rerun by Batch 7.
+# tools/reproduce.py supersedes this script for outside review.
 sys.dont_write_bytecode = True
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1]))
 audit = __import__("conditioning_v2.audit", fromlist=["uses"])
