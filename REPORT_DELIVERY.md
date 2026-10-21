@@ -2,102 +2,93 @@
 
 ## 1. Fixture and first delivery
 
-The accepted Step 1 fixture is `tests_u11.fixtures.circuit11(flat=False)`;
-Step 1 was not rerun. Its existing setup/group/join and circuit APIs generated
-matched pair compositions on seeds 17, 29, 43 and 61, legacy-r4 only.
-Each history is one harness episode including preparation. The same fixture
-work limits apply in both compositions. Seeds choose finite, nonbinding budgets;
-these are deterministic budget replicates, not distinct stochastic workloads.
+The accepted fixture is `tests_u11.fixtures.circuit11(flat=False)`; the original
+Step 1 probe was not rerun. Existing parameterized setup/group/join calls
+produce pair and pair-sterile compositions. All use legacy-r4, seeds 17, 29,
+43, 61, and one harness episode including preparation. Seeds vary finite,
+nonbinding budgets; they are not distinct stochastic workloads.
 
-In `pair-seed-17`, use u40 at transaction 307 (`join-accept`) is received by workshop:bob (sli), te at seat 2, dim 3. Supplier workshop:alice holds it at seat 6; relation: duality. Exact input `u11.invitation:f1fb117aa5db5f54af8a73fb4f93f9408498adeacc6441793e08e8e14f8b27de@1` was committed by that supplier at transaction 302.
+Wide includes source.N, source_input and input.N. Narrow excludes input.N.
+The earliest observed deliveries in pair-seed-17 are:
 
-Sources: [manifest](HISTORIES_DELIVERY.json), each history's exact calls, parameters and first-delivery join; [pair trace](TABLES/pair_per_actor_delivery.md#use-trace).
+| Reading | Use | Transaction | Operation | Receiver | Element | Seat | Dim | Sources | Producer transaction | Exact input |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| wide | u40 | 307 | join-accept | workshop:bob | te | 2 | 3 | workshop:alice | 302 | u11.invitation:f1fb117aa5db5f54af8a73fb4f93f9408498adeacc6441793e08e8e14f8b27de@1 |
+| narrow | none | none | none | none | none | none | none | none | none | none |
+
+Sources: [manifest](HISTORIES_DELIVERY.json) for calls and wide witness; [pair trace](TABLES/pair_per_actor_delivery.md#use-trace) and exact-revision joins in the regenerated journal for both readings.
 
 ## 2. Actor indices
 
-The following values hold at every seed. Conditioning retains the accepted
-A1-literal ratio: received weak uses divided by received weak uses. It is
-degenerate when defined. Hold is kept received / received.
+Received weak uses / all weak uses is the corrected conditioning index; kept received / received is hold. N/A denotes a zero denominator. Rows apply at every seed.
 
-| Composition | Actor | TIM | Status | Conditioning (A1 literal) | Hold |
-| --- | --- | --- | --- | --- | --- |
-| pair | workshop:alice | iee | active | 45/45 = 1 | 43/45 = 43/45 |
-| pair | workshop:bob | sli | active | 12/12 = 1 | 48/52 = 12/13 |
-| pair | workshop:eve | sli | inactive | 0/0 (N/A) | 0/0 (N/A) |
-| pair-sterile | workshop:alice | eie | active | 40/40 = 1 | 71/75 = 71/75 |
-| pair-sterile | workshop:bob | sli | active | 12/12 = 1 | 48/52 = 12/13 |
-| pair-sterile | workshop:eve | sli | inactive | 0/0 (N/A) | 0/0 (N/A) |
+| Composition | Actor | TIM | Status | Conditioning wide | Conditioning narrow | Hold wide | Hold narrow |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| pair | workshop:alice | iee | active | 45/84 = 15/28 | 0/84 = 0 | 43/45 = 43/45 | 0/0 (N/A) |
+| pair | workshop:bob | sli | active | 12/12 = 1 | 0/12 = 0 | 48/52 = 12/13 | 0/0 (N/A) |
+| pair | workshop:eve | sli | inactive | 0/0 (N/A) | 0/0 (N/A) | 0/0 (N/A) | 0/0 (N/A) |
+| pair-sterile | workshop:alice | eie | active | 40/77 = 40/77 | 0/77 = 0 | 71/75 = 71/75 | 0/0 (N/A) |
+| pair-sterile | workshop:bob | sli | active | 12/12 = 1 | 0/12 = 0 | 48/52 = 12/13 | 0/0 (N/A) |
+| pair-sterile | workshop:eve | sli | inactive | 0/0 (N/A) | 0/0 (N/A) | 0/0 (N/A) | 0/0 (N/A) |
 
-Sources: Actor indices in the [pair](TABLES/pair_per_actor_delivery.md#actor-indices) and [pair-sterile](TABLES/pair-sterile_per_actor_delivery.md#actor-indices) tables.
+Sources: [pair indices](TABLES/pair_per_actor_delivery.md#actor-indices), [pair-sterile indices](TABLES/pair-sterile_per_actor_delivery.md#actor-indices).
 
 ## 3. Coverage across compositions
 
-| Composition | Coverage at every seed and through episode 0 |
-| --- | --- |
-| pair | 4/12 = 1/3 |
-| pair-sterile | 4/12 = 1/3 |
-| triad (IEE/SLI/LIE) | N/A — not producible |
+| Composition | Received wide | Received narrow | Coverage wide | Coverage narrow |
+| --- | --- | --- | --- | --- |
+| pair | 97 | 0 | 4/12 = 1/3 | 0/12 = 0 |
+| pair-sterile | 127 | 0 | 4/12 = 1/3 | 0/12 = 0 |
+| triad (IEE/SLI/LIE) | N/A | N/A | not producible | not producible |
 
-Coverage is identical across the supported pair compositions at matched seeds. This is the observed composition contrast; the requested pair-versus-triad presence comparison is unavailable.
+These values hold at every seed and through episode 0. Compare each reading
+separately: coverage is identical across the supported pair compositions.
+The wide reading records U11 delivery for both duality and conflict; narrow records none; this does not establish
+relation independence generally. Eve is an inactive SLI in both compositions
+and remains in the denominator. No IEE/SLI/LIE triad or third-person presence
+comparison was producible with the authorized calls.
 
-Pair means Alice and Bob participate in the collective. The fixture also commits inactive Eve=SLI; her weak seats remain in the denominator. These are not worlds containing only two actor profiles. `setup11(tim=)` changes Alice only; group/join cannot make Eve a LIE.
-
-Sources: Population summary and episode rows in the [pair](TABLES/pair_per_population_delivery.md) and [pair-sterile](TABLES/pair-sterile_per_population_delivery.md) tables; the manifest records the unavailable triad.
+Sources: [pair population](TABLES/pair_per_population_delivery.md),
+[pair-sterile population](TABLES/pair-sterile_per_population_delivery.md).
 
 ## 4. Sterile pairs and prediction
 
-| Composition | Source | Receiver | Relation | Forward | Reverse | Sterile |
-| --- | --- | --- | --- | --- | --- | --- |
-| pair | workshop:alice | workshop:bob | duality | 52 | 45 | False |
-| pair | workshop:alice | workshop:eve | duality | 0 | 0 | True |
-| pair | workshop:bob | workshop:alice | duality | 45 | 52 | False |
-| pair | workshop:bob | workshop:eve | identity | 0 | 0 | True |
-| pair | workshop:eve | workshop:alice | duality | 0 | 0 | True |
-| pair | workshop:eve | workshop:bob | identity | 0 | 0 | True |
-| pair-sterile | workshop:alice | workshop:bob | conflict | 52 | 75 | False |
-| pair-sterile | workshop:alice | workshop:eve | conflict | 0 | 0 | True |
-| pair-sterile | workshop:bob | workshop:alice | conflict | 75 | 52 | False |
-| pair-sterile | workshop:bob | workshop:eve | identity | 0 | 0 | True |
-| pair-sterile | workshop:eve | workshop:alice | conflict | 0 | 0 | True |
-| pair-sterile | workshop:eve | workshop:bob | identity | 0 | 0 | True |
+| Composition | Source | Receiver | Relation | Forward wide | Forward narrow | Reverse wide | Reverse narrow | Sterile wide | Sterile narrow |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| pair | workshop:alice | workshop:bob | duality | 52 | 0 | 45 | 0 | False | True |
+| pair | workshop:alice | workshop:eve | duality | 0 | 0 | 0 | 0 | True | True |
+| pair | workshop:bob | workshop:eve | identity | 0 | 0 | 0 | 0 | True | True |
+| pair-sterile | workshop:alice | workshop:bob | conflict | 52 | 0 | 75 | 0 | False | True |
+| pair-sterile | workshop:alice | workshop:eve | conflict | 0 | 0 | 0 | 0 | True | True |
+| pair-sterile | workshop:bob | workshop:eve | identity | 0 | 0 | 0 | 0 | True | True |
 
-Every row holds across seeds. The directive predicts conflict is sterile both ways; no separate yield-table artifact was located. `pair-sterile` names that prediction. These counts use A3/A4 provenance. Inactive Eve's zeros do not establish intrinsic relation sterility.
-
-Sources: Ordered pairs in both composition population tables.
+Each row includes both directions and holds across seeds. The name pair-sterile records the directive's conflict prediction, not the result. No independent yield-table artifact was located. Eve's zeros do not show intrinsic sterility. Sources: ordered-pair rows in both population tables.
 
 ## 5. DCNH all-use versus received-and-kept
 
-| Composition | Actor | TIM | All uses | Received and kept | Comparison |
-| --- | --- | --- | --- | --- | --- |
-| pair | workshop:alice | iee | 85 | 43 | diverge |
-| pair | workshop:bob | sli | 52 | 48 | diverge |
-| pair | workshop:eve | sli | 0 | 0 | agree |
-| pair-sterile | workshop:alice | eie | 146 | 71 | diverge |
-| pair-sterile | workshop:bob | sli | 52 | 48 | diverge |
-| pair-sterile | workshop:eve | sli | 0 | 0 | agree |
+| Composition | Actor | TIM | All uses (both) | Received kept wide | Received kept narrow | Greatest all (both) | Greatest received kept wide | Greatest received kept narrow | Comparison wide | Comparison narrow |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| pair | workshop:alice | iee | 85 | 43 | 0 | H,D | H | C,N,H,D | diverge | diverge |
+| pair | workshop:bob | sli | 52 | 48 | 0 | D | D | H,D,C,N | diverge | diverge |
+| pair | workshop:eve | sli | 0 | 0 | 0 | H,D,C,N | H,D,C,N | H,D,C,N | agree | agree |
+| pair-sterile | workshop:alice | eie | 146 | 71 | 0 | H | D,H | D,H,N,C | diverge | diverge |
+| pair-sterile | workshop:bob | sli | 52 | 48 | 0 | D | D | H,D,C,N | diverge | diverge |
+| pair-sterile | workshop:eve | sli | 0 | 0 | 0 | H,D,C,N | H,D,C,N | H,D,C,N | agree | agree |
 
-These comparisons hold at every seed. Inactive Eve's agreement is between empty observations. All-use rows equal native Phase 7 observations exactly.
-
-Sources: [pair DCNH](TABLES/pair_dcnh_two_ways_delivery.md) and [pair-sterile DCNH](TABLES/pair-sterile_dcnh_two_ways_delivery.md).
+All-use rows equal native Phase 7 observations. Comparisons use complete observations; a shared greatest cell alone is not agreement. Eve's agreement is between empty observations. Sources: [pair DCNH](TABLES/pair_dcnh_two_ways_delivery.md), [pair-sterile DCNH](TABLES/pair-sterile_dcnh_two_ways_delivery.md).
 
 ## 6. Limits
 
-A3/A4 provenance counts **any exact operation input, including collective
-evidence such as an invitation**. This is broader than delivery of one route's
-semantic content. Every paid block of such an operation shares its producer
-tuple. A listed producer need not have produced that block's information element;
-its source seat is derived from its TIM. No causal learning claim follows.
+Wide provenance is an upper bound: any exact operation input counts, including collective
+evidence such as an invitation. Narrow removes generic input.N evidence, but
+still assigns each operation's selected supplier tuple to every paid block.
+Neither reading proves an element's semantic lineage, learning, or causation.
 
-These are generated, supplied circuit workloads, not historical observations.
-The existing circuit includes paid damage to renew its supplied demand; no new
-demand rule was added. The paired comparison changes Alice's TIM with Bob fixed;
-it does not isolate a third member's presence. A true IEE/SLI/LIE triad was not
-producible with the authorized fixture calls. Background Eve remains SLI and
-inactive. Four matched seeds vary only nonbinding budgets, so they do not
-establish workload robustness. The fixture has operation-specific work limits,
-not a Population scheduler quantum; the manifest records the exact common limits.
-
-The accepted conditioning-index denominator is still degenerate. Undefined
-ratios remain N/A. No feedback, energy regeneration, practice pricing, Model G
-seats, or new demand formation was added. The read repository is unchanged;
-the accepted Batch 1 outputs regenerate byte-identically. Nothing is closed.
+Only supplied generated workloads were measured. U11 emphasizes strong seats
+and repeated work; retention is nearly saturated at this workload. Four seeds
+vary only nonbinding budgets. Eve is always inactive. The requested triad was
+not producible, so this is not a test of an added person's presence. No historical
+archive was used. The circuit's existing paid damage renews supplied demand;
+no new demand formation, feedback, regeneration, pricing, or Model G seats were
+added. Read-engine hashes are unchanged. Undefined ratios remain N/A. See
+[LIMITS.md](LIMITS.md) for consolidated bounds.
