@@ -70,5 +70,33 @@ mismatch); Batch 7 artifacts byte-identical; rendered cells recomputed.
 python tools/reproduce.py && python -m unittest discover -s tests -v && python tools/path_check.py
 ```
 
-Staged-tree gate (`REPRODUCE_BASE_TREE` = staged tree, A5/Batch 7 practice):
-recorded below. Committed-tree run: appended after the commit.
+Staged-tree gate (`REPRODUCE_BASE_TREE` = staged tree, A5/Batch 7 practice): the
+first run failed in `test_08_classes.test_07` because the generators rewrite the
+reports before the suite runs and the Batch 8 section is appended only afterwards;
+the test was corrected to require the Batch 7 text as a prefix either way. The
+second staged run passed every Batch ≤ 8 test (44); its only error was the Batch 9
+test module, written into the working tree during the run, failing on a manifest
+that did not yet exist. The acceptance run was therefore repeated on the committed
+tree in a clean worktree.
+
+## Committed-tree reproduction (accepted)
+
+Commit `7ab5338` ("batch 8: use classes, observed supply, DCNH margin, price of type"),
+checked out alone in a fresh worktree with only `engine_path.txt` added:
+
+```
+PASS: python -S -m unittest tests.test_00_setup -v
+PASS: python -S generate/histories.py
+PASS: python -S generate/histories_delivery.py
+PASS: python -S -m unittest discover -s tests -v
+PASS: python -S -m conditioning_v2.tables
+PASS: python -S -m conditioning_v2.tables --histories HISTORIES_DELIVERY.json
+PASS: python -S -m conditioning_v2.classes
+PASS: python -S -m conditioning_v2.classes --histories HISTORIES_DELIVERY.json
+REPRODUCED: 20 files identical
+PATHS: clean
+```
+
+44 tests, OK; 756.5 s on the recorded environment (Python 3.13.16 here; the
+runner and tests are version-independent within 3.12–3.13). Batch 8 accepted.
+
