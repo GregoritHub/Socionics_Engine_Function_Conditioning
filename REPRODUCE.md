@@ -26,7 +26,7 @@ python tools/reproduce.py
 ```
 
 The runner verifies setup, regenerates both history sets, runs every unittest,
-regenerates all tables and both reports, and compares their bytes with Git HEAD.
+regenerates all tables (Batch 4–7, then the Batch 8 class tables) and both reports, and compares their bytes with Git HEAD.
 It runs with Python site-package loading disabled (`-S`) so ambient startup
 hooks cannot become hidden dependencies. It never writes to the engine or uses a generated output as its own reference.
 Per-step stdout/stderr is retained locally in ignored `OUT/reproduce_*.log`.
@@ -40,7 +40,9 @@ PASS: python -S generate/histories_delivery.py
 PASS: python -S -m unittest discover -s tests -v
 PASS: python -S -m conditioning_v2.tables
 PASS: python -S -m conditioning_v2.tables --histories HISTORIES_DELIVERY.json
-REPRODUCED: 11 files identical
+PASS: python -S -m conditioning_v2.classes
+PASS: python -S -m conditioning_v2.classes --histories HISTORIES_DELIVERY.json
+REPRODUCED: 20 files identical
 ```
 
 ## 5. Expected time

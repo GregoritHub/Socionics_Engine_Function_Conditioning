@@ -76,6 +76,15 @@ does not show relation-specific coverage. Wide provenance is an upper bound,
 and the requested triad was not producible; no third-person presence effect
 was measured.
 
+Batch 8 splits every use into a **hop** (transit along a route) or a **content**
+block: Bob's 12 weak-seat uses are all hops, and the IEE and EIE complete the
+same 38 content blocks for 47 versus 108 hops ([price of type](TABLES/pair_price_of_type_delivery.md),
+[pair-sterile](TABLES/pair-sterile_price_of_type_delivery.md)). Observed coverage,
+which requires the supplier to have done content work at the element, is **2/12**
+against structural **4/12** ([classes](TABLES/pair_classes_delivery.md#structural-versus-observed-coverage)).
+Internalisation, a received use later repeated self-sourced, is **0** in every
+history, because each ends inside the collective ([five ways](TABLES/pair_dcnh_five_ways_delivery.md)).
+
 ## How to read a table
 
 Take Alice's `pair-seed-17` row in [actor indices](TABLES/pair_per_actor_delivery.md#actor-indices).
@@ -105,6 +114,8 @@ the shared use trace. Counts are occurrences, not distinct transactions.
 - [A5](DIRECTIVE_AMENDMENT_A5_review_guard.md): permits corrected indices; preserves other wide cells and historical receipts.
 - [A6](DIRECTIVE_AMENDMENT_A6_path_gate_publication.md): replaces the grep gate with a scoped path checker; authorizes stopped-receipt publication.
 - [A7](DIRECTIVE_AMENDMENT_A7_publication_transport.md): permits connector publication with local/published hashes and tree verification.
+- [Batch 8](RECEIPTS/batch_8.md): use classes, observed supply, DCNH margins, price of type, internalisation; all additive.
+- [A8](DIRECTIVE_AMENDMENT_A8_additive_tables.md): Batch 8 measures go in new tables; Batch 7 files byte-identical.
 
 The [receipts index](RECEIPTS/README.md) retains the stops, refusals, repairs, and clearances.
 
@@ -118,12 +129,13 @@ freeze every fixture/document in the engine, prove kernel correctness, establish
 scientific validity, or demonstrate behavior outside the generated workloads.
 The pinned Git commit identifies the remaining engine files.
 
-## Directive appendix (v1.7)
+## Directive appendix (v1.8)
 
 The [original directive](BATCH_DIRECTIVE_Function_Conditioning_v1.md), linked
-amendments, [Batch 6 extension](DIRECTIVE_BATCH_6_cross_actor_delivery.md), and
-[Batch 7 extension](DIRECTIVE_BATCH_7_review_prep.md) form the audit trail.
-A5 governs Batch 7's guard; A6 defines the path gate and A7 the publication transport.
-No further batch or feedback
+amendments, [Batch 6 extension](DIRECTIVE_BATCH_6_cross_actor_delivery.md),
+[Batch 7 extension](DIRECTIVE_BATCH_7_review_prep.md) and
+[Batches 8–9 extension](DIRECTIVE_BATCH_8_9_use_classes_observed_supply_solo_phase.md) form the audit trail.
+A5 governs Batch 7's guard; A6 defines the path gate, A7 the publication transport,
+A8 the additive placement of Batch 8 measures. No feedback
 rule is authorized. No LICENSE is included; licensing remains the owner's decision.
 [CITATION.cff](CITATION.cff) records attribution and the pinned engine commit.

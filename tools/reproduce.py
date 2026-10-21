@@ -52,6 +52,8 @@ def main():
         ("-m", "unittest", "discover", "-s", "tests", "-v"),
         ("-m", "conditioning_v2.tables"),
         ("-m", "conditioning_v2.tables", "--histories", "HISTORIES_DELIVERY.json"),
+        ("-m", "conditioning_v2.classes"),
+        ("-m", "conditioning_v2.classes", "--histories", "HISTORIES_DELIVERY.json"),
     ]
     out = PROJECT / "OUT"
     out.mkdir(exist_ok=True)

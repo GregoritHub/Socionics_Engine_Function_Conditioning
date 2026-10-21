@@ -90,3 +90,15 @@ is now defined when weak uses exist; hold and supplier concentration remain
 N/A when no received uses exist. Wide is an operation-input upper bound on
 semantic delivery. Narrow still assigns an operation's semantic-source tuple
 to every paid block, not a verified lineage for each element. See [LIMITS.md](LIMITS.md).
+
+## 8. Use classes and price of type
+
+Wide reading; rows hold at every seed; N/A is a zero denominator. Cond. by class: received weak uses of the class / all weak uses of the class. Internalisation: received uses later followed by a self/world use at the same seat / received uses. Margin: greatest axis load minus runner-up. Energy is CT Table 13 block energy, not a legacy-r4 wallet debit.
+
+| Actor | TIM | Hops | Content | Cond. content | Cond. hop | Internalisation | Greatest all (margin) | Greatest content (margin) | Greatest hop (margin) | Time | Energy |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| workshop:alice | iee | 2 | 4 | N/A | 0/1 | N/A | H (4) | H (4) | C,H (0) | 13 | 23 |
+| workshop:bob | sli | 17 | 4 | 0/4 | 0/5 | N/A | H (1) | H (4) | C (3) | 47 | 67 |
+| workshop:eve | lie | 15 | 4 | N/A | 0/4 | N/A | H (1) | H (4) | D (3) | 39 | 23 |
+
+coverage: structural 0/12, observed 0/12. Narrow finds no received uses, so its class indices and internalisation are 0 or N/A. Sources: [classes](TABLES/classes.md), [price of type](TABLES/price_of_type.md), [DCNH five ways](TABLES/dcnh_five_ways.md).

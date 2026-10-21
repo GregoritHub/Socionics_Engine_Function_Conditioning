@@ -31,7 +31,17 @@ this is a review priority, not an empirically estimated effect ranking.
    in the coverage denominator. These are two-participant collectives in worlds
    with three committed profiles, not two-profile worlds. Her sterile pairs and
    empty DCNH agreement cannot establish properties of her relation or type.
-8. **No historical archives were used.** Everything measured here is reproduced
+8. **Hop and content are counted alike by the Batch 7 indices.** Batch 8 reports
+   them separately; Bob's weak-seat conditioning is entirely hops, and every
+   route passes through a vital-ring support seat by construction. Which class
+   should feed a DCNH load or a conditioning denominator is a theory question
+   the companion does not decide.
+9. **Observed supply does not establish lineage.** It requires only that the
+   supplier completed a content block at the element earlier; it does not
+   show that the consumed revision carried that element's content.
+10. **Block energy is CT Table 13**, the grade-v1 debit, reported under every
+   resource model; it is not the legacy-r4 wallet debit.
+11. **No historical archives were used.** Everything measured here is reproduced
    from the public pinned engine and the generated manifests; there is no
    comparison with private archival journals or independent empirical data.
 

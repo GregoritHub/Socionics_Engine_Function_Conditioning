@@ -104,3 +104,16 @@ An empty trace is an observed zero only within the declared complete history.
 Coverage denominators include all committed profile actors, including actors
 with zero completed uses (labeled inactive). A ratio with a zero denominator is
 displayed as N/A, never as a measured zero.
+
+## Batch 8 observation inputs (A8)
+
+| Field | Meaning and use | Pinned source |
+| --- | --- | --- |
+| block **kind** | `hop` if the block is an arrival along `route.{i}.path.{n}`, n ≥ 1; `content` if it is the route's seat-content block. Derived from the committed route structure in route order (the last element block of each route is content). Not stored as an attribute. | `hle_unified/energy_audit.py:12–41` |
+| block **time** | `end − start` of the element block: `TIME[seat−1]` for a hop, `content_units` for content. | `hle_unified/energy_audit.py:5,26–37` |
+| block **energy** | The third tuple value of `blocks(d)` for an element block: `ENERGY[seat−1]`, times `content_units // TIME[seat−1]` for content. Reported as CT Table 13 block energy under every resource model; it is the grade-v1 debit and is not the legacy-r4 wallet debit. | `hle_unified/energy_audit.py:6,30,37,47–50` |
+| seat **ring** | `fields(seat)["ring"]`, `mental` (1–4) or `vital` (5–8). | `baseline/HLE_Rebuild_R21B/hle/model_a.py`, `fields` |
+| `route.{i}.support_seat`, `route.{i}.support_at` | The vital-ring seat the route was built through (5 or 7 for accumulation, 6 or 8 for expenditure) and the hop index at which it is reached. Read for the support-traffic column only; never used to recompute a route (opaque route contract, Batch 0). | `hle_unified/cognitive_routes.py:20–36` |
+
+Batch 8 class records are aligned index-for-index with the Batch 3 use records
+and validated against the CT tables (`tests/test_08_classes.py`).

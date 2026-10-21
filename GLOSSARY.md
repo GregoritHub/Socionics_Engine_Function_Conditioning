@@ -34,3 +34,13 @@
 | Resource model | legacy-r4 and grade-v1 are existing engine resource models selected by [histories.py](generate/histories.py), `build`, while all delivery histories retain legacy-r4; these are separate from provenance readings. |
 | Seed | A seed selects population task counts/order or, for delivery histories, only the nonbinding initial budget, in [histories.py](generate/histories.py), `build`, and [histories_delivery.py](generate/histories_delivery.py), `build`. |
 | Checkpoint SHA-256 | The digest identifies the exact native serialized world/checkpoint bytes and is checked after restoration by [tables.py](conditioning_v2/tables.py), `load_histories`, rather than serving as a substitute for available generated data. |
+| Kind: hop / content | A paid use is a hop (arrival along a route path) or a content block (the route's seat-content work); recovered from committed route attributes in [classes.py](conditioning_v2/classes.py), `classify`. |
+| Conditioning / hold by class | The Batch 7 conditioning and hold indices restricted to one kind of use, in [classes.py](conditioning_v2/classes.py), `summarize`. |
+| Kept self | A received use later followed by a self- or world-sourced paid use by the same actor at the same seat and element, monotone under history growth, in [classes.py](conditioning_v2/classes.py), `kept_self`. |
+| Internalisation | Received uses with kept self divided by received uses, per actor and per weak seat; N/A when nothing is received, in [classes.py](conditioning_v2/classes.py), `summarize`. |
+| Observed supply / observed coverage | A received weak use whose supplier completed a content block at that element earlier in the history; coverage over the same denominator as structural coverage, in [classes.py](conditioning_v2/classes.py), `summarize`. |
+| Structural coverage | The Batch 4 coverage column, relabelled: the supplier holds the element at a strong seat by TIM, regardless of work done. |
+| Margin | Greatest axis load minus the runner-up on a DCNH observation; 0 when tied, N/A when every load is zero, in [classes.py](conditioning_v2/classes.py), `margin`. |
+| DCNH five ways | All uses; received and kept (wide, narrow); content-only; hop-only, each with its margin, in [classes.py](conditioning_v2/classes.py), `summarize` and `render`. |
+| Price of type | Per actor and per seat: uses, hops, content, time and CT Table 13 block energy, by ring and seat, in [classes.py](conditioning_v2/classes.py), `summarize`. |
+| Support traffic | Hops whose arrival seat is the route's own vital-ring support seat, per seat, in [classes.py](conditioning_v2/classes.py), `summarize`. |

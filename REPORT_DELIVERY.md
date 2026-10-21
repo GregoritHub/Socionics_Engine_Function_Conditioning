@@ -92,3 +92,16 @@ archive was used. The circuit's existing paid damage renews supplied demand;
 no new demand formation, feedback, regeneration, pricing, or Model G seats were
 added. Read-engine hashes are unchanged. Undefined ratios remain N/A. See
 [LIMITS.md](LIMITS.md) for consolidated bounds.
+
+## 8. Use classes and price of type
+
+Wide reading; rows hold at every seed; N/A is a zero denominator. Cond. by class: received weak uses of the class / all weak uses of the class. Internalisation: received uses later followed by a self/world use at the same seat / received uses. Margin: greatest axis load minus runner-up. Energy is CT Table 13 block energy, not a legacy-r4 wallet debit.
+
+| Composition | Actor | TIM | Hops | Content | Cond. content | Cond. hop | Internalisation | Greatest all (margin) | Greatest content (margin) | Greatest hop (margin) | Time | Energy |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| pair | workshop:alice | iee | 47 | 38 | 20/38 | 25/46 | 0/45 | H,D (0) | H,D (0) | H,D (0) | 296 | 253 |
+| pair | workshop:bob | sli | 40 | 12 | N/A | 12/12 | 0/52 | D (4) | H,D (0) | D (4) | 102 | 80 |
+| pair-sterile | workshop:alice | eie | 108 | 38 | 20/38 | 20/39 | 0/75 | H (1) | D,H (0) | C (1) | 373 | 437 |
+| pair-sterile | workshop:bob | sli | 40 | 12 | N/A | 12/12 | 0/52 | D (4) | H,D (0) | D (4) | 102 | 80 |
+
+pair coverage: structural 4/12, observed 2/12; inactive (all N/A): workshop:eve. pair-sterile coverage: structural 4/12, observed 2/12; inactive (all N/A): workshop:eve. Narrow finds no received uses, so its class indices and internalisation are 0 or N/A. Sources: [classes](TABLES/pair_classes_delivery.md), [price of type](TABLES/pair_price_of_type_delivery.md), [DCNH five ways](TABLES/pair_dcnh_five_ways_delivery.md), and the pair-sterile files.
