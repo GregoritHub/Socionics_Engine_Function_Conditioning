@@ -13,10 +13,11 @@ tables = __import__("conditioning_v2.tables", fromlist=["load_histories"])
 measures = tables.measures
 audit, retention = measures.audit, measures.retention
 model, relations = measures.model, measures.relations
-guard = __import__("tools.guard_batch_6", fromlist=["verify"])
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+guard = __import__("test_07_review", fromlist=["verify_preserved"])
 generator = __import__("generate.histories_delivery", fromlist=["report"])
-field_tests = __import__("tests.test_02_fields", fromlist=["FieldTests"])
-measure_tests = __import__("tests.test_04_measures", fromlist=["MeasureTests"])
+field_tests = __import__("test_02_fields", fromlist=["FieldTests"])
+measure_tests = __import__("test_04_measures", fromlist=["MeasureTests"])
 PROJECT = pathlib.Path(__file__).resolve().parents[1]
 
 
@@ -26,10 +27,8 @@ class DeliveryTests(unittest.TestCase):
         cls.histories = tables.load_histories("HISTORIES_DELIVERY.json")
         cls.manifest = json.loads((PROJECT / "HISTORIES_DELIVERY.json").read_text())
 
-    def test_00_a4_byte_identity_guard(self):
-        guard.verify()
-        self.assertEqual(hashlib.sha256((PROJECT / "conditioning_v2/audit.py").read_bytes()).hexdigest(),
-                         "b2ee1cbb507ae7bfc5ed5f08dd6937dd64f962d56f9a17590d995e61d2442a8d")
+    def test_00_a5_preserved_measurements_guard(self):
+        guard.verify_preserved()
 
     def test_01_matched_compositions_codec_calls_and_limits(self):
         self.assertEqual(len(self.histories), 8)
