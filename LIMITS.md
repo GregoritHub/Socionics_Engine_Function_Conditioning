@@ -41,7 +41,14 @@ this is a review priority, not an empirically estimated effect ranking.
    show that the consumed revision carried that element's content.
 10. **Block energy is CT Table 13**, the grade-v1 debit, reported under every
    resource model; it is not the legacy-r4 wallet debit.
-11. **No historical archives were used.** Everything measured here is reproduced
+11. **pair-solo8 is one program on one actor.** Its collective phase starts from
+   a different active element than the pair history (Alice's cursor after the
+   uptake probe), so only the first operation's hops differ. Share and
+   Coordinate rows need Bob as respondent; their uses are received. The
+   workflow world's care stock allows two care rows. Seeds vary a nonbinding
+   budget. Internalisation counts a later self/world use at the same seat of
+   either class and shows no retained information.
+12. **No historical archives were used.** Everything measured here is reproduced
    from the public pinned engine and the generated manifests; there is no
    comparison with private archival journals or independent empirical data.
 

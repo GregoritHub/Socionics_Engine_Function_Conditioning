@@ -117,3 +117,14 @@ displayed as N/A, never as a measured zero.
 
 Batch 8 class records are aligned index-for-index with the Batch 3 use records
 and validated against the CT tables (`tests/test_08_classes.py`).
+
+## Batch 9 manifest inputs (A9)
+
+`HISTORIES_SOLO8.json` carries, per history, `phase_marks` (`probe_end`,
+`collective_end`, `solo_end`: zero-based transaction indices ending each phase),
+`refused_rows`, `engine`, and `calls_ref` (SHA-256 of the per-history call log in
+`CALLS_SOLO8/`). These are generator records, not transaction attributes; the
+tables read phase marks only to label phases. `WorkflowRequest.elements`
+(`hle_unified/workflow_records.py:70,79`) is the element override used by the
+program; it is a request field, consumed at route construction, and appears in
+the journal only through the resulting `route.{i}.element` and `route.{i}.path.{n}`.

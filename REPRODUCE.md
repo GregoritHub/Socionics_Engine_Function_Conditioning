@@ -25,8 +25,8 @@ siblings and run the following command from the companion repository root.
 python tools/reproduce.py
 ```
 
-The runner verifies setup, regenerates both history sets, runs every unittest,
-regenerates all tables (Batch 4–7, then the Batch 8 class tables) and both reports, and compares their bytes with Git HEAD.
+The runner verifies setup, regenerates all three history sets, runs every unittest,
+regenerates all tables (Batch 4–7, the Batch 8 class tables, the Batch 9 solo8 tables) and all three reports, and compares their bytes with Git HEAD.
 It runs with Python site-package loading disabled (`-S`) so ambient startup
 hooks cannot become hidden dependencies. It never writes to the engine or uses a generated output as its own reference.
 Per-step stdout/stderr is retained locally in ignored `OUT/reproduce_*.log`.
@@ -37,17 +37,19 @@ Per-step stdout/stderr is retained locally in ignored `OUT/reproduce_*.log`.
 PASS: python -S -m unittest tests.test_00_setup -v
 PASS: python -S generate/histories.py
 PASS: python -S generate/histories_delivery.py
+PASS: python -S generate/histories_solo8.py
 PASS: python -S -m unittest discover -s tests -v
 PASS: python -S -m conditioning_v2.tables
 PASS: python -S -m conditioning_v2.tables --histories HISTORIES_DELIVERY.json
 PASS: python -S -m conditioning_v2.classes
 PASS: python -S -m conditioning_v2.classes --histories HISTORIES_DELIVERY.json
-REPRODUCED: 20 files identical
+PASS: python -S -m conditioning_v2.solo8
+REPRODUCED: 29 files identical
 ```
 
 ## 5. Expected time
 
-Allow approximately 10–20 minutes on a laptop, depending on CPU speed. No
+Allow approximately 15–30 minutes on a laptop, depending on CPU speed. No
 network is needed after cloning. The measured execution environment is in
 [environment.txt](environment.txt); the acceptance timing is in the
 [Batch 7 receipt](RECEIPTS/batch_7.md). The full publication gate runs the suite

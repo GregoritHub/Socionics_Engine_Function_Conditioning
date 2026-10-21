@@ -1,0 +1,2229 @@
+[
+ {
+  "args": [
+   "iee"
+  ],
+  "function": "tests_c7_workflow.fixtures.setup_workflow",
+  "kwargs": {
+   "budget": 2029000,
+   "engine_type": "generate.histories_solo8.workshop_factory"
+  }
+ },
+ {
+  "args": [
+   "engine",
+   "workshop:alice",
+   "workshop:room@1"
+  ],
+  "function": "tests_u11.fixtures.expose",
+  "kwargs": {}
+ },
+ {
+  "args": [
+   "engine",
+   "workshop:alice",
+   "u5.reference:minor:Coin:10@1"
+  ],
+  "function": "tests_u11.fixtures.expose",
+  "kwargs": {}
+ },
+ {
+  "args": [
+   "engine",
+   "workshop:alice",
+   "workshop:alice@1"
+  ],
+  "function": "tests_u11.fixtures.expose",
+  "kwargs": {}
+ },
+ {
+  "args": [
+   "engine",
+   "workshop:alice",
+   "workshop:bob@1"
+  ],
+  "function": "tests_u11.fixtures.expose",
+  "kwargs": {}
+ },
+ {
+  "args": [
+   "engine",
+   "workshop:alice",
+   "workshop:eve@1"
+  ],
+  "function": "tests_u11.fixtures.expose",
+  "kwargs": {}
+ },
+ {
+  "args": [
+   "engine",
+   "workshop:alice",
+   [
+    "repair",
+    "transfer",
+    "use",
+    "care",
+    "consume"
+   ]
+  ],
+  "function": "tests_u11.fixtures.train",
+  "kwargs": {}
+ },
+ {
+  "args": [
+   "engine",
+   "workshop:bob",
+   "workshop:room@1"
+  ],
+  "function": "tests_u11.fixtures.expose",
+  "kwargs": {}
+ },
+ {
+  "args": [
+   "engine",
+   "workshop:bob",
+   "u5.reference:minor:Coin:10@1"
+  ],
+  "function": "tests_u11.fixtures.expose",
+  "kwargs": {}
+ },
+ {
+  "args": [
+   "engine",
+   "workshop:bob",
+   "workshop:alice@1"
+  ],
+  "function": "tests_u11.fixtures.expose",
+  "kwargs": {}
+ },
+ {
+  "args": [
+   "engine",
+   "workshop:bob",
+   "workshop:bob@1"
+  ],
+  "function": "tests_u11.fixtures.expose",
+  "kwargs": {}
+ },
+ {
+  "args": [
+   "engine",
+   "workshop:bob",
+   "workshop:eve@1"
+  ],
+  "function": "tests_u11.fixtures.expose",
+  "kwargs": {}
+ },
+ {
+  "args": [
+   "engine",
+   "workshop:bob",
+   [
+    "repair",
+    "transfer",
+    "use",
+    "care",
+    "consume"
+   ]
+  ],
+  "function": "tests_u11.fixtures.train",
+  "kwargs": {}
+ },
+ {
+  "args": [
+   "engine",
+   "workshop:eve",
+   "workshop:room@1"
+  ],
+  "function": "tests_u11.fixtures.expose",
+  "kwargs": {}
+ },
+ {
+  "args": [
+   "engine",
+   "workshop:eve",
+   "u5.reference:minor:Coin:10@1"
+  ],
+  "function": "tests_u11.fixtures.expose",
+  "kwargs": {}
+ },
+ {
+  "args": [
+   "engine",
+   "workshop:eve",
+   "workshop:alice@1"
+  ],
+  "function": "tests_u11.fixtures.expose",
+  "kwargs": {}
+ },
+ {
+  "args": [
+   "engine",
+   "workshop:eve",
+   "workshop:bob@1"
+  ],
+  "function": "tests_u11.fixtures.expose",
+  "kwargs": {}
+ },
+ {
+  "args": [
+   "engine",
+   "workshop:eve",
+   "workshop:eve@1"
+  ],
+  "function": "tests_u11.fixtures.expose",
+  "kwargs": {}
+ },
+ {
+  "args": [
+   "engine",
+   "workshop:alice",
+   "workshop:workflow-device@1"
+  ],
+  "function": "tests_c7_workflow.fixtures.expose",
+  "kwargs": {}
+ },
+ {
+  "args": [
+   "engine",
+   "workshop:alice",
+   "workshop:care@1"
+  ],
+  "function": "tests_c7_workflow.fixtures.expose",
+  "kwargs": {}
+ },
+ {
+  "args": [
+   "engine",
+   "Express",
+   "expenditure"
+  ],
+  "function": "tests_c7_workflow.fixtures.cell",
+  "kwargs": {
+   "key": "probe-uptake",
+   "prepare_only": true
+  }
+ },
+ {
+  "args": [
+   "engine",
+   {
+    "actor": "workshop:alice",
+    "key": "probe-uptake",
+    "repr_sha256": "9dfa17347e3b6fbfd39d5cdfabd906ff31d606d834b12e3424895d41bee6cf3c",
+    "request": "WorkflowRequest"
+   }
+  ],
+  "function": "tests_c7_workflow.fixtures.work",
+  "kwargs": {
+   "allow_failure": true
+  }
+ },
+ {
+  "args": [
+   "engine",
+   "repair-group"
+  ],
+  "function": "tests_u11.fixtures.group",
+  "kwargs": {
+   "members": [],
+   "resources": [
+    "workshop:u11-shared-tool@1",
+    "workshop:u11-kit-alice@2",
+    "workshop:u11-repair-alice@2"
+   ]
+  }
+ },
+ {
+  "args": [
+   "workshop:alice",
+   "repair"
+  ],
+  "function": "tests_u11.fixtures.step",
+  "kwargs": {
+   "stock": "workshop:u11-repair-alice@1",
+   "target": "workshop:u11-shared-tool@1",
+   "tool": "workshop:u11-kit-alice@1"
+  }
+ },
+ {
+  "args": [
+   "engine",
+   {
+    "actor": "workshop:alice",
+    "boundary": "Workshop context; explicit member consent; no transfer of ownership",
+    "context": "workshop:room@1",
+    "cue": "u5.reference:minor:Coin:10@1",
+    "dependencies": [
+     "workshop:u11-shared-tool@1",
+     "workshop:u11-kit-alice@2",
+     "workshop:u11-repair-alice@2"
+    ],
+    "kind": "group",
+    "members": [
+     "workshop:alice"
+    ],
+    "operation": "u4.operation:ffb96079b2d1a0caf48ce201c4c24ed155537b648e5485e9deb336d2ada1473c@2",
+    "owner": "workshop:alice",
+    "ref": "u11.group:ffb96079b2d1a0caf48ce201c4c24ed155537b648e5485e9deb336d2ada1473c@1",
+    "resources": [
+     "workshop:u11-shared-tool",
+     "workshop:u11-kit-alice",
+     "workshop:u11-repair-alice"
+    ],
+    "sources": [
+     "workshop:room@1",
+     "workshop:cue@1",
+     "workshop:saw@1",
+     "workshop:saw2@1",
+     "workshop:kit@1",
+     "workshop:stock@1",
+     "workshop:care@1",
+     "workshop:borrowed@1",
+     "workshop:return-obligation@1",
+     "workshop:repair-procedure@1",
+     "u5.reference:minor:Coin:10@1",
+     "workshop:condition-policy@1",
+     "workshop:alice@1",
+     "workshop:bob@1",
+     "workshop:c3-alice-supply@1",
+     "workshop:bob-consumables@1",
+     "workshop:workflow-device@1",
+     "workshop:workflow-loan@1",
+     "workshop:workflow-due@1",
+     "workshop:eve@1",
+     "workshop:u11-primitive-repair@1",
+     "workshop:u11-practice-alice-repair@1",
+     "workshop:u11-kit-alice@1",
+     "workshop:u11-repair-alice@1",
+     "u4.observation:3c5645682de4fe44f59e0cd578fc188aed89888a4f95c3a1824a7d233a475d33@1",
+     "workshop:u11-primitive-transfer@1",
+     "workshop:u11-practice-alice-transfer@1",
+     "u4.observation:c40a77ae437c2c645d8b0656be73649cef8793387abb59744dc88e4339a0c46c@1",
+     "workshop:u11-primitive-use@1",
+     "workshop:u11-practice-alice-use@1",
+     "u4.observation:a7225c2e5adf7910f7c6306aabaa0eea069ae53f64b7cbbd66cd9c3bdaf7f415@1",
+     "workshop:u11-primitive-care@1",
+     "workshop:u11-practice-alice-care@1",
+     "workshop:u11-care-alice@1",
+     "u4.observation:c82d10cf31441a092eb82726100b3949079ad1c56d71b5654f544942958ebf49@1",
+     "workshop:u11-primitive-consume@1",
+     "workshop:u11-consume-alice@1",
+     "u4.observation:f841b5f307808d074ce52eb4b65497bd89fcd486b63fc5d8d04dd33f4f712885@1",
+     "workshop:u11-shared-tool@1",
+     "workshop:u11-kit-alice@2",
+     "workshop:u11-repair-alice@2"
+    ],
+    "status": "active"
+   },
+   [
+    [
+     "work",
+     "workshop:alice",
+     "workshop:u11-primitive-repair@1",
+     [
+      [
+       "stock",
+       "workshop:u11-repair-alice"
+      ],
+      [
+       "target",
+       "workshop:u11-shared-tool"
+      ],
+      [
+       "tool",
+       "workshop:u11-kit-alice"
+      ]
+     ]
+    ]
+   ]
+  ],
+  "function": "tests_u11.fixtures.proposed",
+  "kwargs": {
+   "key": "repair-program"
+  }
+ },
+ {
+  "args": [
+   "engine",
+   {
+    "actor": "workshop:alice",
+    "agenda": [
+     [
+      "u11.group:ffb96079b2d1a0caf48ce201c4c24ed155537b648e5485e9deb336d2ada1473c",
+      "workshop:alice",
+      "workshop:u11-primitive-repair@1",
+      [
+       [
+        "stock",
+        "workshop:u11-repair-alice"
+       ],
+       [
+        "target",
+        "workshop:u11-shared-tool"
+       ],
+       [
+        "tool",
+        "workshop:u11-kit-alice"
+       ]
+      ]
+     ]
+    ],
+    "context": "workshop:room@1",
+    "cue": "u5.reference:minor:Coin:10@1",
+    "dependencies": [
+     "u11.group:ffb96079b2d1a0caf48ce201c4c24ed155537b648e5485e9deb336d2ada1473c@1",
+     "workshop:u11-primitive-repair@1"
+    ],
+    "group": "u11.group:ffb96079b2d1a0caf48ce201c4c24ed155537b648e5485e9deb336d2ada1473c@1",
+    "kind": "plan",
+    "operation": "u4.operation:3564a2d7519ad8c72dd7f45b6adbd0367319b5efedee8f164e7f7b99f0310da7@2",
+    "owner": "workshop:alice",
+    "program": [
+     [
+      "work",
+      "workshop:alice",
+      "workshop:u11-primitive-repair@1",
+      [
+       [
+        "stock",
+        "workshop:u11-repair-alice"
+       ],
+       [
+        "target",
+        "workshop:u11-shared-tool"
+       ],
+       [
+        "tool",
+        "workshop:u11-kit-alice"
+       ]
+      ]
+     ]
+    ],
+    "ref": "u11.plan:3564a2d7519ad8c72dd7f45b6adbd0367319b5efedee8f164e7f7b99f0310da7@1",
+    "sources": [
+     "workshop:room@1",
+     "workshop:cue@1",
+     "workshop:saw@1",
+     "workshop:saw2@1",
+     "workshop:kit@1",
+     "workshop:stock@1",
+     "workshop:care@1",
+     "workshop:borrowed@1",
+     "workshop:return-obligation@1",
+     "workshop:repair-procedure@1",
+     "u5.reference:minor:Coin:10@1",
+     "workshop:condition-policy@1",
+     "workshop:alice@1",
+     "workshop:bob@1",
+     "workshop:c3-alice-supply@1",
+     "workshop:bob-consumables@1",
+     "workshop:workflow-device@1",
+     "workshop:workflow-loan@1",
+     "workshop:workflow-due@1",
+     "workshop:eve@1",
+     "workshop:u11-primitive-repair@1",
+     "workshop:u11-practice-alice-repair@1",
+     "workshop:u11-kit-alice@1",
+     "workshop:u11-repair-alice@1",
+     "u4.observation:3c5645682de4fe44f59e0cd578fc188aed89888a4f95c3a1824a7d233a475d33@1",
+     "workshop:u11-primitive-transfer@1",
+     "workshop:u11-practice-alice-transfer@1",
+     "u4.observation:c40a77ae437c2c645d8b0656be73649cef8793387abb59744dc88e4339a0c46c@1",
+     "workshop:u11-primitive-use@1",
+     "workshop:u11-practice-alice-use@1",
+     "u4.observation:a7225c2e5adf7910f7c6306aabaa0eea069ae53f64b7cbbd66cd9c3bdaf7f415@1",
+     "workshop:u11-primitive-care@1",
+     "workshop:u11-practice-alice-care@1",
+     "workshop:u11-care-alice@1",
+     "u4.observation:c82d10cf31441a092eb82726100b3949079ad1c56d71b5654f544942958ebf49@1",
+     "workshop:u11-primitive-consume@1",
+     "workshop:u11-consume-alice@1",
+     "u4.observation:f841b5f307808d074ce52eb4b65497bd89fcd486b63fc5d8d04dd33f4f712885@1",
+     "workshop:u11-shared-tool@1",
+     "workshop:u11-kit-alice@2",
+     "workshop:u11-repair-alice@2",
+     "u11.group:ffb96079b2d1a0caf48ce201c4c24ed155537b648e5485e9deb336d2ada1473c@1"
+    ],
+    "status": "proposed"
+   }
+  ],
+  "function": "tests_u11.fixtures.instantiate",
+  "kwargs": {
+   "accept": true,
+   "key": "repair-run",
+   "mode": "aggregate"
+  }
+ },
+ {
+  "args": [
+   "engine",
+   {
+    "actor": "workshop:alice",
+    "agenda": [
+     [
+      "u11.group:ffb96079b2d1a0caf48ce201c4c24ed155537b648e5485e9deb336d2ada1473c",
+      "workshop:alice",
+      "workshop:u11-primitive-repair@1",
+      [
+       [
+        "stock",
+        "workshop:u11-repair-alice"
+       ],
+       [
+        "target",
+        "workshop:u11-shared-tool"
+       ],
+       [
+        "tool",
+        "workshop:u11-kit-alice"
+       ]
+      ]
+     ]
+    ],
+    "context": "workshop:room@1",
+    "cue": "u5.reference:minor:Coin:10@1",
+    "dependencies": [
+     "u11.group:ffb96079b2d1a0caf48ce201c4c24ed155537b648e5485e9deb336d2ada1473c@1",
+     "workshop:u11-primitive-repair@1"
+    ],
+    "events": [],
+    "group": "u11.group:ffb96079b2d1a0caf48ce201c4c24ed155537b648e5485e9deb336d2ada1473c@1",
+    "index": 0,
+    "kind": "run",
+    "mode": "aggregate",
+    "operation": "u4.operation:a0d69968eb3d320fb5bc33d4575ae1a49b85ec799d73fc17d549d91cb9b37908@2",
+    "owner": "workshop:alice",
+    "program": [
+     [
+      "work",
+      "workshop:alice",
+      "workshop:u11-primitive-repair@1",
+      [
+       [
+        "stock",
+        "workshop:u11-repair-alice"
+       ],
+       [
+        "target",
+        "workshop:u11-shared-tool"
+       ],
+       [
+        "tool",
+        "workshop:u11-kit-alice"
+       ]
+      ]
+     ]
+    ],
+    "ref": "u11.run:a0d69968eb3d320fb5bc33d4575ae1a49b85ec799d73fc17d549d91cb9b37908@1",
+    "selection": null,
+    "source": "u11.plan:3564a2d7519ad8c72dd7f45b6adbd0367319b5efedee8f164e7f7b99f0310da7@1",
+    "sources": [
+     "workshop:room@1",
+     "workshop:cue@1",
+     "workshop:saw@1",
+     "workshop:saw2@1",
+     "workshop:kit@1",
+     "workshop:stock@1",
+     "workshop:care@1",
+     "workshop:borrowed@1",
+     "workshop:return-obligation@1",
+     "workshop:repair-procedure@1",
+     "u5.reference:minor:Coin:10@1",
+     "workshop:condition-policy@1",
+     "workshop:alice@1",
+     "workshop:bob@1",
+     "workshop:c3-alice-supply@1",
+     "workshop:bob-consumables@1",
+     "workshop:workflow-device@1",
+     "workshop:workflow-loan@1",
+     "workshop:workflow-due@1",
+     "workshop:eve@1",
+     "workshop:u11-primitive-repair@1",
+     "workshop:u11-practice-alice-repair@1",
+     "workshop:u11-kit-alice@1",
+     "workshop:u11-repair-alice@1",
+     "u4.observation:3c5645682de4fe44f59e0cd578fc188aed89888a4f95c3a1824a7d233a475d33@1",
+     "workshop:u11-primitive-transfer@1",
+     "workshop:u11-practice-alice-transfer@1",
+     "u4.observation:c40a77ae437c2c645d8b0656be73649cef8793387abb59744dc88e4339a0c46c@1",
+     "workshop:u11-primitive-use@1",
+     "workshop:u11-practice-alice-use@1",
+     "u4.observation:a7225c2e5adf7910f7c6306aabaa0eea069ae53f64b7cbbd66cd9c3bdaf7f415@1",
+     "workshop:u11-primitive-care@1",
+     "workshop:u11-practice-alice-care@1",
+     "workshop:u11-care-alice@1",
+     "u4.observation:c82d10cf31441a092eb82726100b3949079ad1c56d71b5654f544942958ebf49@1",
+     "workshop:u11-primitive-consume@1",
+     "workshop:u11-consume-alice@1",
+     "u4.observation:f841b5f307808d074ce52eb4b65497bd89fcd486b63fc5d8d04dd33f4f712885@1",
+     "workshop:u11-shared-tool@1",
+     "workshop:u11-kit-alice@2",
+     "workshop:u11-repair-alice@2",
+     "u11.group:ffb96079b2d1a0caf48ce201c4c24ed155537b648e5485e9deb336d2ada1473c@1",
+     "u11.plan:3564a2d7519ad8c72dd7f45b6adbd0367319b5efedee8f164e7f7b99f0310da7@1"
+    ],
+    "status": "active"
+   }
+  ],
+  "function": "tests_u11.fixtures.finish",
+  "kwargs": {
+   "key": "repair"
+  }
+ },
+ {
+  "args": [
+   "engine",
+   "retain-repair",
+   "retain"
+  ],
+  "function": "tests_u11.fixtures.work",
+  "kwargs": {
+   "focus": "u11.run:a0d69968eb3d320fb5bc33d4575ae1a49b85ec799d73fc17d549d91cb9b37908@3"
+  }
+ },
+ {
+  "args": [
+   "engine",
+   "workshop:alice",
+   "workshop:u11-shared-tool@2"
+  ],
+  "function": "tests_u11.fixtures.expose",
+  "kwargs": {}
+ },
+ {
+  "args": [
+   "engine",
+   {
+    "actor": "workshop:alice",
+    "key": "renew-demand",
+    "repr_sha256": "a043138158b8779f2c276261e1dbac0646934a797b68c15eb66ccdbabefca06a",
+    "request": "OperationRequest"
+   }
+  ],
+  "function": "tests_u11.fixtures.perform",
+  "kwargs": {
+   "limit": 100
+  }
+ },
+ {
+  "args": [
+   "engine",
+   "u4.event:196bce67de13a84c22e26bd02e26fde71cda06462d3faaa700c9a011e42687e3@1",
+   "workshop:alice",
+   "renew-demand"
+  ],
+  "function": "tests_u11.fixtures.receive",
+  "kwargs": {}
+ },
+ {
+  "args": [
+   "engine",
+   "workshop-team"
+  ],
+  "function": "tests_u11.fixtures.group",
+  "kwargs": {
+   "members": [
+    "u11.group:ffb96079b2d1a0caf48ce201c4c24ed155537b648e5485e9deb336d2ada1473c@1"
+   ],
+   "resources": [
+    "workshop:u11-shared-tool@3",
+    "workshop:u11-bob-care@1"
+   ]
+  }
+ },
+ {
+  "args": [
+   "engine",
+   {
+    "actor": "workshop:alice",
+    "boundary": "Workshop context; explicit member consent; no transfer of ownership",
+    "context": "workshop:room@1",
+    "cue": "u5.reference:minor:Coin:10@1",
+    "dependencies": [
+     "u11.group:ffb96079b2d1a0caf48ce201c4c24ed155537b648e5485e9deb336d2ada1473c@1",
+     "workshop:u11-shared-tool@3",
+     "workshop:u11-bob-care@1"
+    ],
+    "kind": "group",
+    "members": [
+     "workshop:alice",
+     "u11.group:ffb96079b2d1a0caf48ce201c4c24ed155537b648e5485e9deb336d2ada1473c"
+    ],
+    "operation": "u4.operation:3df139bb00af3adc2a71c65e7d2bc6bfdaa86ae58f9c1b781497bf00705f9df8@2",
+    "owner": "workshop:alice",
+    "ref": "u11.group:3df139bb00af3adc2a71c65e7d2bc6bfdaa86ae58f9c1b781497bf00705f9df8@1",
+    "resources": [
+     "workshop:u11-shared-tool",
+     "workshop:u11-bob-care"
+    ],
+    "sources": [
+     "workshop:room@1",
+     "workshop:cue@1",
+     "workshop:saw@1",
+     "workshop:saw2@1",
+     "workshop:kit@1",
+     "workshop:stock@1",
+     "workshop:care@1",
+     "workshop:borrowed@1",
+     "workshop:return-obligation@1",
+     "workshop:repair-procedure@1",
+     "u5.reference:minor:Coin:10@1",
+     "workshop:condition-policy@1",
+     "workshop:alice@1",
+     "workshop:bob@1",
+     "workshop:c3-alice-supply@1",
+     "workshop:bob-consumables@1",
+     "workshop:workflow-device@1",
+     "workshop:workflow-loan@1",
+     "workshop:workflow-due@1",
+     "workshop:eve@1",
+     "workshop:u11-primitive-repair@1",
+     "workshop:u11-practice-alice-repair@1",
+     "workshop:u11-kit-alice@1",
+     "workshop:u11-repair-alice@1",
+     "u4.observation:3c5645682de4fe44f59e0cd578fc188aed89888a4f95c3a1824a7d233a475d33@1",
+     "workshop:u11-primitive-transfer@1",
+     "workshop:u11-practice-alice-transfer@1",
+     "u4.observation:c40a77ae437c2c645d8b0656be73649cef8793387abb59744dc88e4339a0c46c@1",
+     "workshop:u11-primitive-use@1",
+     "workshop:u11-practice-alice-use@1",
+     "u4.observation:a7225c2e5adf7910f7c6306aabaa0eea069ae53f64b7cbbd66cd9c3bdaf7f415@1",
+     "workshop:u11-primitive-care@1",
+     "workshop:u11-practice-alice-care@1",
+     "workshop:u11-care-alice@1",
+     "u4.observation:c82d10cf31441a092eb82726100b3949079ad1c56d71b5654f544942958ebf49@1",
+     "workshop:u11-primitive-consume@1",
+     "workshop:u11-consume-alice@1",
+     "u4.observation:f841b5f307808d074ce52eb4b65497bd89fcd486b63fc5d8d04dd33f4f712885@1",
+     "workshop:u11-shared-tool@1",
+     "workshop:u11-kit-alice@2",
+     "workshop:u11-repair-alice@2",
+     "u11.group:ffb96079b2d1a0caf48ce201c4c24ed155537b648e5485e9deb336d2ada1473c@1",
+     "u11.plan:3564a2d7519ad8c72dd7f45b6adbd0367319b5efedee8f164e7f7b99f0310da7@1",
+     "u11.run:a0d69968eb3d320fb5bc33d4575ae1a49b85ec799d73fc17d549d91cb9b37908@1",
+     "u4.observation:e12e7a8055934eda7781b1ec01cc23ef711239fa406a81da2c00dcc29313366f@1",
+     "u11.run:a0d69968eb3d320fb5bc33d4575ae1a49b85ec799d73fc17d549d91cb9b37908@2",
+     "u11.run:a0d69968eb3d320fb5bc33d4575ae1a49b85ec799d73fc17d549d91cb9b37908@3",
+     "workshop:u11-shared-tool@2",
+     "u4.observation:ee25da65b0e6dc975161027a7a24dcdbb65ea35f250225a19223a667ca7bd60d@1",
+     "workshop:u11-shared-tool@3",
+     "workshop:u11-bob-care@1"
+    ],
+    "status": "active"
+   }
+  ],
+  "function": "tests_u11.fixtures.join",
+  "kwargs": {
+   "actor": "workshop:bob",
+   "key": "join"
+  }
+ },
+ {
+  "args": [
+   "workshop:alice",
+   "transfer"
+  ],
+  "function": "tests_u11.fixtures.step",
+  "kwargs": {
+   "recipient": "workshop:bob",
+   "target": "workshop:u11-shared-tool@1"
+  }
+ },
+ {
+  "args": [
+   "workshop:bob",
+   "use"
+  ],
+  "function": "tests_u11.fixtures.step",
+  "kwargs": {
+   "target": "workshop:u11-shared-tool@1"
+  }
+ },
+ {
+  "args": [
+   "workshop:bob",
+   "care"
+  ],
+  "function": "tests_u11.fixtures.step",
+  "kwargs": {
+   "stock": "workshop:u11-bob-care@1",
+   "target": "workshop:u11-shared-tool@1"
+  }
+ },
+ {
+  "args": [
+   "engine",
+   {
+    "actor": "workshop:bob",
+    "boundary": "Workshop context; explicit member consent; no transfer of ownership",
+    "context": "workshop:room@1",
+    "cue": "u5.reference:minor:Coin:10@1",
+    "dependencies": [
+     "u11.group:ffb96079b2d1a0caf48ce201c4c24ed155537b648e5485e9deb336d2ada1473c@1",
+     "workshop:u11-shared-tool@3",
+     "workshop:u11-bob-care@1"
+    ],
+    "kind": "group",
+    "members": [
+     "workshop:alice",
+     "u11.group:ffb96079b2d1a0caf48ce201c4c24ed155537b648e5485e9deb336d2ada1473c",
+     "workshop:bob"
+    ],
+    "operation": "u4.operation:0eaeb3bd1b9b31af256a53bc1d276b4ec4b7a1556ffb09d15dadcc11e7034e5a@2",
+    "owner": "workshop:alice",
+    "ref": "u11.group:3df139bb00af3adc2a71c65e7d2bc6bfdaa86ae58f9c1b781497bf00705f9df8@2",
+    "resources": [
+     "workshop:u11-shared-tool",
+     "workshop:u11-bob-care"
+    ],
+    "sources": [
+     "workshop:room@1",
+     "u5.reference:minor:Coin:10@1",
+     "workshop:alice@1",
+     "workshop:bob@1",
+     "workshop:saw@1",
+     "workshop:c3-alice-supply@1",
+     "workshop:bob-consumables@1",
+     "workshop:workflow-device@1",
+     "workshop:workflow-loan@1",
+     "workshop:workflow-due@1",
+     "workshop:care@1",
+     "workshop:eve@1",
+     "workshop:u11-primitive-repair@1",
+     "workshop:u11-practice-bob-repair@1",
+     "workshop:u11-kit-bob@1",
+     "workshop:u11-repair-bob@1",
+     "u4.observation:2bc9975578bb1d1e58efc5c1678182f5cbb0803265477aaa875bf39c1b2c250c@1",
+     "workshop:u11-primitive-transfer@1",
+     "workshop:u11-practice-bob-transfer@1",
+     "u4.observation:b75aa4b852b0b27bd6fe722606d192763ea69d0499e8c0080a631d6ee069f954@1",
+     "workshop:u11-primitive-use@1",
+     "workshop:u11-practice-bob-use@1",
+     "u4.observation:cbe86414b7f01689855d73e9a18cbf754cc418bdca71207afe9165bdadebe454@1",
+     "workshop:u11-primitive-care@1",
+     "workshop:u11-practice-bob-care@1",
+     "workshop:u11-care-bob@1",
+     "u4.observation:f2c0db4fe52ce0c4ef65077064fb9f08cef605079fd7cfe84bfdb8ce91347d2c@1",
+     "workshop:u11-primitive-consume@1",
+     "workshop:u11-consume-bob@1",
+     "u4.observation:5208d0cb55ae920606790c42823e8c22278c3e22e14fa0753bedcdda91fe5440@1",
+     "u11.invitation:f1fb117aa5db5f54af8a73fb4f93f9408498adeacc6441793e08e8e14f8b27de@1"
+    ],
+    "status": "active"
+   },
+   [
+    [
+     "call",
+     "u11.capacity:6181c4504a384ddfabd6ac49984afc80e1318fa2ac6a5f411964238b6326b9d8@1"
+    ],
+    [
+     "work",
+     "workshop:alice",
+     "workshop:u11-primitive-transfer@1",
+     [
+      [
+       "recipient",
+       "workshop:bob"
+      ],
+      [
+       "target",
+       "workshop:u11-shared-tool"
+      ]
+     ]
+    ],
+    [
+     "work",
+     "workshop:bob",
+     "workshop:u11-primitive-use@1",
+     [
+      [
+       "target",
+       "workshop:u11-shared-tool"
+      ]
+     ]
+    ],
+    [
+     "work",
+     "workshop:bob",
+     "workshop:u11-primitive-care@1",
+     [
+      [
+       "stock",
+       "workshop:u11-bob-care"
+      ],
+      [
+       "target",
+       "workshop:u11-shared-tool"
+      ]
+     ]
+    ]
+   ]
+  ],
+  "function": "tests_u11.fixtures.proposed",
+  "kwargs": {
+   "key": "team-program"
+  }
+ },
+ {
+  "args": [
+   "engine",
+   "before-summary",
+   "summarize"
+  ],
+  "function": "tests_u11.fixtures.work",
+  "kwargs": {
+   "focus": "u11.group:3df139bb00af3adc2a71c65e7d2bc6bfdaa86ae58f9c1b781497bf00705f9df8@2"
+  }
+ },
+ {
+  "args": [
+   "engine",
+   {
+    "actor": "workshop:alice",
+    "agenda": [
+     [
+      "u11.group:ffb96079b2d1a0caf48ce201c4c24ed155537b648e5485e9deb336d2ada1473c",
+      "workshop:alice",
+      "workshop:u11-primitive-repair@1",
+      [
+       [
+        "stock",
+        "workshop:u11-repair-alice"
+       ],
+       [
+        "target",
+        "workshop:u11-shared-tool"
+       ],
+       [
+        "tool",
+        "workshop:u11-kit-alice"
+       ]
+      ]
+     ],
+     [
+      "u11.group:3df139bb00af3adc2a71c65e7d2bc6bfdaa86ae58f9c1b781497bf00705f9df8",
+      "workshop:alice",
+      "workshop:u11-primitive-transfer@1",
+      [
+       [
+        "recipient",
+        "workshop:bob"
+       ],
+       [
+        "target",
+        "workshop:u11-shared-tool"
+       ]
+      ]
+     ],
+     [
+      "u11.group:3df139bb00af3adc2a71c65e7d2bc6bfdaa86ae58f9c1b781497bf00705f9df8",
+      "workshop:bob",
+      "workshop:u11-primitive-use@1",
+      [
+       [
+        "target",
+        "workshop:u11-shared-tool"
+       ]
+      ]
+     ],
+     [
+      "u11.group:3df139bb00af3adc2a71c65e7d2bc6bfdaa86ae58f9c1b781497bf00705f9df8",
+      "workshop:bob",
+      "workshop:u11-primitive-care@1",
+      [
+       [
+        "stock",
+        "workshop:u11-bob-care"
+       ],
+       [
+        "target",
+        "workshop:u11-shared-tool"
+       ]
+      ]
+     ]
+    ],
+    "context": "workshop:room@1",
+    "cue": "u5.reference:minor:Coin:10@1",
+    "dependencies": [
+     "u11.capacity:6181c4504a384ddfabd6ac49984afc80e1318fa2ac6a5f411964238b6326b9d8@1",
+     "u11.group:3df139bb00af3adc2a71c65e7d2bc6bfdaa86ae58f9c1b781497bf00705f9df8@2",
+     "u11.group:ffb96079b2d1a0caf48ce201c4c24ed155537b648e5485e9deb336d2ada1473c@1",
+     "workshop:u11-primitive-care@1",
+     "workshop:u11-primitive-repair@1",
+     "workshop:u11-primitive-transfer@1",
+     "workshop:u11-primitive-use@1"
+    ],
+    "group": "u11.group:3df139bb00af3adc2a71c65e7d2bc6bfdaa86ae58f9c1b781497bf00705f9df8@2",
+    "kind": "plan",
+    "operation": "u4.operation:38e1f6b7fe6c80ff9951e8d7003b4a7ecad20614cb103f5e47bcc3f28f8f7e40@2",
+    "owner": "workshop:alice",
+    "program": [
+     [
+      "call",
+      "u11.capacity:6181c4504a384ddfabd6ac49984afc80e1318fa2ac6a5f411964238b6326b9d8@1"
+     ],
+     [
+      "work",
+      "workshop:alice",
+      "workshop:u11-primitive-transfer@1",
+      [
+       [
+        "recipient",
+        "workshop:bob"
+       ],
+       [
+        "target",
+        "workshop:u11-shared-tool"
+       ]
+      ]
+     ],
+     [
+      "work",
+      "workshop:bob",
+      "workshop:u11-primitive-use@1",
+      [
+       [
+        "target",
+        "workshop:u11-shared-tool"
+       ]
+      ]
+     ],
+     [
+      "work",
+      "workshop:bob",
+      "workshop:u11-primitive-care@1",
+      [
+       [
+        "stock",
+        "workshop:u11-bob-care"
+       ],
+       [
+        "target",
+        "workshop:u11-shared-tool"
+       ]
+      ]
+     ]
+    ],
+    "ref": "u11.plan:38e1f6b7fe6c80ff9951e8d7003b4a7ecad20614cb103f5e47bcc3f28f8f7e40@1",
+    "sources": [
+     "workshop:room@1",
+     "workshop:cue@1",
+     "workshop:saw@1",
+     "workshop:saw2@1",
+     "workshop:kit@1",
+     "workshop:stock@1",
+     "workshop:care@1",
+     "workshop:borrowed@1",
+     "workshop:return-obligation@1",
+     "workshop:repair-procedure@1",
+     "u5.reference:minor:Coin:10@1",
+     "workshop:condition-policy@1",
+     "workshop:alice@1",
+     "workshop:bob@1",
+     "workshop:c3-alice-supply@1",
+     "workshop:bob-consumables@1",
+     "workshop:workflow-device@1",
+     "workshop:workflow-loan@1",
+     "workshop:workflow-due@1",
+     "workshop:eve@1",
+     "workshop:u11-primitive-repair@1",
+     "workshop:u11-practice-alice-repair@1",
+     "workshop:u11-kit-alice@1",
+     "workshop:u11-repair-alice@1",
+     "u4.observation:3c5645682de4fe44f59e0cd578fc188aed89888a4f95c3a1824a7d233a475d33@1",
+     "workshop:u11-primitive-transfer@1",
+     "workshop:u11-practice-alice-transfer@1",
+     "u4.observation:c40a77ae437c2c645d8b0656be73649cef8793387abb59744dc88e4339a0c46c@1",
+     "workshop:u11-primitive-use@1",
+     "workshop:u11-practice-alice-use@1",
+     "u4.observation:a7225c2e5adf7910f7c6306aabaa0eea069ae53f64b7cbbd66cd9c3bdaf7f415@1",
+     "workshop:u11-primitive-care@1",
+     "workshop:u11-practice-alice-care@1",
+     "workshop:u11-care-alice@1",
+     "u4.observation:c82d10cf31441a092eb82726100b3949079ad1c56d71b5654f544942958ebf49@1",
+     "workshop:u11-primitive-consume@1",
+     "workshop:u11-consume-alice@1",
+     "u4.observation:f841b5f307808d074ce52eb4b65497bd89fcd486b63fc5d8d04dd33f4f712885@1",
+     "workshop:u11-shared-tool@1",
+     "workshop:u11-kit-alice@2",
+     "workshop:u11-repair-alice@2",
+     "u11.group:ffb96079b2d1a0caf48ce201c4c24ed155537b648e5485e9deb336d2ada1473c@1",
+     "u11.plan:3564a2d7519ad8c72dd7f45b6adbd0367319b5efedee8f164e7f7b99f0310da7@1",
+     "u11.run:a0d69968eb3d320fb5bc33d4575ae1a49b85ec799d73fc17d549d91cb9b37908@1",
+     "u4.observation:e12e7a8055934eda7781b1ec01cc23ef711239fa406a81da2c00dcc29313366f@1",
+     "u11.run:a0d69968eb3d320fb5bc33d4575ae1a49b85ec799d73fc17d549d91cb9b37908@2",
+     "u11.run:a0d69968eb3d320fb5bc33d4575ae1a49b85ec799d73fc17d549d91cb9b37908@3",
+     "workshop:u11-shared-tool@2",
+     "u4.observation:ee25da65b0e6dc975161027a7a24dcdbb65ea35f250225a19223a667ca7bd60d@1",
+     "workshop:u11-shared-tool@3",
+     "workshop:u11-bob-care@1",
+     "u11.group:3df139bb00af3adc2a71c65e7d2bc6bfdaa86ae58f9c1b781497bf00705f9df8@1",
+     "u11.capacity:6181c4504a384ddfabd6ac49984afc80e1318fa2ac6a5f411964238b6326b9d8@1",
+     "u11.group:3df139bb00af3adc2a71c65e7d2bc6bfdaa86ae58f9c1b781497bf00705f9df8@2"
+    ],
+    "status": "proposed"
+   }
+  ],
+  "function": "tests_u11.fixtures.instantiate",
+  "kwargs": {
+   "accept": true,
+   "key": "team-run",
+   "mode": "aggregate"
+  }
+ },
+ {
+  "args": [
+   "engine",
+   {
+    "actor": "workshop:alice",
+    "agenda": [
+     [
+      "u11.group:ffb96079b2d1a0caf48ce201c4c24ed155537b648e5485e9deb336d2ada1473c",
+      "workshop:alice",
+      "workshop:u11-primitive-repair@1",
+      [
+       [
+        "stock",
+        "workshop:u11-repair-alice"
+       ],
+       [
+        "target",
+        "workshop:u11-shared-tool"
+       ],
+       [
+        "tool",
+        "workshop:u11-kit-alice"
+       ]
+      ]
+     ],
+     [
+      "u11.group:3df139bb00af3adc2a71c65e7d2bc6bfdaa86ae58f9c1b781497bf00705f9df8",
+      "workshop:alice",
+      "workshop:u11-primitive-transfer@1",
+      [
+       [
+        "recipient",
+        "workshop:bob"
+       ],
+       [
+        "target",
+        "workshop:u11-shared-tool"
+       ]
+      ]
+     ],
+     [
+      "u11.group:3df139bb00af3adc2a71c65e7d2bc6bfdaa86ae58f9c1b781497bf00705f9df8",
+      "workshop:bob",
+      "workshop:u11-primitive-use@1",
+      [
+       [
+        "target",
+        "workshop:u11-shared-tool"
+       ]
+      ]
+     ],
+     [
+      "u11.group:3df139bb00af3adc2a71c65e7d2bc6bfdaa86ae58f9c1b781497bf00705f9df8",
+      "workshop:bob",
+      "workshop:u11-primitive-care@1",
+      [
+       [
+        "stock",
+        "workshop:u11-bob-care"
+       ],
+       [
+        "target",
+        "workshop:u11-shared-tool"
+       ]
+      ]
+     ]
+    ],
+    "context": "workshop:room@1",
+    "cue": "u5.reference:minor:Coin:10@1",
+    "dependencies": [
+     "u11.capacity:6181c4504a384ddfabd6ac49984afc80e1318fa2ac6a5f411964238b6326b9d8@1",
+     "u11.group:3df139bb00af3adc2a71c65e7d2bc6bfdaa86ae58f9c1b781497bf00705f9df8@2",
+     "u11.group:ffb96079b2d1a0caf48ce201c4c24ed155537b648e5485e9deb336d2ada1473c@1",
+     "workshop:u11-primitive-care@1",
+     "workshop:u11-primitive-repair@1",
+     "workshop:u11-primitive-transfer@1",
+     "workshop:u11-primitive-use@1"
+    ],
+    "events": [],
+    "group": "u11.group:3df139bb00af3adc2a71c65e7d2bc6bfdaa86ae58f9c1b781497bf00705f9df8@2",
+    "index": 0,
+    "kind": "run",
+    "mode": "aggregate",
+    "operation": "u4.operation:0891157b75b9355fc41d14c8e45ecdb21271feda7b0267f0c728facd5514ef5a@2",
+    "owner": "workshop:alice",
+    "program": [
+     [
+      "call",
+      "u11.capacity:6181c4504a384ddfabd6ac49984afc80e1318fa2ac6a5f411964238b6326b9d8@1"
+     ],
+     [
+      "work",
+      "workshop:alice",
+      "workshop:u11-primitive-transfer@1",
+      [
+       [
+        "recipient",
+        "workshop:bob"
+       ],
+       [
+        "target",
+        "workshop:u11-shared-tool"
+       ]
+      ]
+     ],
+     [
+      "work",
+      "workshop:bob",
+      "workshop:u11-primitive-use@1",
+      [
+       [
+        "target",
+        "workshop:u11-shared-tool"
+       ]
+      ]
+     ],
+     [
+      "work",
+      "workshop:bob",
+      "workshop:u11-primitive-care@1",
+      [
+       [
+        "stock",
+        "workshop:u11-bob-care"
+       ],
+       [
+        "target",
+        "workshop:u11-shared-tool"
+       ]
+      ]
+     ]
+    ],
+    "ref": "u11.run:0891157b75b9355fc41d14c8e45ecdb21271feda7b0267f0c728facd5514ef5a@1",
+    "selection": null,
+    "source": "u11.plan:38e1f6b7fe6c80ff9951e8d7003b4a7ecad20614cb103f5e47bcc3f28f8f7e40@1",
+    "sources": [
+     "workshop:room@1",
+     "workshop:cue@1",
+     "workshop:saw@1",
+     "workshop:saw2@1",
+     "workshop:kit@1",
+     "workshop:stock@1",
+     "workshop:care@1",
+     "workshop:borrowed@1",
+     "workshop:return-obligation@1",
+     "workshop:repair-procedure@1",
+     "u5.reference:minor:Coin:10@1",
+     "workshop:condition-policy@1",
+     "workshop:alice@1",
+     "workshop:bob@1",
+     "workshop:c3-alice-supply@1",
+     "workshop:bob-consumables@1",
+     "workshop:workflow-device@1",
+     "workshop:workflow-loan@1",
+     "workshop:workflow-due@1",
+     "workshop:eve@1",
+     "workshop:u11-primitive-repair@1",
+     "workshop:u11-practice-alice-repair@1",
+     "workshop:u11-kit-alice@1",
+     "workshop:u11-repair-alice@1",
+     "u4.observation:3c5645682de4fe44f59e0cd578fc188aed89888a4f95c3a1824a7d233a475d33@1",
+     "workshop:u11-primitive-transfer@1",
+     "workshop:u11-practice-alice-transfer@1",
+     "u4.observation:c40a77ae437c2c645d8b0656be73649cef8793387abb59744dc88e4339a0c46c@1",
+     "workshop:u11-primitive-use@1",
+     "workshop:u11-practice-alice-use@1",
+     "u4.observation:a7225c2e5adf7910f7c6306aabaa0eea069ae53f64b7cbbd66cd9c3bdaf7f415@1",
+     "workshop:u11-primitive-care@1",
+     "workshop:u11-practice-alice-care@1",
+     "workshop:u11-care-alice@1",
+     "u4.observation:c82d10cf31441a092eb82726100b3949079ad1c56d71b5654f544942958ebf49@1",
+     "workshop:u11-primitive-consume@1",
+     "workshop:u11-consume-alice@1",
+     "u4.observation:f841b5f307808d074ce52eb4b65497bd89fcd486b63fc5d8d04dd33f4f712885@1",
+     "workshop:u11-shared-tool@1",
+     "workshop:u11-kit-alice@2",
+     "workshop:u11-repair-alice@2",
+     "u11.group:ffb96079b2d1a0caf48ce201c4c24ed155537b648e5485e9deb336d2ada1473c@1",
+     "u11.plan:3564a2d7519ad8c72dd7f45b6adbd0367319b5efedee8f164e7f7b99f0310da7@1",
+     "u11.run:a0d69968eb3d320fb5bc33d4575ae1a49b85ec799d73fc17d549d91cb9b37908@1",
+     "u4.observation:e12e7a8055934eda7781b1ec01cc23ef711239fa406a81da2c00dcc29313366f@1",
+     "u11.run:a0d69968eb3d320fb5bc33d4575ae1a49b85ec799d73fc17d549d91cb9b37908@2",
+     "u11.run:a0d69968eb3d320fb5bc33d4575ae1a49b85ec799d73fc17d549d91cb9b37908@3",
+     "workshop:u11-shared-tool@2",
+     "u4.observation:ee25da65b0e6dc975161027a7a24dcdbb65ea35f250225a19223a667ca7bd60d@1",
+     "workshop:u11-shared-tool@3",
+     "workshop:u11-bob-care@1",
+     "u11.group:3df139bb00af3adc2a71c65e7d2bc6bfdaa86ae58f9c1b781497bf00705f9df8@1",
+     "u11.capacity:6181c4504a384ddfabd6ac49984afc80e1318fa2ac6a5f411964238b6326b9d8@1",
+     "u11.group:3df139bb00af3adc2a71c65e7d2bc6bfdaa86ae58f9c1b781497bf00705f9df8@2",
+     "u11.plan:38e1f6b7fe6c80ff9951e8d7003b4a7ecad20614cb103f5e47bcc3f28f8f7e40@1"
+    ],
+    "status": "active"
+   }
+  ],
+  "function": "tests_u11.fixtures.finish",
+  "kwargs": {
+   "key": "team"
+  }
+ },
+ {
+  "args": [
+   "engine",
+   "retain-team",
+   "retain"
+  ],
+  "function": "tests_u11.fixtures.work",
+  "kwargs": {
+   "focus": "u11.run:0891157b75b9355fc41d14c8e45ecdb21271feda7b0267f0c728facd5514ef5a@9"
+  }
+ },
+ {
+  "args": [
+   "engine",
+   "after-summary",
+   "summarize"
+  ],
+  "function": "tests_u11.fixtures.work",
+  "kwargs": {
+   "focus": "u11.group:3df139bb00af3adc2a71c65e7d2bc6bfdaa86ae58f9c1b781497bf00705f9df8@2"
+  }
+ },
+ {
+  "args": [
+   "engine",
+   "workshop:alice",
+   "workshop:workflow-device@2"
+  ],
+  "function": "tests_c7_workflow.fixtures.expose",
+  "kwargs": {}
+ },
+ {
+  "args": [
+   "engine",
+   "workshop:alice",
+   "workshop:care@2"
+  ],
+  "function": "tests_c7_workflow.fixtures.expose",
+  "kwargs": {}
+ },
+ {
+  "args": [
+   "engine",
+   "solo-02-express-expenditure-neti-wear"
+  ],
+  "function": "tests_c7_workflow.fixtures.observe",
+  "kwargs": {
+   "primitive": "use"
+  }
+ },
+ {
+  "args": [
+   "engine",
+   "Express",
+   "expenditure"
+  ],
+  "function": "tests_c7_workflow.fixtures.cell",
+  "kwargs": {
+   "key": "solo-02-express-expenditure-neti",
+   "prepare_only": true
+  }
+ },
+ {
+  "args": [
+   {
+    "actor": "workshop:alice",
+    "key": "solo-02-express-expenditure-neti",
+    "repr_sha256": "6ad932bb03e98d30db2bcad327941f4c00369ac55b6e08df7b881719bcb31ae4",
+    "request": "WorkflowRequest"
+   }
+  ],
+  "function": "dataclasses.replace",
+  "kwargs": {
+   "elements": [
+    "ne",
+    "ti"
+   ]
+  }
+ },
+ {
+  "args": [
+   "engine",
+   {
+    "actor": "workshop:alice",
+    "key": "solo-02-express-expenditure-neti",
+    "repr_sha256": "f609481c8537d8eca8df35eecf616bc9631499fd20d49da1ad2499e8149c7034",
+    "request": "WorkflowRequest"
+   }
+  ],
+  "function": "tests_c7_workflow.fixtures.work",
+  "kwargs": {
+   "allow_failure": true
+  }
+ },
+ {
+  "args": [
+   "engine",
+   "workshop:alice",
+   "workshop:workflow-device@4"
+  ],
+  "function": "tests_c7_workflow.fixtures.expose",
+  "kwargs": {}
+ },
+ {
+  "args": [
+   "engine",
+   "workshop:alice",
+   "workshop:care@3"
+  ],
+  "function": "tests_c7_workflow.fixtures.expose",
+  "kwargs": {}
+ },
+ {
+  "args": [
+   "engine",
+   "solo-03-express-accumulation-default-wear"
+  ],
+  "function": "tests_c7_workflow.fixtures.observe",
+  "kwargs": {
+   "primitive": "use"
+  }
+ },
+ {
+  "args": [
+   "engine",
+   "Express",
+   "accumulation"
+  ],
+  "function": "tests_c7_workflow.fixtures.cell",
+  "kwargs": {
+   "key": "solo-03-express-accumulation-default",
+   "prepare_only": true
+  }
+ },
+ {
+  "args": [
+   "engine",
+   {
+    "actor": "workshop:alice",
+    "key": "solo-03-express-accumulation-default",
+    "repr_sha256": "fce716d0ddb6ae19fb6fb7da9e9824a19cd4f88878be20b93f753c2253b451ce",
+    "request": "WorkflowRequest"
+   }
+  ],
+  "function": "tests_c7_workflow.fixtures.work",
+  "kwargs": {
+   "allow_failure": true
+  }
+ },
+ {
+  "args": [
+   "engine",
+   "workshop:alice",
+   "workshop:workflow-device@5"
+  ],
+  "function": "tests_c7_workflow.fixtures.expose",
+  "kwargs": {}
+ },
+ {
+  "args": [
+   "engine",
+   "workshop:alice",
+   "workshop:care@3"
+  ],
+  "function": "tests_c7_workflow.fixtures.expose",
+  "kwargs": {}
+ },
+ {
+  "args": [
+   "engine",
+   "Express",
+   "accumulation"
+  ],
+  "function": "tests_c7_workflow.fixtures.cell",
+  "kwargs": {
+   "key": "solo-04-express-accumulation-neti",
+   "prepare_only": true
+  }
+ },
+ {
+  "args": [
+   {
+    "actor": "workshop:alice",
+    "key": "solo-04-express-accumulation-neti",
+    "repr_sha256": "73b0d302a73043852dddb3219bbaf6e13a4bf138ec3162e3fd52d950d5d428be",
+    "request": "WorkflowRequest"
+   }
+  ],
+  "function": "dataclasses.replace",
+  "kwargs": {
+   "elements": [
+    "ne",
+    "ti"
+   ]
+  }
+ },
+ {
+  "args": [
+   "engine",
+   {
+    "actor": "workshop:alice",
+    "key": "solo-04-express-accumulation-neti",
+    "repr_sha256": "02e0145b132d3ce2886faf45a4b3ae32eecb9e236d694806ecc8f8b9bbcc5421",
+    "request": "WorkflowRequest"
+   }
+  ],
+  "function": "tests_c7_workflow.fixtures.work",
+  "kwargs": {
+   "allow_failure": true
+  }
+ },
+ {
+  "args": [
+   "engine",
+   "workshop:alice",
+   "workshop:workflow-device@5"
+  ],
+  "function": "tests_c7_workflow.fixtures.expose",
+  "kwargs": {}
+ },
+ {
+  "args": [
+   "engine",
+   "workshop:alice",
+   "workshop:care@3"
+  ],
+  "function": "tests_c7_workflow.fixtures.expose",
+  "kwargs": {}
+ },
+ {
+  "args": [
+   "engine",
+   "Embody",
+   "expenditure"
+  ],
+  "function": "tests_c7_workflow.fixtures.cell",
+  "kwargs": {
+   "key": "solo-05-embody-expenditure-default",
+   "prepare_only": true
+  }
+ },
+ {
+  "args": [
+   "engine",
+   {
+    "actor": "workshop:alice",
+    "key": "solo-05-embody-expenditure-default",
+    "repr_sha256": "9e53ded6c64aee28bf9807630d1b873c58c8a704d8c9635504ddc72490fcc1ed",
+    "request": "WorkflowRequest"
+   }
+  ],
+  "function": "tests_c7_workflow.fixtures.work",
+  "kwargs": {
+   "allow_failure": true
+  }
+ },
+ {
+  "args": [
+   "engine",
+   "workshop:alice",
+   "workshop:workflow-device@5"
+  ],
+  "function": "tests_c7_workflow.fixtures.expose",
+  "kwargs": {}
+ },
+ {
+  "args": [
+   "engine",
+   "workshop:alice",
+   "workshop:care@3"
+  ],
+  "function": "tests_c7_workflow.fixtures.expose",
+  "kwargs": {}
+ },
+ {
+  "args": [
+   "engine",
+   "Embody",
+   "expenditure"
+  ],
+  "function": "tests_c7_workflow.fixtures.cell",
+  "kwargs": {
+   "key": "solo-06-embody-expenditure-tine",
+   "prepare_only": true
+  }
+ },
+ {
+  "args": [
+   {
+    "actor": "workshop:alice",
+    "key": "solo-06-embody-expenditure-tine",
+    "repr_sha256": "336a37cac648399c5a7e4c5a18f0bf479ddf6e2df6d629beb18575fecf8a8307",
+    "request": "WorkflowRequest"
+   }
+  ],
+  "function": "dataclasses.replace",
+  "kwargs": {
+   "elements": [
+    "ti",
+    "ne"
+   ]
+  }
+ },
+ {
+  "args": [
+   "engine",
+   {
+    "actor": "workshop:alice",
+    "key": "solo-06-embody-expenditure-tine",
+    "repr_sha256": "a304cde2e380d62c72bb138425d48dc3c828e13f8fecb09dcba65e3fbe11b432",
+    "request": "WorkflowRequest"
+   }
+  ],
+  "function": "tests_c7_workflow.fixtures.work",
+  "kwargs": {
+   "allow_failure": true
+  }
+ },
+ {
+  "args": [
+   "engine",
+   "workshop:alice",
+   "workshop:workflow-device@5"
+  ],
+  "function": "tests_c7_workflow.fixtures.expose",
+  "kwargs": {}
+ },
+ {
+  "args": [
+   "engine",
+   "workshop:alice",
+   "workshop:care@3"
+  ],
+  "function": "tests_c7_workflow.fixtures.expose",
+  "kwargs": {}
+ },
+ {
+  "args": [
+   "engine",
+   "Share",
+   "expenditure"
+  ],
+  "function": "tests_c7_workflow.fixtures.cell",
+  "kwargs": {
+   "key": "solo-07-share-expenditure-default",
+   "prepare_only": true
+  }
+ },
+ {
+  "args": [
+   "engine",
+   {
+    "actor": "workshop:alice",
+    "key": "solo-07-share-expenditure-default",
+    "repr_sha256": "552fc554775063256315123a0e24daf3f81ad29935a29badcaff85ba4f7faef7",
+    "request": "WorkflowRequest"
+   }
+  ],
+  "function": "tests_c7_workflow.fixtures.work",
+  "kwargs": {
+   "allow_failure": true
+  }
+ },
+ {
+  "args": [
+   "engine",
+   "workshop:alice",
+   "workshop:workflow-device@5"
+  ],
+  "function": "tests_c7_workflow.fixtures.expose",
+  "kwargs": {}
+ },
+ {
+  "args": [
+   "engine",
+   "workshop:alice",
+   "workshop:care@3"
+  ],
+  "function": "tests_c7_workflow.fixtures.expose",
+  "kwargs": {}
+ },
+ {
+  "args": [
+   "engine",
+   "Share",
+   "expenditure"
+  ],
+  "function": "tests_c7_workflow.fixtures.cell",
+  "kwargs": {
+   "key": "solo-08-share-expenditure-fe",
+   "prepare_only": true
+  }
+ },
+ {
+  "args": [
+   {
+    "actor": "workshop:alice",
+    "key": "solo-08-share-expenditure-fe",
+    "repr_sha256": "4bb82738850fec595ea2b11dd414c2b1b741a737b385bcbc95e7dd7fd4b6d0fa",
+    "request": "WorkflowRequest"
+   }
+  ],
+  "function": "dataclasses.replace",
+  "kwargs": {
+   "elements": [
+    "fe"
+   ]
+  }
+ },
+ {
+  "args": [
+   "engine",
+   {
+    "actor": "workshop:alice",
+    "key": "solo-08-share-expenditure-fe",
+    "repr_sha256": "c75cb0bdf44c739a7be6bc0a7a051df8de2e2d89dd03124918ba7503a3a004b9",
+    "request": "WorkflowRequest"
+   }
+  ],
+  "function": "tests_c7_workflow.fixtures.work",
+  "kwargs": {
+   "allow_failure": true
+  }
+ },
+ {
+  "args": [
+   "engine",
+   "workshop:alice",
+   "workshop:workflow-device@5"
+  ],
+  "function": "tests_c7_workflow.fixtures.expose",
+  "kwargs": {}
+ },
+ {
+  "args": [
+   "engine",
+   "workshop:alice",
+   "workshop:care@3"
+  ],
+  "function": "tests_c7_workflow.fixtures.expose",
+  "kwargs": {}
+ },
+ {
+  "args": [
+   "engine",
+   "Share",
+   "accumulation"
+  ],
+  "function": "tests_c7_workflow.fixtures.cell",
+  "kwargs": {
+   "key": "solo-09-share-accumulation-default",
+   "prepare_only": true
+  }
+ },
+ {
+  "args": [
+   "engine",
+   {
+    "actor": "workshop:alice",
+    "key": "solo-09-share-accumulation-default",
+    "repr_sha256": "8820169d32490bdb7a1af93ef3638ffa4caa9d2c3c9ee486242da5b24ee46978",
+    "request": "WorkflowRequest"
+   }
+  ],
+  "function": "tests_c7_workflow.fixtures.work",
+  "kwargs": {
+   "allow_failure": true
+  }
+ },
+ {
+  "args": [
+   "engine",
+   "workshop:alice",
+   "workshop:workflow-device@5"
+  ],
+  "function": "tests_c7_workflow.fixtures.expose",
+  "kwargs": {}
+ },
+ {
+  "args": [
+   "engine",
+   "workshop:alice",
+   "workshop:care@3"
+  ],
+  "function": "tests_c7_workflow.fixtures.expose",
+  "kwargs": {}
+ },
+ {
+  "args": [
+   "engine",
+   "Share",
+   "accumulation"
+  ],
+  "function": "tests_c7_workflow.fixtures.cell",
+  "kwargs": {
+   "key": "solo-10-share-accumulation-fe",
+   "prepare_only": true
+  }
+ },
+ {
+  "args": [
+   {
+    "actor": "workshop:alice",
+    "key": "solo-10-share-accumulation-fe",
+    "repr_sha256": "246711bbd3c3445d656e3ef271314000bbc9be6d4ccb476849a371513863f5d9",
+    "request": "WorkflowRequest"
+   }
+  ],
+  "function": "dataclasses.replace",
+  "kwargs": {
+   "elements": [
+    "fe"
+   ]
+  }
+ },
+ {
+  "args": [
+   "engine",
+   {
+    "actor": "workshop:alice",
+    "key": "solo-10-share-accumulation-fe",
+    "repr_sha256": "472bbe2b17eb7619897c4600e6f2f18630f8f15a51516fc986514b14e983a0a5",
+    "request": "WorkflowRequest"
+   }
+  ],
+  "function": "tests_c7_workflow.fixtures.work",
+  "kwargs": {
+   "allow_failure": true
+  }
+ },
+ {
+  "args": [
+   "engine",
+   "workshop:alice",
+   "workshop:workflow-device@5"
+  ],
+  "function": "tests_c7_workflow.fixtures.expose",
+  "kwargs": {}
+ },
+ {
+  "args": [
+   "engine",
+   "workshop:alice",
+   "workshop:care@3"
+  ],
+  "function": "tests_c7_workflow.fixtures.expose",
+  "kwargs": {}
+ },
+ {
+  "args": [
+   "engine",
+   "Coordinate",
+   "expenditure"
+  ],
+  "function": "tests_c7_workflow.fixtures.cell",
+  "kwargs": {
+   "key": "solo-11-coordinate-expenditure-default",
+   "prepare_only": true
+  }
+ },
+ {
+  "args": [
+   "engine",
+   {
+    "actor": "workshop:alice",
+    "key": "solo-11-coordinate-expenditure-default",
+    "repr_sha256": "10a37693ee09c3bcd1a3f624a71787c41b39d90cbff3d715f4ff605390695bb2",
+    "request": "WorkflowRequest"
+   }
+  ],
+  "function": "tests_c7_workflow.fixtures.work",
+  "kwargs": {
+   "allow_failure": true
+  }
+ },
+ {
+  "args": [
+   "engine",
+   "workshop:alice",
+   "workshop:workflow-device@5"
+  ],
+  "function": "tests_c7_workflow.fixtures.expose",
+  "kwargs": {}
+ },
+ {
+  "args": [
+   "engine",
+   "workshop:alice",
+   "workshop:care@3"
+  ],
+  "function": "tests_c7_workflow.fixtures.expose",
+  "kwargs": {}
+ },
+ {
+  "args": [
+   "engine",
+   "Coordinate",
+   "expenditure"
+  ],
+  "function": "tests_c7_workflow.fixtures.cell",
+  "kwargs": {
+   "key": "solo-12-coordinate-expenditure-se",
+   "prepare_only": true
+  }
+ },
+ {
+  "args": [
+   {
+    "actor": "workshop:alice",
+    "key": "solo-12-coordinate-expenditure-se",
+    "repr_sha256": "875b0ad228ead8c7dfb6fca84b8acf52af097f453f61ff7935c6591049c284b9",
+    "request": "WorkflowRequest"
+   }
+  ],
+  "function": "dataclasses.replace",
+  "kwargs": {
+   "elements": [
+    "se"
+   ]
+  }
+ },
+ {
+  "args": [
+   "engine",
+   {
+    "actor": "workshop:alice",
+    "key": "solo-12-coordinate-expenditure-se",
+    "repr_sha256": "b3b41b69ef71420a2c39760cfc3e95ed2d6d5486c44f7da73bc6aa7e2e872e17",
+    "request": "WorkflowRequest"
+   }
+  ],
+  "function": "tests_c7_workflow.fixtures.work",
+  "kwargs": {
+   "allow_failure": true
+  }
+ },
+ {
+  "args": [
+   "engine",
+   "workshop:alice",
+   "workshop:workflow-device@5"
+  ],
+  "function": "tests_c7_workflow.fixtures.expose",
+  "kwargs": {}
+ },
+ {
+  "args": [
+   "engine",
+   "workshop:alice",
+   "workshop:care@3"
+  ],
+  "function": "tests_c7_workflow.fixtures.expose",
+  "kwargs": {}
+ },
+ {
+  "args": [
+   "engine",
+   "Coordinate",
+   "accumulation"
+  ],
+  "function": "tests_c7_workflow.fixtures.cell",
+  "kwargs": {
+   "key": "solo-13-coordinate-accumulation-default",
+   "prepare_only": true
+  }
+ },
+ {
+  "args": [
+   "engine",
+   {
+    "actor": "workshop:alice",
+    "key": "solo-13-coordinate-accumulation-default",
+    "repr_sha256": "c9124240ae46281937ad400d666ff036e7641a1d2e1393311cbfb9413c2f93a3",
+    "request": "WorkflowRequest"
+   }
+  ],
+  "function": "tests_c7_workflow.fixtures.work",
+  "kwargs": {
+   "allow_failure": true
+  }
+ },
+ {
+  "args": [
+   "engine",
+   "workshop:alice",
+   "workshop:workflow-device@5"
+  ],
+  "function": "tests_c7_workflow.fixtures.expose",
+  "kwargs": {}
+ },
+ {
+  "args": [
+   "engine",
+   "workshop:alice",
+   "workshop:care@3"
+  ],
+  "function": "tests_c7_workflow.fixtures.expose",
+  "kwargs": {}
+ },
+ {
+  "args": [
+   "engine",
+   "Coordinate",
+   "accumulation"
+  ],
+  "function": "tests_c7_workflow.fixtures.cell",
+  "kwargs": {
+   "key": "solo-14-coordinate-accumulation-se",
+   "prepare_only": true
+  }
+ },
+ {
+  "args": [
+   {
+    "actor": "workshop:alice",
+    "key": "solo-14-coordinate-accumulation-se",
+    "repr_sha256": "e865441ea5d9482bf1bc2cd816e4db272e515c73fe9b5b2e443f872000ff5129",
+    "request": "WorkflowRequest"
+   }
+  ],
+  "function": "dataclasses.replace",
+  "kwargs": {
+   "elements": [
+    "se"
+   ]
+  }
+ },
+ {
+  "args": [
+   "engine",
+   {
+    "actor": "workshop:alice",
+    "key": "solo-14-coordinate-accumulation-se",
+    "repr_sha256": "9fc5908b5525100f15b0ed396160236584cbd255dc7a0fca779412d62cc46282",
+    "request": "WorkflowRequest"
+   }
+  ],
+  "function": "tests_c7_workflow.fixtures.work",
+  "kwargs": {
+   "allow_failure": true
+  }
+ },
+ {
+  "args": [
+   "engine",
+   "workshop:alice",
+   "workshop:workflow-device@5"
+  ],
+  "function": "tests_c7_workflow.fixtures.expose",
+  "kwargs": {}
+ },
+ {
+  "args": [
+   "engine",
+   "workshop:alice",
+   "workshop:care@3"
+  ],
+  "function": "tests_c7_workflow.fixtures.expose",
+  "kwargs": {}
+ },
+ {
+  "args": [
+   "engine",
+   "Theorize",
+   "expenditure"
+  ],
+  "function": "tests_c7_workflow.fixtures.cell",
+  "kwargs": {
+   "key": "solo-15-theorize-expenditure-default",
+   "prepare_only": true
+  }
+ },
+ {
+  "args": [
+   "engine",
+   {
+    "actor": "workshop:alice",
+    "key": "solo-15-theorize-expenditure-default",
+    "repr_sha256": "8b778439d90681830ba2f6e1b9e7ebf56c9e09c66efb9aa1a04a0465412ee43c",
+    "request": "WorkflowRequest"
+   }
+  ],
+  "function": "tests_c7_workflow.fixtures.work",
+  "kwargs": {
+   "allow_failure": true
+  }
+ },
+ {
+  "args": [
+   "engine",
+   "workshop:alice",
+   "workshop:workflow-device@5"
+  ],
+  "function": "tests_c7_workflow.fixtures.expose",
+  "kwargs": {}
+ },
+ {
+  "args": [
+   "engine",
+   "workshop:alice",
+   "workshop:care@3"
+  ],
+  "function": "tests_c7_workflow.fixtures.expose",
+  "kwargs": {}
+ },
+ {
+  "args": [
+   "engine",
+   "Theorize",
+   "expenditure"
+  ],
+  "function": "tests_c7_workflow.fixtures.cell",
+  "kwargs": {
+   "key": "solo-16-theorize-expenditure-ne",
+   "prepare_only": true
+  }
+ },
+ {
+  "args": [
+   {
+    "actor": "workshop:alice",
+    "key": "solo-16-theorize-expenditure-ne",
+    "repr_sha256": "9e958ab810867c5ae4d5a1ac1a47e585ea9a36106c962f177cda4e661dc02c9c",
+    "request": "WorkflowRequest"
+   }
+  ],
+  "function": "dataclasses.replace",
+  "kwargs": {
+   "elements": [
+    "ne"
+   ]
+  }
+ },
+ {
+  "args": [
+   "engine",
+   {
+    "actor": "workshop:alice",
+    "key": "solo-16-theorize-expenditure-ne",
+    "repr_sha256": "1d4d3934454d96048957a21d966f04ce53a261b105b8e5ee8a50d5398ad23a1a",
+    "request": "WorkflowRequest"
+   }
+  ],
+  "function": "tests_c7_workflow.fixtures.work",
+  "kwargs": {
+   "allow_failure": true
+  }
+ },
+ {
+  "args": [
+   "engine",
+   "workshop:alice",
+   "workshop:workflow-device@5"
+  ],
+  "function": "tests_c7_workflow.fixtures.expose",
+  "kwargs": {}
+ },
+ {
+  "args": [
+   "engine",
+   "workshop:alice",
+   "workshop:care@3"
+  ],
+  "function": "tests_c7_workflow.fixtures.expose",
+  "kwargs": {}
+ },
+ {
+  "args": [
+   "engine",
+   "Apply",
+   "accumulation"
+  ],
+  "function": "tests_c7_workflow.fixtures.cell",
+  "kwargs": {
+   "key": "solo-19-apply-accumulation-default",
+   "prepare_only": true
+  }
+ },
+ {
+  "args": [
+   "engine",
+   {
+    "actor": "workshop:alice",
+    "key": "solo-19-apply-accumulation-default",
+    "repr_sha256": "de4d0d0158ddba037c91b9e0409d28190224c04db86fa55e375c7b2b709cc0a7",
+    "request": "WorkflowRequest"
+   }
+  ],
+  "function": "tests_c7_workflow.fixtures.work",
+  "kwargs": {
+   "allow_failure": true
+  }
+ },
+ {
+  "args": [
+   "engine",
+   "workshop:alice",
+   "workshop:workflow-device@5"
+  ],
+  "function": "tests_c7_workflow.fixtures.expose",
+  "kwargs": {}
+ },
+ {
+  "args": [
+   "engine",
+   "workshop:alice",
+   "workshop:care@3"
+  ],
+  "function": "tests_c7_workflow.fixtures.expose",
+  "kwargs": {}
+ },
+ {
+  "args": [
+   "engine",
+   "Apply",
+   "accumulation"
+  ],
+  "function": "tests_c7_workflow.fixtures.cell",
+  "kwargs": {
+   "key": "solo-20-apply-accumulation-ti",
+   "prepare_only": true
+  }
+ },
+ {
+  "args": [
+   {
+    "actor": "workshop:alice",
+    "key": "solo-20-apply-accumulation-ti",
+    "repr_sha256": "187a13433b4d5dacf04bba119259bc91aa199d67a4c8b7bd2d162a57d7a25e34",
+    "request": "WorkflowRequest"
+   }
+  ],
+  "function": "dataclasses.replace",
+  "kwargs": {
+   "elements": [
+    "ti"
+   ]
+  }
+ },
+ {
+  "args": [
+   "engine",
+   {
+    "actor": "workshop:alice",
+    "key": "solo-20-apply-accumulation-ti",
+    "repr_sha256": "cabbf273fe416659cecd907c9d3dc05982b58cb9d6136c481555a1fad7e01e64",
+    "request": "WorkflowRequest"
+   }
+  ],
+  "function": "tests_c7_workflow.fixtures.work",
+  "kwargs": {
+   "allow_failure": true
+  }
+ }
+]

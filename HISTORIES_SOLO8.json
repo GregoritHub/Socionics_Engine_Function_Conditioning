@@ -1,0 +1,1916 @@
+{
+ "amendments": [
+  "A9"
+ ],
+ "call_logs": {
+  "folder": "CALLS_SOLO8",
+  "sha256": {
+   "pair-solo8-seed-17": "0005fa7c6404d28c28e607253c8f577a479a4cd52e99a1c4690c42755e9f053d",
+   "pair-solo8-seed-29": "3cb1616fce7502749fa970707353ee49b5ef1d48de2c45224f4c652eead68c33",
+   "pair-solo8-seed-43": "0f9cdf06481922d5a3fe6f651c87d5e36c9bb929d6c41d97242770fd49008d62",
+   "pair-solo8-seed-61": "7b55b7b45a47aaf135f4ac125743b4e57f462785023d87a386b417165251e9a2"
+  }
+ },
+ "composition": "pair-solo8",
+ "event_sets": {
+  "beec7c22877d8f3828640a236a2f1e3f19a49200b1759ff04a4d792fbb45618b": [
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "after-summary"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "before-summary"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "join-invite"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "probe-uptake"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read-event:renew-demand"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read-event:repair-0-observed-alice"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read-event:solo-02-express-expenditure-neti-wear"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read-event:solo-03-express-accumulation-default-wear"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read-event:solo-05-embody-expenditure-default-observed"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read-event:solo-06-embody-expenditure-tine-observed"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read-event:solo-11-coordinate-expenditure-default-observed"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read-event:solo-12-coordinate-expenditure-se-observed"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read-event:solo-13-coordinate-accumulation-default-observed"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read-event:solo-14-coordinate-accumulation-se-observed"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read-event:team-0-observed-alice"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read-event:team-1-observed-alice"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read-event:team-2-observed-alice"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read-event:team-3-observed-alice"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read-event:u11-practice-result-alice-care"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read-event:u11-practice-result-alice-consume"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read-event:u11-practice-result-alice-repair"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read-event:u11-practice-result-alice-transfer"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read-event:u11-practice-result-alice-use"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:alice:alice:1"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:alice:bob:1"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:alice:borrowed:1"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:alice:care:1"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:alice:condition-policy:1"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:alice:cue:1"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:alice:kit:1"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:alice:minor:Coin:10:1"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:alice:repair-procedure:1"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:alice:return-obligation:1"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:alice:room:1"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:alice:saw2:1"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:alice:saw:1"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:alice:stock:1"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:alice:u11-primitive-care:1"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:alice:u11-primitive-consume:1"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:alice:u11-primitive-repair:1"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:alice:u11-primitive-transfer:1"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:alice:u11-primitive-use:1"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:c3:alice:bob-consumables:1"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:c3:alice:c3-alice-supply:1"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:c3:alice:care:1"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:c3:alice:care:2"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:c3:alice:care:3"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:c3:alice:saw:1"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:c3:alice:workflow-device:1"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:c3:alice:workflow-device:2"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:c3:alice:workflow-device:3"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:c3:alice:workflow-device:4"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:c3:alice:workflow-device:5"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:c3:alice:workflow-loan:1"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:u11:alice:u11.capacity:6181c4504a384ddfabd6ac49984afc80e1318fa2ac6a5f411964238b6326b9d8:1"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:u11:alice:u11.group:285c4afb5434e95d53016f65a308eeb71c824078bfcce0d46db590a507504294:1"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:u11:alice:u11.group:285c4afb5434e95d53016f65a308eeb71c824078bfcce0d46db590a507504294:2"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:u11:alice:u11.group:3df139bb00af3adc2a71c65e7d2bc6bfdaa86ae58f9c1b781497bf00705f9df8:1"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:u11:alice:u11.group:3df139bb00af3adc2a71c65e7d2bc6bfdaa86ae58f9c1b781497bf00705f9df8:2"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:u11:alice:u11.group:431c7bbfdc26fccbe1f45f5f036aabe4842ca80ad7e59e20119b33f3c96f0d0d:1"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:u11:alice:u11.group:431c7bbfdc26fccbe1f45f5f036aabe4842ca80ad7e59e20119b33f3c96f0d0d:2"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:u11:alice:u11.group:51070b3244dd07d3bd2b4edfccc408f923f9957e05210df0f2c077c15f5d007b:1"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:u11:alice:u11.group:51070b3244dd07d3bd2b4edfccc408f923f9957e05210df0f2c077c15f5d007b:2"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:u11:alice:u11.group:52240cda21628aff89032656fa871bbc072a2acad9f696548b7027f4b3b7e4dc:1"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:u11:alice:u11.group:52240cda21628aff89032656fa871bbc072a2acad9f696548b7027f4b3b7e4dc:2"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:u11:alice:u11.group:752dc996135b68fb370633d835ff3035e977e4e8e5a6f914f13d0921fcb54052:1"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:u11:alice:u11.group:752dc996135b68fb370633d835ff3035e977e4e8e5a6f914f13d0921fcb54052:2"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:u11:alice:u11.group:7761107d33c0150f25d0845906fad18039749c4afd228376232222182a1d37d5:1"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:u11:alice:u11.group:7761107d33c0150f25d0845906fad18039749c4afd228376232222182a1d37d5:2"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:u11:alice:u11.group:a3e60d56b9f01a9836e13160844428b66048a26c67b9bf37e0bccf337d152da0:1"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:u11:alice:u11.group:a3e60d56b9f01a9836e13160844428b66048a26c67b9bf37e0bccf337d152da0:2"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:u11:alice:u11.group:be3f73ec0acf3e282b4a8084b243bc386d5533f3eea3328772a4ba9bbc172ce2:1"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:u11:alice:u11.group:be3f73ec0acf3e282b4a8084b243bc386d5533f3eea3328772a4ba9bbc172ce2:2"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:u11:alice:u11.group:ffb96079b2d1a0caf48ce201c4c24ed155537b648e5485e9deb336d2ada1473c:1"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:u11:alice:u11.plan:3564a2d7519ad8c72dd7f45b6adbd0367319b5efedee8f164e7f7b99f0310da7:1"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:u11:alice:u11.plan:38e1f6b7fe6c80ff9951e8d7003b4a7ecad20614cb103f5e47bcc3f28f8f7e40:1"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:u11:alice:u11.run:0891157b75b9355fc41d14c8e45ecdb21271feda7b0267f0c728facd5514ef5a:1"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:u11:alice:u11.run:0891157b75b9355fc41d14c8e45ecdb21271feda7b0267f0c728facd5514ef5a:2"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:u11:alice:u11.run:0891157b75b9355fc41d14c8e45ecdb21271feda7b0267f0c728facd5514ef5a:3"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:u11:alice:u11.run:0891157b75b9355fc41d14c8e45ecdb21271feda7b0267f0c728facd5514ef5a:4"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:u11:alice:u11.run:0891157b75b9355fc41d14c8e45ecdb21271feda7b0267f0c728facd5514ef5a:9"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:u11:alice:u11.run:a0d69968eb3d320fb5bc33d4575ae1a49b85ec799d73fc17d549d91cb9b37908:1"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:u11:alice:u11.run:a0d69968eb3d320fb5bc33d4575ae1a49b85ec799d73fc17d549d91cb9b37908:2"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:u11:alice:u11.run:a0d69968eb3d320fb5bc33d4575ae1a49b85ec799d73fc17d549d91cb9b37908:3"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:u11:alice:workshop:eve:1"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:u11:alice:workshop:u11-bob-care:1"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:u11:alice:workshop:u11-care-alice:1"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:u11:alice:workshop:u11-consume-alice:1"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:u11:alice:workshop:u11-kit-alice:1"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:u11:alice:workshop:u11-kit-alice:2"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:u11:alice:workshop:u11-kit-alice:3"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:u11:alice:workshop:u11-practice-alice-care:1"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:u11:alice:workshop:u11-practice-alice-repair:1"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:u11:alice:workshop:u11-practice-alice-transfer:1"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:u11:alice:workshop:u11-practice-alice-use:1"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:u11:alice:workshop:u11-repair-alice:1"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:u11:alice:workshop:u11-repair-alice:2"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:u11:alice:workshop:u11-repair-alice:3"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:u11:alice:workshop:u11-shared-tool:1"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:u11:alice:workshop:u11-shared-tool:2"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:u11:alice:workshop:u11-shared-tool:3"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:u11:alice:workshop:u11-shared-tool:4"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:u11:alice:workshop:workflow-due:1"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:workflow:alice:0a24de95eeeb7ab91c6bfb42f436bbbfbb92839dc17ee268bc090f0d104a2e2a"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:workflow:alice:101a7c5857935f4666e7d753b3369c7d670a9e8b94a3df4d8845d64cd19db2c9"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:workflow:alice:28553e8a35bc2e01090ef12a14496099ba8da4059837690e5d2e73c1d1b273f0"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:workflow:alice:302c782f4d5a8e0ca1e002c48381f9880bdce78839ea9e32e1ecc392bf04acd9"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:workflow:alice:39af288da072deaf202f6936fc211629b640dd5b4f3ab2fc4b9b80cbb166dff0"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:workflow:alice:483e8ca2aff5c90f4e612fc8f8c1b8131314c31aa7b13864241d39f609a28ab8"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:workflow:alice:49f7cddf76d2c780bdaeb2635589e43204a87aeeda9763af550370ed28db1cec"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:workflow:alice:63bc4fd2524adcfff4353cd00109c5ba79089e727988636b3b203dc8757cd285"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:workflow:alice:80392dd682c2220b3962cfd086264dd730d9c897de8810d7f8eb7b2548a32b5b"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:workflow:alice:8a6a9cc488d0073ea4f827564f761e8466801259ea6454b97b36e56d55ab28fd"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:workflow:alice:8c5426eb7cb8377929e96d59f6d2316972b1d7cd0c663d6088f055edca94f4ad"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:workflow:alice:a62c70fde80f86bc5bb05a3e0f1474002cb9286ba8b4abe01501fb608825840a"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:workflow:alice:f29c934e113a90dcc2e759b71c609f88db4871c5033837cebc8428679e57d79d"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:workflow:alice:f3f0bf5c24c314641d97f27ecd9e886876ce1ef45e6f6ed1db211e1aea281a8e"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:workflow:alice:fac40ac05d295c4770d5386706f27c6b16042d9c6f752327227f8d0a7d9b7e61"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "read:workflow:alice:fc4076bf9c9ca1d249c90b52a2894eb5574810268ded9a2f7078f09bec116e34"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "renew-demand"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "repair-0-physical"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "repair-0-select"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "repair-0-settle"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "repair-group"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "repair-program"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "repair-run"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "repair-run-accept-alice"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "retain-repair"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "retain-team"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "seed:c1-prior"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "seed:probe-uptake-intent"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "seed:solo-02-express-expenditure-neti-intent"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "seed:solo-03-express-accumulation-default-intent"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "seed:solo-04-express-accumulation-neti-intent"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "seed:solo-07-share-expenditure-default-exchange-own"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "seed:solo-07-share-expenditure-default-intent"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "seed:solo-08-share-expenditure-fe-exchange-own"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "seed:solo-08-share-expenditure-fe-intent"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "seed:solo-09-share-accumulation-default-exchange-own"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "seed:solo-09-share-accumulation-default-intent"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "seed:solo-10-share-accumulation-fe-exchange-own"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "seed:solo-10-share-accumulation-fe-intent"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "seed:solo-11-coordinate-expenditure-default-exchange-own"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "seed:solo-12-coordinate-expenditure-se-exchange-own"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "seed:solo-13-coordinate-accumulation-default-exchange-own"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "seed:solo-14-coordinate-accumulation-se-exchange-own"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "seed:solo-15-theorize-expenditure-default-intent"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "seed:solo-16-theorize-expenditure-ne-intent"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "seed:solo-19-apply-accumulation-default-model-intent"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "seed:solo-20-apply-accumulation-ti-model-intent"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "solo-02-express-expenditure-neti"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "solo-02-express-expenditure-neti-wear"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "solo-03-express-accumulation-default"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "solo-03-express-accumulation-default-wear"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "solo-04-express-accumulation-neti"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "solo-05-embody-expenditure-default"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "solo-05-embody-expenditure-default-observed"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "solo-06-embody-expenditure-tine"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "solo-06-embody-expenditure-tine-observed"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "solo-07-share-expenditure-default"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "solo-07-share-expenditure-default-exchange-group"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "solo-07-share-expenditure-default-exchange-join-invite"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "solo-07-share-expenditure-default-exchange-offer"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "solo-08-share-expenditure-fe"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "solo-08-share-expenditure-fe-exchange-group"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "solo-08-share-expenditure-fe-exchange-join-invite"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "solo-08-share-expenditure-fe-exchange-offer"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "solo-09-share-accumulation-default"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "solo-09-share-accumulation-default-exchange-group"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "solo-09-share-accumulation-default-exchange-join-invite"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "solo-09-share-accumulation-default-exchange-offer"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "solo-10-share-accumulation-fe"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "solo-10-share-accumulation-fe-exchange-group"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "solo-10-share-accumulation-fe-exchange-join-invite"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "solo-10-share-accumulation-fe-exchange-offer"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "solo-11-coordinate-expenditure-default"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "solo-11-coordinate-expenditure-default-exchange-group"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "solo-11-coordinate-expenditure-default-exchange-join-invite"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "solo-11-coordinate-expenditure-default-exchange-offer"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "solo-11-coordinate-expenditure-default-observed"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "solo-12-coordinate-expenditure-se"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "solo-12-coordinate-expenditure-se-exchange-group"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "solo-12-coordinate-expenditure-se-exchange-join-invite"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "solo-12-coordinate-expenditure-se-exchange-offer"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "solo-12-coordinate-expenditure-se-observed"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "solo-13-coordinate-accumulation-default"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "solo-13-coordinate-accumulation-default-exchange-group"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "solo-13-coordinate-accumulation-default-exchange-join-invite"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "solo-13-coordinate-accumulation-default-exchange-offer"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "solo-13-coordinate-accumulation-default-observed"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "solo-14-coordinate-accumulation-se"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "solo-14-coordinate-accumulation-se-exchange-group"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "solo-14-coordinate-accumulation-se-exchange-join-invite"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "solo-14-coordinate-accumulation-se-exchange-offer"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "solo-14-coordinate-accumulation-se-observed"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "solo-15-theorize-expenditure-default"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "solo-16-theorize-expenditure-ne"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "solo-19-apply-accumulation-default"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "solo-19-apply-accumulation-default-model"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "solo-20-apply-accumulation-ti"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "solo-20-apply-accumulation-ti-model"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "team-0-physical"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "team-0-select"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "team-0-settle"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "team-1-physical"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "team-1-select"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "team-1-settle"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "team-program"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "team-run"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "team-run-accept-alice"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "u11-acquire-care"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "u11-acquire-consume"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "u11-acquire-repair"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "u11-acquire-transfer"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "u11-acquire-use"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "u11-practice-care"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "u11-practice-consume"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "u11-practice-repair"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "u11-practice-transfer"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "u11-practice-use"
+   },
+   {
+    "actor": "workshop:alice",
+    "episode": 0,
+    "key": "workshop-team"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "join-accept"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "read-event:team-2-observed-bob"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "read-event:team-3-observed-bob"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "read-event:u11-practice-result-bob-care"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "read-event:u11-practice-result-bob-consume"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "read-event:u11-practice-result-bob-repair"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "read-event:u11-practice-result-bob-transfer"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "read-event:u11-practice-result-bob-use"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "read:bob:alice:1"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "read:bob:bob:1"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "read:bob:minor:Coin:10:1"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "read:bob:room:1"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "read:bob:u11-primitive-care:1"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "read:bob:u11-primitive-consume:1"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "read:bob:u11-primitive-repair:1"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "read:bob:u11-primitive-transfer:1"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "read:bob:u11-primitive-use:1"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "read:c3:bob:bob-consumables:1"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "read:c3:bob:c3-alice-supply:1"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "read:c3:bob:care:1"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "read:c3:bob:saw:1"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "read:c3:bob:workflow-device:1"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "read:c3:bob:workflow-loan:1"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "read:u11:bob:u11.group:285c4afb5434e95d53016f65a308eeb71c824078bfcce0d46db590a507504294:2"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "read:u11:bob:u11.group:431c7bbfdc26fccbe1f45f5f036aabe4842ca80ad7e59e20119b33f3c96f0d0d:2"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "read:u11:bob:u11.group:51070b3244dd07d3bd2b4edfccc408f923f9957e05210df0f2c077c15f5d007b:2"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "read:u11:bob:u11.group:52240cda21628aff89032656fa871bbc072a2acad9f696548b7027f4b3b7e4dc:2"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "read:u11:bob:u11.group:752dc996135b68fb370633d835ff3035e977e4e8e5a6f914f13d0921fcb54052:2"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "read:u11:bob:u11.group:7761107d33c0150f25d0845906fad18039749c4afd228376232222182a1d37d5:2"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "read:u11:bob:u11.group:a3e60d56b9f01a9836e13160844428b66048a26c67b9bf37e0bccf337d152da0:2"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "read:u11:bob:u11.group:be3f73ec0acf3e282b4a8084b243bc386d5533f3eea3328772a4ba9bbc172ce2:2"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "read:u11:bob:u11.invitation:220701be14c25544d07f31b225d9fb356547b0575382c440b8e747409d443fd2:1"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "read:u11:bob:u11.invitation:2a659f9ad38f178c5ecd7632a45d5b9be5752f994160facdad84cdf80c4ade41:1"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "read:u11:bob:u11.invitation:57334350d3688d5375f5b7100daee512e5e01e9dfe6f87bc3eab36e655e3abd1:1"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "read:u11:bob:u11.invitation:834a72c8c5e13d903302e8278b32af1250faa97e3bbe007f73e4e48d0bb2bd98:1"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "read:u11:bob:u11.invitation:918e5d827b265435e0da6aea131773f3394f916da1a8831ffa5cfadc7a08b9b7:1"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "read:u11:bob:u11.invitation:9cb930546b77fa152afae8291ac3df1bd8d4bd5895b270e1476127fa2236e55b:1"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "read:u11:bob:u11.invitation:b3e23093d4e78c8d24f923ddd44d143cc3fef10650c0bd55869c8bb54c340866:1"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "read:u11:bob:u11.invitation:bfdff29eb04709644010a8cf813982be6fd5c2565dc4cdcd4f8fa3a49eba5f64:1"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "read:u11:bob:u11.invitation:f1fb117aa5db5f54af8a73fb4f93f9408498adeacc6441793e08e8e14f8b27de:1"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "read:u11:bob:u11.run:0891157b75b9355fc41d14c8e45ecdb21271feda7b0267f0c728facd5514ef5a:1"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "read:u11:bob:u11.run:0891157b75b9355fc41d14c8e45ecdb21271feda7b0267f0c728facd5514ef5a:5"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "read:u11:bob:u11.run:0891157b75b9355fc41d14c8e45ecdb21271feda7b0267f0c728facd5514ef5a:6"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "read:u11:bob:u11.run:0891157b75b9355fc41d14c8e45ecdb21271feda7b0267f0c728facd5514ef5a:7"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "read:u11:bob:u11.run:0891157b75b9355fc41d14c8e45ecdb21271feda7b0267f0c728facd5514ef5a:8"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "read:u11:bob:workshop:eve:1"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "read:u11:bob:workshop:u11-bob-care:1"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "read:u11:bob:workshop:u11-care-bob:1"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "read:u11:bob:workshop:u11-consume-bob:1"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "read:u11:bob:workshop:u11-kit-bob:1"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "read:u11:bob:workshop:u11-practice-bob-care:1"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "read:u11:bob:workshop:u11-practice-bob-repair:1"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "read:u11:bob:workshop:u11-practice-bob-transfer:1"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "read:u11:bob:workshop:u11-practice-bob-use:1"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "read:u11:bob:workshop:u11-repair-bob:1"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "read:u11:bob:workshop:u11-shared-tool:5"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "read:u11:bob:workshop:u11-shared-tool:6"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "read:u11:bob:workshop:workflow-due:1"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "read:workflow:bob:0a24de95eeeb7ab91c6bfb42f436bbbfbb92839dc17ee268bc090f0d104a2e2a"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "read:workflow:bob:302c782f4d5a8e0ca1e002c48381f9880bdce78839ea9e32e1ecc392bf04acd9"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "read:workflow:bob:483e8ca2aff5c90f4e612fc8f8c1b8131314c31aa7b13864241d39f609a28ab8"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "read:workflow:bob:8a6a9cc488d0073ea4f827564f761e8466801259ea6454b97b36e56d55ab28fd"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "read:workflow:bob:8c5426eb7cb8377929e96d59f6d2316972b1d7cd0c663d6088f055edca94f4ad"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "read:workflow:bob:a62c70fde80f86bc5bb05a3e0f1474002cb9286ba8b4abe01501fb608825840a"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "read:workflow:bob:fac40ac05d295c4770d5386706f27c6b16042d9c6f752327227f8d0a7d9b7e61"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "read:workflow:bob:fc4076bf9c9ca1d249c90b52a2894eb5574810268ded9a2f7078f09bec116e34"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "seed:solo-07-share-expenditure-default-exchange-peer"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "seed:solo-08-share-expenditure-fe-exchange-peer"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "seed:solo-09-share-accumulation-default-exchange-peer"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "seed:solo-10-share-accumulation-fe-exchange-peer"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "seed:solo-11-coordinate-expenditure-default-exchange-peer"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "seed:solo-12-coordinate-expenditure-se-exchange-peer"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "seed:solo-13-coordinate-accumulation-default-exchange-peer"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "seed:solo-14-coordinate-accumulation-se-exchange-peer"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "solo-07-share-expenditure-default-exchange-join-accept"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "solo-07-share-expenditure-default-exchange-reply"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "solo-08-share-expenditure-fe-exchange-join-accept"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "solo-08-share-expenditure-fe-exchange-reply"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "solo-09-share-accumulation-default-exchange-join-accept"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "solo-09-share-accumulation-default-exchange-reply"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "solo-10-share-accumulation-fe-exchange-join-accept"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "solo-10-share-accumulation-fe-exchange-reply"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "solo-11-coordinate-expenditure-default-exchange-join-accept"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "solo-11-coordinate-expenditure-default-exchange-reply"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "solo-12-coordinate-expenditure-se-exchange-join-accept"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "solo-12-coordinate-expenditure-se-exchange-reply"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "solo-13-coordinate-accumulation-default-exchange-join-accept"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "solo-13-coordinate-accumulation-default-exchange-reply"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "solo-14-coordinate-accumulation-se-exchange-join-accept"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "solo-14-coordinate-accumulation-se-exchange-reply"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "team-2-physical"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "team-2-select"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "team-2-settle"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "team-3-physical"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "team-3-select"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "team-3-settle"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "team-run-accept-bob"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "u11-acquire-care"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "u11-acquire-consume"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "u11-acquire-repair"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "u11-acquire-transfer"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "u11-acquire-use"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "u11-practice-care"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "u11-practice-consume"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "u11-practice-repair"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "u11-practice-transfer"
+   },
+   {
+    "actor": "workshop:bob",
+    "episode": 0,
+    "key": "u11-practice-use"
+   },
+   {
+    "actor": "workshop:eve",
+    "episode": 0,
+    "key": "read:u11:eve:u5.reference:minor:Coin:10:1"
+   },
+   {
+    "actor": "workshop:eve",
+    "episode": 0,
+    "key": "read:u11:eve:workshop:alice:1"
+   },
+   {
+    "actor": "workshop:eve",
+    "episode": 0,
+    "key": "read:u11:eve:workshop:bob:1"
+   },
+   {
+    "actor": "workshop:eve",
+    "episode": 0,
+    "key": "read:u11:eve:workshop:eve:1"
+   },
+   {
+    "actor": "workshop:eve",
+    "episode": 0,
+    "key": "read:u11:eve:workshop:room:1"
+   }
+  ]
+ },
+ "histories": [
+  {
+   "actors": {
+    "workshop:alice": "iee",
+    "workshop:bob": "sli",
+    "workshop:eve": "sli"
+   },
+   "calls_ref": "0005fa7c6404d28c28e607253c8f577a479a4cd52e99a1c4690c42755e9f053d",
+   "checkpoint_codec": "OperationStore",
+   "checkpoint_sha256": "d42a5955e8c90931240ddb6017b0c25033b91ce23f76c1e663cf4230ea34fac8",
+   "composition": "pair-solo8",
+   "engine": "hle_unified.workflow_execution.WorkflowEngine",
+   "events_ref": "beec7c22877d8f3828640a236a2f1e3f19a49200b1759ff04a4d792fbb45618b",
+   "model": "legacy-r4",
+   "name": "pair-solo8-seed-17",
+   "phase_marks": {
+    "collective_end": 533,
+    "probe_end": 312,
+    "solo_end": 1060
+   },
+   "refused_rows": [],
+   "seeds": {
+    "budget": 2017000,
+    "fixture": 17
+   },
+   "transactions": 1060
+  },
+  {
+   "actors": {
+    "workshop:alice": "iee",
+    "workshop:bob": "sli",
+    "workshop:eve": "sli"
+   },
+   "calls_ref": "3cb1616fce7502749fa970707353ee49b5ef1d48de2c45224f4c652eead68c33",
+   "checkpoint_codec": "OperationStore",
+   "checkpoint_sha256": "c846d8158518cd42d5954e5b8490e801d71deb50bf321b0151ae32e59c10d646",
+   "composition": "pair-solo8",
+   "engine": "hle_unified.workflow_execution.WorkflowEngine",
+   "events_ref": "beec7c22877d8f3828640a236a2f1e3f19a49200b1759ff04a4d792fbb45618b",
+   "model": "legacy-r4",
+   "name": "pair-solo8-seed-29",
+   "phase_marks": {
+    "collective_end": 533,
+    "probe_end": 312,
+    "solo_end": 1060
+   },
+   "refused_rows": [],
+   "seeds": {
+    "budget": 2029000,
+    "fixture": 29
+   },
+   "transactions": 1060
+  },
+  {
+   "actors": {
+    "workshop:alice": "iee",
+    "workshop:bob": "sli",
+    "workshop:eve": "sli"
+   },
+   "calls_ref": "0f9cdf06481922d5a3fe6f651c87d5e36c9bb929d6c41d97242770fd49008d62",
+   "checkpoint_codec": "OperationStore",
+   "checkpoint_sha256": "c054a506a90ecae6c29a2db4a80aa6d738a68708779b1f60b2e3d9180beb3880",
+   "composition": "pair-solo8",
+   "engine": "hle_unified.workflow_execution.WorkflowEngine",
+   "events_ref": "beec7c22877d8f3828640a236a2f1e3f19a49200b1759ff04a4d792fbb45618b",
+   "model": "legacy-r4",
+   "name": "pair-solo8-seed-43",
+   "phase_marks": {
+    "collective_end": 533,
+    "probe_end": 312,
+    "solo_end": 1060
+   },
+   "refused_rows": [],
+   "seeds": {
+    "budget": 2043000,
+    "fixture": 43
+   },
+   "transactions": 1060
+  },
+  {
+   "actors": {
+    "workshop:alice": "iee",
+    "workshop:bob": "sli",
+    "workshop:eve": "sli"
+   },
+   "calls_ref": "7b55b7b45a47aaf135f4ac125743b4e57f462785023d87a386b417165251e9a2",
+   "checkpoint_codec": "OperationStore",
+   "checkpoint_sha256": "a784206f2424e1f053dbf3126d508ffe7341349f6e4ca09d78b6200fe431f115",
+   "composition": "pair-solo8",
+   "engine": "hle_unified.workflow_execution.WorkflowEngine",
+   "events_ref": "beec7c22877d8f3828640a236a2f1e3f19a49200b1759ff04a4d792fbb45618b",
+   "model": "legacy-r4",
+   "name": "pair-solo8-seed-61",
+   "phase_marks": {
+    "collective_end": 533,
+    "probe_end": 312,
+    "solo_end": 1060
+   },
+   "refused_rows": [],
+   "seeds": {
+    "budget": 2061000,
+    "fixture": 61
+   },
+   "transactions": 1060
+  }
+ ],
+ "prediction": "internalisation > 0 for workshop:alice at seats 5 and 6 under the wide reading; every seat 1-8 has >= 1 content use for workshop:alice; workshop:bob's only uses after after-summary are exchange replies (A9)",
+ "program": [
+  {
+   "elements": [
+    "ne",
+    "ti"
+   ],
+   "face": "expenditure",
+   "recipe": "Express",
+   "row": 2
+  },
+  {
+   "elements": [],
+   "face": "accumulation",
+   "recipe": "Express",
+   "row": 3
+  },
+  {
+   "elements": [
+    "ne",
+    "ti"
+   ],
+   "face": "accumulation",
+   "recipe": "Express",
+   "row": 4
+  },
+  {
+   "elements": [],
+   "face": "expenditure",
+   "recipe": "Embody",
+   "row": 5
+  },
+  {
+   "elements": [
+    "ti",
+    "ne"
+   ],
+   "face": "expenditure",
+   "recipe": "Embody",
+   "row": 6
+  },
+  {
+   "elements": [],
+   "face": "expenditure",
+   "recipe": "Share",
+   "row": 7
+  },
+  {
+   "elements": [
+    "fe"
+   ],
+   "face": "expenditure",
+   "recipe": "Share",
+   "row": 8
+  },
+  {
+   "elements": [],
+   "face": "accumulation",
+   "recipe": "Share",
+   "row": 9
+  },
+  {
+   "elements": [
+    "fe"
+   ],
+   "face": "accumulation",
+   "recipe": "Share",
+   "row": 10
+  },
+  {
+   "elements": [],
+   "face": "expenditure",
+   "recipe": "Coordinate",
+   "row": 11
+  },
+  {
+   "elements": [
+    "se"
+   ],
+   "face": "expenditure",
+   "recipe": "Coordinate",
+   "row": 12
+  },
+  {
+   "elements": [],
+   "face": "accumulation",
+   "recipe": "Coordinate",
+   "row": 13
+  },
+  {
+   "elements": [
+    "se"
+   ],
+   "face": "accumulation",
+   "recipe": "Coordinate",
+   "row": 14
+  },
+  {
+   "elements": [],
+   "face": "expenditure",
+   "recipe": "Theorize",
+   "row": 15
+  },
+  {
+   "elements": [
+    "ne"
+   ],
+   "face": "expenditure",
+   "recipe": "Theorize",
+   "row": 16
+  },
+  {
+   "elements": [],
+   "face": "accumulation",
+   "recipe": "Apply",
+   "row": 19
+  },
+  {
+   "elements": [
+    "ti"
+   ],
+   "face": "accumulation",
+   "recipe": "Apply",
+   "row": 20
+  }
+ ]
+}

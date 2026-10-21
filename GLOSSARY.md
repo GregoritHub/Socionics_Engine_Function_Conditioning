@@ -44,3 +44,7 @@
 | DCNH five ways | All uses; received and kept (wide, narrow); content-only; hop-only, each with its margin, in [classes.py](conditioning_v2/classes.py), `summarize` and `render`. |
 | Price of type | Per actor and per seat: uses, hops, content, time and CT Table 13 block energy, by ring and seat, in [classes.py](conditioning_v2/classes.py), `summarize`. |
 | Support traffic | Hops whose arrival seat is the route's own vital-ring support seat, per seat, in [classes.py](conditioning_v2/classes.py), `summarize`. |
+| pair-solo8 / phase marks | The Batch 9 composition: uptake probe, the pair sequence, then Alice's eight-element program on one `WorkflowEngine` journal; the manifest's phase marks are the transaction indices ending each phase, read by [solo8.py](conditioning_v2/solo8.py), `sequences`. |
+| Source-class sequence | Per (actor, seat, element), the class of each use in order (S self, W world, O other; lower-case not kept), per phase, in [solo8.py](conditioning_v2/solo8.py), `sequences`. |
+| Field three ways | An actor's eight-seat uses, hops, content, time and energy over the probe+collective phase, the solo phase, and the whole history, with DCNH greatest cells and margins, in [solo8.py](conditioning_v2/solo8.py), `field_three_ways`. |
+| Element override | `WorkflowRequest.elements` replacing a recipe's elements within the same Fold family (first letters equal), the mechanism that reaches the other attitude's seats; witnessed in `tests/test_09_solo8.py`. |

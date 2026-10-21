@@ -1,7 +1,8 @@
 # Function Conditioning Ledger v2
 
 Start with [REPRODUCE.md](REPRODUCE.md) to regenerate every measured result.
-The reports cover [population histories](REPORT.md) and [delivery compositions](REPORT_DELIVERY.md).
+The reports cover [population histories](REPORT.md), [delivery compositions](REPORT_DELIVERY.md)
+and the [eight-element solo composition](REPORT_SOLO8.md).
 
 ## Engine commit
 
@@ -85,6 +86,22 @@ against structural **4/12** ([classes](TABLES/pair_classes_delivery.md#structura
 Internalisation, a received use later repeated self-sourced, is **0** in every
 history, because each ends inside the collective ([five ways](TABLES/pair_dcnh_five_ways_delivery.md)).
 
+## Full-field finding (Batch 9)
+
+`pair-solo8` runs the pair sequence and then a 17-row program by Alice alone
+that demands every element in both faces, on one journal
+([report](REPORT_SOLO8.md)). Every one of Alice's eight seats completes
+content work (**4,6,2,4,41,39,6,2** at seats 1–8). The prediction recorded
+before generation held: internalisation is **23/67** at seat 5 and **62/62**
+at seat 6 under the wide reading ([field](TABLES/pair-solo8_field.md),
+[sequence](TABLES/pair-solo8_sequence.md)). Her greatest-load cell is **D**
+on all uses but **H** on content alone, in every phase; the two readings of
+the same history disagree by class, not by seed. Workflow operations declare
+semantic inputs, so the narrow reading records received uses for the first
+time (**28** for Alice, all from Bob's exchange replies). Share and Coordinate
+rows need a peer by the fixture's construction, so Bob works in the solo phase
+as a respondent (Amendment A9).
+
 ## How to read a table
 
 Take Alice's `pair-seed-17` row in [actor indices](TABLES/pair_per_actor_delivery.md#actor-indices).
@@ -116,6 +133,8 @@ the shared use trace. Counts are occurrences, not distinct transactions.
 - [A7](DIRECTIVE_AMENDMENT_A7_publication_transport.md): permits connector publication with local/published hashes and tree verification.
 - [Batch 8](RECEIPTS/batch_8.md): use classes, observed supply, DCNH margins, price of type, internalisation; all additive.
 - [A8](DIRECTIVE_AMENDMENT_A8_additive_tables.md): Batch 8 measures go in new tables; Batch 7 files byte-identical.
+- [Batch 9](RECEIPTS/batch_9.md): the pair-solo8 composition on one journal; eight-seat field; internalisation observed.
+- [A9](DIRECTIVE_AMENDMENT_A9_solo8_program.md): program trimmed to the fixture's two care units; wear preparation; Bob as respondent.
 
 The [receipts index](RECEIPTS/README.md) retains the stops, refusals, repairs, and clearances.
 
@@ -129,13 +148,13 @@ freeze every fixture/document in the engine, prove kernel correctness, establish
 scientific validity, or demonstrate behavior outside the generated workloads.
 The pinned Git commit identifies the remaining engine files.
 
-## Directive appendix (v1.8)
+## Directive appendix (v1.9)
 
 The [original directive](BATCH_DIRECTIVE_Function_Conditioning_v1.md), linked
 amendments, [Batch 6 extension](DIRECTIVE_BATCH_6_cross_actor_delivery.md),
 [Batch 7 extension](DIRECTIVE_BATCH_7_review_prep.md) and
 [Batches 8–9 extension](DIRECTIVE_BATCH_8_9_use_classes_observed_supply_solo_phase.md) form the audit trail.
 A5 governs Batch 7's guard; A6 defines the path gate, A7 the publication transport,
-A8 the additive placement of Batch 8 measures. No feedback
-rule is authorized. No LICENSE is included; licensing remains the owner's decision.
+A8 the additive placement of Batch 8 measures, A9 the solo8 program under the
+fixture's material limits. No feedback rule is authorized. No LICENSE is included; licensing remains the owner's decision.
 [CITATION.cff](CITATION.cff) records attribution and the pinned engine commit.

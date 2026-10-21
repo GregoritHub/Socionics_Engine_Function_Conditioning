@@ -43,17 +43,19 @@ def main():
     # Resolve once before any generator runs; never compare a file with itself.
     ref = subprocess.check_output(["git", "rev-parse", "--verify", ref + "^{tree}"], cwd=PROJECT).decode().strip()
     expected = {n: subprocess.check_output(["git", "show", ref + ":" + n], cwd=PROJECT) for n in artifact_paths(ref)}
-    if not expected or not {"REPORT.md", "REPORT_DELIVERY.md"} <= set(expected):
+    if not expected or not {"REPORT.md", "REPORT_DELIVERY.md", "REPORT_SOLO8.md"} <= set(expected):
         raise SystemExit("reproduction baseline lacks committed reports")
     commands = [
         ("-m", "unittest", "tests.test_00_setup", "-v"),
         ("generate/histories.py",),
         ("generate/histories_delivery.py",),
+        ("generate/histories_solo8.py",),
         ("-m", "unittest", "discover", "-s", "tests", "-v"),
         ("-m", "conditioning_v2.tables"),
         ("-m", "conditioning_v2.tables", "--histories", "HISTORIES_DELIVERY.json"),
         ("-m", "conditioning_v2.classes"),
         ("-m", "conditioning_v2.classes", "--histories", "HISTORIES_DELIVERY.json"),
+        ("-m", "conditioning_v2.solo8"),
     ]
     out = PROJECT / "OUT"
     out.mkdir(exist_ok=True)
