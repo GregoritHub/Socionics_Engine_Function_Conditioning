@@ -10,20 +10,23 @@ model_a = __import__("hle.model_a", fromlist=["fields", "position_of"])
 relations = __import__("hle.relations", fromlist=["relation", "landing_position"])
 
 
-def _semantic_sources(d):
+def _semantic_sources(d, reading="wide"):
     """A3: every exact consumed revision on the operation, deduplicated.
 
     Keep the helper name for existing callers. Sources no longer correspond
     one-to-one with routes. Broad input.N evidence counts under this ruling.
     """
+    if reading not in ("wide", "narrow"):
+        raise ValueError("unknown provenance reading")
     refs = [ref for _, ref in sorted(
         (int(k[7:]), ref) for k, ref in d.items()
         if k.startswith("source.") and k[7:].isdigit())]
     if "source_input" in d:
         refs.append(d["source_input"])
-    refs.extend(ref for _, ref in sorted(
-        (int(k[6:]), ref) for k, ref in d.items()
-        if k.startswith("input.") and k[6:].isdigit()))
+    if reading == "wide":
+        refs.extend(ref for _, ref in sorted(
+            (int(k[6:]), ref) for k, ref in d.items()
+            if k.startswith("input.") and k[6:].isdigit()))
     return tuple(dict.fromkeys(refs))
 
 
@@ -81,12 +84,17 @@ def _validate_record(record, profiles):
             raise ValueError("source landing-position mismatch")
 
 
-def uses(transactions):
-    """Derive paid uses with A3 operation-level, exact-revision provenance.
+def uses(transactions, reading="wide"):
+    """Return paid-use dictionaries from committed transactions and a reading.
 
-    source_seat and relation tuples align with the sorted source actor tuple.
-    Completed-use counting remains the native audit's canonical block count.
+    Enforce I1 seat/dimension, I2 exact producer, I3 relation/landing, and I5
+    native paid-block count equality (Batch 2, A1, A3/A4, Batch 7 section A2).
+    Wide includes all exact operation inputs; narrow includes source.N and
+    source_input only. Empty selected inputs resolve to world. Both readings
+    inherit the operation's tuple at every block; neither asserts block lineage.
     """
+    if reading not in ("wide", "narrow"):
+        raise ValueError("unknown provenance reading")
     transactions = tuple(transactions)
     profiles, expected = conditioning.completed_use(transactions)
 
@@ -108,8 +116,8 @@ def uses(transactions):
             previous = {} if old is None else energy.data(old)
             before, after = previous.get("completed", 0), d["completed"]
             if "route_count" in d:
-                source_refs = _semantic_sources(d)
-                if previous and set(_semantic_sources(previous)) != set(source_refs):
+                source_refs = _semantic_sources(d, reading)
+                if previous and set(_semantic_sources(previous, reading)) != set(source_refs):
                     raise ValueError("changed semantic source revisions")
                 source = None
                 for start, end, _, element in energy.blocks(d):
