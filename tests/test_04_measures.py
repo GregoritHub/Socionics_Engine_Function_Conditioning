@@ -20,7 +20,10 @@ def markdown_rows(name, section=None):
         text = text.split("## " + section + "\n", 1)[1].split("\n## ", 1)[0]
     rows = [[cell.strip() for cell in line.strip().strip("|").split("|")]
             for line in text.splitlines() if line.startswith("| ")]
-    return [dict(zip(rows[0], row)) for row in rows[2:]]
+    parsed = [dict(zip(rows[0], row)) for row in rows[2:]]
+    parsed = [r for r in parsed if r.get("Reading", "wide") == "wide"]
+    return [{k.removesuffix(" wide").replace(" (both)", ""): v
+             for k, v in r.items() if not k.endswith(" narrow")} for r in parsed]
 
 
 class MeasureTests(unittest.TestCase):
@@ -128,7 +131,7 @@ class MeasureTests(unittest.TestCase):
         self.assertEqual(inactive["records"], ())
         self.assertTrue(all(not row["active"] for row in inactive["actors"].values()))
         self.assertEqual(inactive["coverage"]["ratio"], (0, 12))
-        rendered = tables.render([dict(h, observation=inactive)])
+        rendered = tables.render([dict(h, observation=inactive, narrow=inactive)])
         self.assertIn("| inactive |", rendered["per_actor.md"])
         self.assertIn("0/12 = 0", rendered["per_population.md"])
         self.assertTrue(all(row["active"] for row in h["observation"]["actors"].values()))
@@ -176,7 +179,7 @@ class MeasureTests(unittest.TestCase):
             raw = (PROJECT / "TABLES" / name).read_bytes()
             self.assertLess(len(raw), 200000)
             self.assertEqual(raw.decode(), expected)
-        self.assertIn("1 whenever defined, N/A when empty", outputs["per_actor.md"])
+        self.assertIn("divided by ALL", outputs["per_actor.md"])
         self.assertIn("N/A: not generated", outputs["per_population.md"])
 
 

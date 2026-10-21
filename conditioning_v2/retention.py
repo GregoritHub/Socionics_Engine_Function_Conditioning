@@ -28,9 +28,11 @@ def _validate_history(transactions):
             raise TransactionOrderError("transaction order differs from committed journal")
 
 
-def uses(transactions):
-    """Return Batch 2 records plus same-actor, same-seat, same-element kept.
+def uses(transactions, reading="wide"):
+    """Return use dictionaries with kept from a journal/prefix and reading.
 
+    Enforce I4 history-growth monotonicity, preserving I1-I3 and I5 from audit
+    (Batch 3, Amendment A2; reading selection from Batch 7 section A2).
     Accept a complete native history or its prefix, in committed order. Within
     each transaction the Batch 2 audit preserves canonical paid-block order.
     A later block at the same seat can retain an earlier block; the last use is
@@ -39,7 +41,7 @@ def uses(transactions):
     """
     transactions = tuple(transactions)
     _validate_history(transactions)
-    records = audit.uses(transactions)
+    records = audit.uses(transactions, reading)
     later = set()
     result = []
     for record in reversed(records):

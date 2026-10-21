@@ -3,6 +3,8 @@ ENGINE = pathlib.Path(__file__).resolve().parents[1] / "engine_path.txt"
 ROOT = pathlib.Path(ENGINE.read_text().strip())
 sys.path[:0] = [str(ROOT), str(ROOT / "baseline/HLE_Rebuild_R21B")]
 
+# Historical A4 byte-identity guard for the pre-Batch-7 snapshot.
+# tools/reproduce.py supersedes this script for outside review.
 sys.dont_write_bytecode = True
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1]))
 json = __import__("json")

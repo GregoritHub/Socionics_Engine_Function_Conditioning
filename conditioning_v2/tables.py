@@ -16,21 +16,29 @@ PROJECT = pathlib.Path(__file__).resolve().parents[1]
 
 
 def ratio(value):
+    """Format an integer numerator/denominator; preserve I5 counts (Batch 4/7 A1)."""
     n, d = value
     return f"{n}/{d} (N/A)" if d == 0 else f"{n}/{d} = {Fraction(n, d)}"
 
 
 def ids(values):
+    """Format occurrence indices as trace IDs; preserve I5 identity (Batch 4)."""
     return ", ".join("u" + str(i) for i in values) or "none"
 
 
 def table(header, rows):
+    """Render headings and rows as Markdown; preserve I5 cell values (Batch 4)."""
     def line(values):
         return "| " + " | ".join(str(v).replace("|", "\\|").replace("\n", " ") for v in values) + " |"
     return "\n".join([line(header), line(["---"] * len(header)), *(line(r) for r in rows)]) + "\n"
 
 
 def load_histories(manifest_path="HISTORIES.json"):
+    """Restore a manifest and return histories with wide/narrow observations.
+
+    Enforce I1-I5 through measures.history plus manifest/codec identity; Batch 4,
+    A4 and Batch 7 A2/A5. Engine checkpoints are read, never edited.
+    """
     result = []
     document = json.loads((PROJECT / manifest_path).read_text())
     entries = document["histories"] if isinstance(document, dict) else document
@@ -60,12 +68,13 @@ def load_histories(manifest_path="HISTORIES.json"):
         actors = {measures.actor_name(a): t for a, t in observation["profiles"].items()}
         if len(transactions) != manifest["transactions"] or actors != manifest["actors"]:
             raise ValueError("history population differs from accepted manifest")
-        result.append(dict(manifest=manifest, observation=observation,
+        narrow = measures.history(transactions, events, "narrow")
+        result.append(dict(manifest=manifest, observation=observation, narrow=narrow,
                            transactions=transactions, events=tuple(events)))
     return result
 
 
-def render(histories):
+def _render_reading(histories):
     actor_rows, profile_rows, supplier_rows, trace_rows = [], [], [], []
     population_rows, episode_rows, pair_rows, benefit_rows, input_rows = [], [], [], [], []
     dcnh_rows = []
@@ -130,20 +139,18 @@ transaction, exact operation revision, and block completion boundary. Empty
 ID lists mean zero observed uses, not missing histories. Inactive means zero
 completed paid uses; such actors remain in population denominators.
 
-**A1 source scope:** only actor-id sources enter received-use measures.
-Applied literally to both counts, the conditioning index is received weak-seat
-uses / actor-sourced weak-seat uses: 1 whenever defined, N/A when empty.
-This degeneracy follows A1; the original all-source denominator is not silently
-substituted. A source-scope ruling is needed if that original ratio is intended.
+**Batch 7 conditioning index:** received uses at dim <= 2 divided by ALL
+uses at dim <= 2, per actor. The numerator IDs are listed; denominator IDs
+are every row for that actor with Dim <= 2 in the use trace below.
 Hold is kept received / received, across all seats. N/A denotes a zero denominator.
-World and self are not received. World appears only in the use profile/trace
-and all-use DCNH. No zero-denominator ratio is presented as zero.
+World and self are not received; they contribute to the weak-use denominator,
+use profile/trace and all-use DCNH. No zero-denominator ratio is presented as zero.
 
 ## Actor indices
 
-""" + table(("History", "Actor", "TIM", "Status", "Conditioning (A1 literal)", "Hold",
-              "Conditioning numerator and denominator IDs", "Received IDs", "Kept received IDs"), actor_rows)
-    actor_text += "\n## Use profile\n\nOnly nonzero bins are printed; omitted (seat, source, kept) bins are zero.\n\n"
+""" + table(("History", "Actor", "TIM", "Status", "Conditioning", "Hold",
+              "Conditioning numerator IDs", "Received IDs", "Kept received IDs"), actor_rows)
+    actor_text += "\n## Use profile\n\nBins present in either reading are printed; omitted (seat, source, kept) bins are zero in both.\n\n"
     actor_text += table(("History", "Actor", "Seat", "Source class", "Kept", "Count", "Use IDs"), profile_rows)
     actor_text += "\n## Weak-seat supplier map\n\nEach dim <= 2 seat is listed, including empty supplier sets.\n\n"
     actor_text += table(("History", "Receiver", "Seat", "Supplier", "Count", "Use IDs"), supplier_rows)
@@ -157,7 +164,7 @@ Only actor-id sources count as received. Coverage counts distinct receiver/seat
 pairs at dim <= 2 supplied by a producer holding that element at dim >= 3,
 divided by every committed actor's dim <= 2 seats, including inactive actors.
 Supplier concentration is HHI: sum of squared supplier received-use counts /
-squared total received uses (all receiver seats). Empty supply is N/A.
+squared total supplier incidences (all receiver seats). Empty supply is N/A.
 Sterile ordered pairs require zero received uses in BOTH directions; both
 ordered directions are listed, with the kernel's directional relation labels.
 Relation names are read from the pinned kernel label file and their landing
@@ -192,7 +199,7 @@ Use IDs refer to per_actor.md's trace in the same history.
     if histories and "composition" in histories[0]["manifest"]:
         for name, text in outputs.items():
             text = text.replace("Batch 4", "Batch 6").replace("actor-id sources", "non-empty actor tuples")
-            text = text.replace("squared total received uses (all receiver seats)",
+            text = text.replace("squared total supplier incidences (all receiver seats)",
                                 "squared total supplier incidences (all receiver seats)")
             text = text.replace("Cumulative through each actor-local episode index, pooled across actors; not a wall-clock snapshot.",
                                 "Cumulative through explicitly recorded harness episodes, including preparation; not scheduler episodes.")
@@ -201,11 +208,97 @@ Use IDs refer to per_actor.md's trace in the same history.
                                 "Pair counts are within the recorded composition. The requested IEE/SLI/LIE triad is not producible; a standalone pair-versus-that-triad comparison is unavailable, not zero.")
             text = text.replace("Triad benefit-family uses", "Composition benefit-family uses")
             text = text.replace("Use IDs refer to per_actor.md's trace", "Use IDs refer to the matching composition's per-actor trace")
-            outputs[name] = text + "\nA3/A4: any exact operation input counts, including collective evidence. A use counts once in its receiver profile and once per listed supplier in supplier/pair counts.\n"
+            outputs[name] = text + "\nWide (A3/A4): any exact operation input counts, including collective evidence. A use counts once in its receiver profile and once per listed supplier in supplier/pair counts.\n"
     return outputs
 
 
+
+def _paired_tables(wide, narrow):
+    # Keep existing wide rows/cells, add narrow measurements alongside them.
+    # Shared trace columns avoid repeating the expensive operation identifiers.
+    wlines, nlines = wide.splitlines(), narrow.splitlines()
+    def blocks(lines):
+        result, index = [], 0
+        while index < len(lines):
+            if lines[index].startswith("| "):
+                end = index
+                while end < len(lines) and lines[end].startswith("| "):
+                    end += 1
+                cells = [[v.strip() for v in line.strip().strip("|").split("|")]
+                         for line in lines[index:end]]
+                result.append((index, end, cells[0], cells[2:]))
+                index = end
+            else:
+                index += 1
+        return result
+    wb, nb = blocks(wlines), blocks(nlines)
+    if len(wb) != len(nb):
+        raise ValueError("reading table structures differ")
+    for (start, end, header, rows), (_, _, nh, nr) in reversed(list(zip(wb, nb))):
+        if header != nh:
+            raise ValueError("reading headers differ")
+        if "Checkpoint SHA-256" in header:
+            if rows != nr:
+                raise ValueError("reading inputs differ")
+            continue
+        if "Use ID" in header:
+            if len(rows) != len(nr):
+                raise ValueError("reading use counts differ")
+            idx = header.index("Source")
+            merged = []
+            for w, n in zip(rows, nr):
+                if w[:idx] + w[idx+1:] != n[:idx] + n[idx+1:]:
+                    raise ValueError("reading changed source-independent use")
+                merged.append(w[:idx] + [w[idx], n[idx]] + w[idx+1:])
+            names = header[:idx] + ["Source wide", "Source narrow"] + header[idx+1:]
+            names[names.index("Kept")] = "Kept (both)"
+        elif "View" in header:
+            names = [*header, "Reading"]
+            merged = [row + [reading] for w, n in zip(rows, nr)
+                      for row, reading in ((w, "wide"), (n, "narrow"))]
+        else:
+            shared = (5 if "Source class" in header else
+                      4 if "Supplier" in header or "Relation" in header or "TIM" in header else
+                      3 if "Inactive" in header else 2)
+            wm = {tuple(r[:shared]): r[shared:] for r in rows}
+            nm = {tuple(r[:shared]): r[shared:] for r in nr}
+            keys = list(wm) + [k for k in nm if k not in wm]
+            empty = ["0", "none"]
+            if any(k not in wm or k not in nm for k in keys) and header[shared:] != ["Count", "Use IDs"]:
+                raise ValueError("unexpected missing reading row")
+            names = header[:shared] + [h + " wide" for h in header[shared:]] + [h + " narrow" for h in header[shared:]]
+            merged = [list(k) + wm.get(k, empty) + nm.get(k, empty) for k in keys]
+            if "Kept" in names:
+                names[names.index("Kept")] = "Kept (both)"
+        wlines[start:end] = table(names, merged).rstrip().splitlines()
+    text = "\n".join(wlines) + "\n"
+    intro = ("\n**Readings:** wide = source.N + source_input + input.N (A3/A4); "
+             "narrow = source.N + source_input only (Batch 7). Shared columns, "
+             "including kept, are identical under both readings. New zero bins "
+             "show where only the other reading has observations.\n")
+    text = text.replace("— Batch 4", "— Batch 7").replace("— Batch 6", "— Batch 7")
+    first = text.index("\n")
+    return text[:first+1] + intro + text[first+1:]
+
+
+def render(histories):
+    """Return three Markdown tables from histories, with both readings adjacent.
+
+    Preserve I1-I5 and wide cells except the corrected conditioning column;
+    A5 checks this projection against Batch 6. Batch 7 A1/A2 defines new cells.
+    """
+    wide = _render_reading(histories)
+    narrow_histories = [dict(h, observation=h.get("narrow") or
+                       measures.history(h["transactions"], h["events"], "narrow"))
+                       for h in histories]
+    narrow = _render_reading(narrow_histories)
+    return {name: _paired_tables(text, narrow[name]) for name, text in wide.items()}
+
 def main():
+    """Render both readings and the report for a CLI manifest; verify I1-I5.
+
+    Outputs deterministic small UTF-8 artifacts (Batch 7 A/B; A5 guard).
+    """
     parser = argparse.ArgumentParser()
     parser.add_argument("--histories", default="HISTORIES.json")
     parser.add_argument("--suffix", default=None)
@@ -230,9 +323,11 @@ def main():
     for name, text in outputs.items():
         (folder / name).write_text(text)
         print("TABLES/" + name + ": " + str(len(text.encode())) + " bytes", flush=True)
+    reports = __import__("conditioning_v2.reports", fromlist=["write"])
+    reports.write(histories, delivery=args.histories != "HISTORIES.json")
     print("Histories: " + str(len(histories)), flush=True)
     print("All-use DCNH exactly matches Phase 7 for every actor.", flush=True)
-    print("A1-literal conditioning scope is degenerate; zero denominators are N/A.", flush=True)
+    print("Wide and narrow provenance; conditioning = received weak / all weak; empty denominators are N/A.", flush=True)
     if args.histories == "HISTORIES.json":
         print("Standalone pair comparison unavailable: no pair histories in accepted manifest.", flush=True)
     else:

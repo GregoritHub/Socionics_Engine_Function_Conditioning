@@ -1,0 +1,12 @@
+Python: 3.12.14
+Implementation: CPython
+Platform: Linux-6.18.55-x86_64-with-glibc2.39
+Machine: x86_64
+
+No package outside the Python standard library is used.
+The companion and pinned engine are local source imports, not installed dependencies.
+tests/test_00_setup.py checks sys.modules after all project imports and includes an external-package rejection witness.
+Git and grep are command-line prerequisites.
+
+Reproduction execution: Python -S; ambient site-package startup hooks disabled.
+The host default startup preloaded a setuptools hook; it is excluded, not whitelisted, by the strict clean-process dependency check.

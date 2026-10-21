@@ -19,10 +19,12 @@ BENEFIT = ("benefit", "benefit_inverse")
 
 
 def actor_name(actor):
+    """Format an ObjectId as text; preserve I2 identity (Batch 4/A4)."""
     return actor.namespace + ":" + actor.key
 
 
 def relation_name(sender_tim, receiver_tim):
+    """Return a display label for two TIMs; check I3 landing map (Batch 4)."""
     entry = LABELS[sender_tim + ":" + receiver_tim]
     if tuple(entry["landing_permutation"]) != relations.landing_permutation(sender_tim, receiver_tim):
         raise ValueError("relation label landing permutation differs from kernel")
@@ -30,6 +32,11 @@ def relation_name(sender_tim, receiver_tim):
 
 
 def dcnh(actor, tim, records):
+    """Return axis observations from actor, TIM and uses; preserve I5 (Batch 4).
+
+    The caller selects all uses or received-and-kept uses; this function never
+    assigns a subtype, reads relation labels, or modifies records.
+    """
     counts = dict.fromkeys(conditioning.ELEMENTS, 0)
     for row in records:
         counts[row["element"]] += 1
@@ -45,11 +52,11 @@ def dcnh(actor, tim, records):
 
 
 def summarize(profiles, records, episodes, episode_indices):
-    """Pure aggregation of validated Batch 3 observations; IDs index records.
+    """Return traced actor/population measures from profiles, uses and episodes.
 
-    A1 is applied literally: conditioning-index numerator and denominator both
-    use actor-id sources at weak seats. This is degenerate (1 when defined),
-    not the original all-source denominator. Tables disclose this explicitly.
+    Enforce I1-I3 record validity; require Boolean I4 kept; preserve I5 counts
+    (Batch 4, A4, Batch 7 A1/A2, A5). Conditioning divides received weak uses
+    by ALL weak uses. Relation names are attached after numerical aggregation.
     """
     profiles, records = dict(profiles), tuple(records)
     episodes, episode_indices = tuple(episodes), tuple(sorted(set(episode_indices)))
@@ -73,6 +80,7 @@ def summarize(profiles, records, episodes, episode_indices):
         all_ids = tuple(i for i, r in enumerate(records) if r["actor"] == actor)
         incoming = tuple(i for i in received if records[i]["actor"] == actor)
         weak = tuple(i for i in incoming if records[i]["dim"] <= 2)
+        all_weak = tuple(i for i in all_ids if records[i]["dim"] <= 2)
         held = tuple(i for i in incoming if records[i]["kept"])
         profile, suppliers = {}, {p: {} for p in WEAK}
         for i in all_ids:
@@ -85,7 +93,8 @@ def summarize(profiles, records, episodes, episode_indices):
                 suppliers[r["seat"]].setdefault(sender, []).append(i)
         by_actor[actor] = dict(tim=tim, active=bool(all_ids), all_ids=all_ids,
                               profile=profile, incoming=incoming, held=held,
-                              conditioning=(len(weak), len(weak)), conditioning_ids=weak,
+                              conditioning=(len(weak), len(all_weak)), conditioning_ids=weak,
+                              conditioning_denominator_ids=all_weak,
                               hold=(len(held), len(incoming)), suppliers=suppliers,
                               all_dcnh=dcnh(actor, tim, (records[i] for i in all_ids)),
                               received_kept_dcnh=dcnh(actor, tim, (records[i] for i in held)))
@@ -119,10 +128,13 @@ def summarize(profiles, records, episodes, episode_indices):
             reverse = tuple(i for i in received if receiver in records[i]["source"]
                             and records[i]["actor"] == sender)
             pairs.append(dict(sender=sender, receiver=receiver,
-                              relation=relation_name(profiles[sender], profiles[receiver]),
                               forward=forward, reverse=reverse, sterile=not forward and not reverse))
-    benefit_ids = tuple(sorted(i for pair in pairs if pair["relation"] in BENEFIT
+    benefit_relations = (relations.relation("iee", "lie"), relations.relation("lie", "iee"))
+    benefit_ids = tuple(sorted(i for pair in pairs
+                               if relations.relation(profiles[pair["sender"]], profiles[pair["receiver"]]) in benefit_relations
                                for i in pair["forward"]))
+    for pair in pairs:
+        pair["relation"] = relation_name(profiles[pair["sender"]], profiles[pair["receiver"]])
     return dict(profiles=profiles, records=records, episodes=episodes, actors=by_actor,
                 received=received, coverage=coverage(qualifying),
                 episode_coverage={e: coverage(i for i in qualifying if episodes[i] <= e)
@@ -132,7 +144,11 @@ def summarize(profiles, records, episodes, episode_indices):
 
 
 def locate_uses(transactions, events, records, profiles):
-    """Join canonical paid blocks to explicit scheduler episode keys."""
+    """Return use locations/episode indices from journal, events, uses, profiles.
+
+    Enforce I5 canonical block order/count and explicit episode joins; preserve
+    I4 chronological indexing (Batch 4; Batch 6 harness episode declaration).
+    """
     lookup, episode_indices = {}, set()
     for event in events:
         actor, key, episode = event["actor"], event["key"], event["episode"]
@@ -170,9 +186,14 @@ def locate_uses(transactions, events, records, profiles):
     return tuple(locations), tuple(sorted(episode_indices))
 
 
-def history(transactions, events):
+def history(transactions, events, reading="wide"):
+    """Return measures and locations from a journal, events and provenance mode.
+
+    Enforce I1-I4 through adapters and I5 full all-use DCNH equality to the
+    engine (Batch 4, A3/A4, Batch 7 A1/A2 and A5); no engine state is written.
+    """
     transactions = tuple(transactions)
-    records = retention.uses(transactions)
+    records = retention.uses(transactions, reading)
     profiles, _ = conditioning.completed_use(transactions)
     locations, indices = locate_uses(transactions, events, records, profiles)
     result = summarize(profiles, records, [loc["episode"] for loc in locations], indices)
