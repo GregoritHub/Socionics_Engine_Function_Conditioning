@@ -1309,3 +1309,42 @@ manifests, Batch 1 non-index cells, all-use DCNH and earlier receipts remain
 preserved as checked by the gate. No LICENSE, feedback rule, fixture extension,
 or engine modification was added. Publication verification is recorded below
 after comparing the connector tree with the corresponding local commit.
+
+## Acceptance publication — verified under A7
+
+local `b45fcd0de7b6fd35913b852d0286719422a32c18` → published
+`3acd18a78be160e09875604111e31374dec95175`.
+
+All 37 changed files were transferred from the local committed bytes through
+the authenticated connector. The staging branch was based on the published
+stopped receipt, `f140c3c071ff0d33b825c844a2e6ea4bd06238ba`. Its complete file
+list, modes and Git blob hashes matched the local acceptance tree before main
+was updated. The publication commit uses that exact tree and the stopped
+receipt as its parent. Main was updated with `force=false` and the stopped
+receipt as `expected_sha`; the update succeeded.
+
+A subsequent `git fetch origin main` verified the published main hash above.
+Both local and published tree hashes are:
+
+```text
+2885c027c1ecfb3708b814947451666e5befc2b5
+```
+
+Every tracked file was then independently read from each Git commit and hashed
+with SHA-256; the corresponding digests were compared. Result:
+
+```text
+SHA256: 60 local/published files identical
+```
+
+The tree diff also returned 0. Both manifests and receipts 0–6 remain identical
+to the Batch 6 baseline. The entire stopped Batch 7 receipt from local `2bb8e3a`
+remains a byte-identical prefix of this receipt. The read repository has a clean
+status at `fdede6f16721f06422d0798a79d84170969b83f8`.
+
+This final addendum changes only the receipt. Its publication uses the same
+expected-head, non-forced update and whole-tree file-hash verification. The
+audit-only publication commit identifies its local record in its commit
+message; the final handoff gives that local/published pair. The verified
+acceptance pair above is preserved here without embedding a self-referential
+commit hash. Batch 7 is ready for outside review. No further batch is started.
