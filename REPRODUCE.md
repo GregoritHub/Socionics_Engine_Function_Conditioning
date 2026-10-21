@@ -44,7 +44,7 @@ PASS: python -S -m conditioning_v2.tables --histories HISTORIES_DELIVERY.json
 PASS: python -S -m conditioning_v2.classes
 PASS: python -S -m conditioning_v2.classes --histories HISTORIES_DELIVERY.json
 PASS: python -S -m conditioning_v2.solo8
-REPRODUCED: 29 files identical
+REPRODUCED: 32 files identical
 ```
 
 ## 5. Expected time

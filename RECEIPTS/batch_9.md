@@ -81,4 +81,33 @@ present and sized.
 python tools/reproduce.py && python -m unittest discover -s tests -v && python tools/path_check.py
 ```
 
-Committed-tree run recorded below after the commit.
+## Committed-tree reproduction (accepted)
+
+Commit `900144b` ("batch 9: pair-solo8 composition, eight-element field, internalisation"),
+checked out alone in a fresh worktree with only `engine_path.txt` added:
+
+```
+PASS: python -S -m unittest tests.test_00_setup -v
+PASS: python -S generate/histories.py
+PASS: python -S generate/histories_delivery.py
+PASS: python -S generate/histories_solo8.py
+PASS: python -S -m unittest discover -s tests -v
+PASS: python -S -m conditioning_v2.tables
+PASS: python -S -m conditioning_v2.tables --histories HISTORIES_DELIVERY.json
+PASS: python -S -m conditioning_v2.classes
+PASS: python -S -m conditioning_v2.classes --histories HISTORIES_DELIVERY.json
+PASS: python -S -m conditioning_v2.solo8
+REPRODUCED: 32 files identical
+PATHS: clean
+```
+
+51 tests, OK; 944.5 s. The staged-tree run before the commit reported one
+`DIFF: REPORT_DELIVERY.md`: the staged copy was the one an earlier interrupted
+gate had left without its Batch 8 section; the regenerated file was staged and
+the committed tree reproduces. `REPRODUCE.md`'s pass line is corrected to 32
+files (the per-seed split of the solo8 per-actor table adds three). Batch 9 accepted.
+
+## After Batch 9
+
+Stopped, as the directive requires. No feedback rule, no further composition,
+no further batch under this directive.
