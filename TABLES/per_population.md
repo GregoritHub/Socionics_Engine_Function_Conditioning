@@ -1,10 +1,12 @@
-# Per-population measures — Batch 4
+# Per-population measures — Batch 7
+
+**Readings:** wide = source.N + source_input + input.N (A3/A4); narrow = source.N + source_input only (Batch 7). Shared columns, including kept, are identical under both readings. New zero bins show where only the other reading has observations.
 
 Only actor-id sources count as received. Coverage counts distinct receiver/seat
 pairs at dim <= 2 supplied by a producer holding that element at dim >= 3,
 divided by every committed actor's dim <= 2 seats, including inactive actors.
 Supplier concentration is HHI: sum of squared supplier received-use counts /
-squared total received uses (all receiver seats). Empty supply is N/A.
+squared total supplier incidences (all receiver seats). Empty supply is N/A.
 Sterile ordered pairs require zero received uses in BOTH directions; both
 ordered directions are listed, with the kernel's directional relation labels.
 Relation names are read from the pinned kernel label file and their landing
@@ -25,114 +27,114 @@ permutations are checked against hle.relations. No labels are inferred.
 
 ## Population summary
 
-| History | Actors | Inactive | Received uses | Coverage | Supplier HHI | Sterile ordered pairs | Benefit-family uses | Coverage use IDs |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| legacy-r4-seed-17 | 3 | 0 | 0 | 0/12 = 0 | 0/0 (N/A) | 6 | 0 | none |
-| legacy-r4-seed-29 | 3 | 0 | 0 | 0/12 = 0 | 0/0 (N/A) | 6 | 0 | none |
-| legacy-r4-seed-43 | 3 | 0 | 0 | 0/12 = 0 | 0/0 (N/A) | 6 | 0 | none |
-| legacy-r4-seed-61 | 3 | 0 | 0 | 0/12 = 0 | 0/0 (N/A) | 6 | 0 | none |
-| grade-v1-seed-17 | 3 | 0 | 0 | 0/12 = 0 | 0/0 (N/A) | 6 | 0 | none |
-| grade-v1-seed-29 | 3 | 0 | 0 | 0/12 = 0 | 0/0 (N/A) | 6 | 0 | none |
-| grade-v1-seed-43 | 3 | 0 | 0 | 0/12 = 0 | 0/0 (N/A) | 6 | 0 | none |
-| grade-v1-seed-61 | 3 | 0 | 0 | 0/12 = 0 | 0/0 (N/A) | 6 | 0 | none |
+| History | Actors | Inactive | Received uses wide | Coverage wide | Supplier HHI wide | Sterile ordered pairs wide | Benefit-family uses wide | Coverage use IDs wide | Received uses narrow | Coverage narrow | Supplier HHI narrow | Sterile ordered pairs narrow | Benefit-family uses narrow | Coverage use IDs narrow |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| legacy-r4-seed-17 | 3 | 0 | 0 | 0/12 = 0 | 0/0 (N/A) | 6 | 0 | none | 0 | 0/12 = 0 | 0/0 (N/A) | 6 | 0 | none |
+| legacy-r4-seed-29 | 3 | 0 | 0 | 0/12 = 0 | 0/0 (N/A) | 6 | 0 | none | 0 | 0/12 = 0 | 0/0 (N/A) | 6 | 0 | none |
+| legacy-r4-seed-43 | 3 | 0 | 0 | 0/12 = 0 | 0/0 (N/A) | 6 | 0 | none | 0 | 0/12 = 0 | 0/0 (N/A) | 6 | 0 | none |
+| legacy-r4-seed-61 | 3 | 0 | 0 | 0/12 = 0 | 0/0 (N/A) | 6 | 0 | none | 0 | 0/12 = 0 | 0/0 (N/A) | 6 | 0 | none |
+| grade-v1-seed-17 | 3 | 0 | 0 | 0/12 = 0 | 0/0 (N/A) | 6 | 0 | none | 0 | 0/12 = 0 | 0/0 (N/A) | 6 | 0 | none |
+| grade-v1-seed-29 | 3 | 0 | 0 | 0/12 = 0 | 0/0 (N/A) | 6 | 0 | none | 0 | 0/12 = 0 | 0/0 (N/A) | 6 | 0 | none |
+| grade-v1-seed-43 | 3 | 0 | 0 | 0/12 = 0 | 0/0 (N/A) | 6 | 0 | none | 0 | 0/12 = 0 | 0/0 (N/A) | 6 | 0 | none |
+| grade-v1-seed-61 | 3 | 0 | 0 | 0/12 = 0 | 0/0 (N/A) | 6 | 0 | none | 0 | 0/12 = 0 | 0/0 (N/A) | 6 | 0 | none |
 
 ## Coverage by episode index
 
 Cumulative through each actor-local episode index, pooled across actors; not a wall-clock snapshot. The denominator is fixed, including inactive actors.
 
-| History | Through episode | Coverage | Qualifying use IDs |
-| --- | --- | --- | --- |
-| legacy-r4-seed-17 | 0 | 0/12 = 0 | none |
-| legacy-r4-seed-17 | 1 | 0/12 = 0 | none |
-| legacy-r4-seed-29 | 0 | 0/12 = 0 | none |
-| legacy-r4-seed-29 | 1 | 0/12 = 0 | none |
-| legacy-r4-seed-43 | 0 | 0/12 = 0 | none |
-| legacy-r4-seed-43 | 1 | 0/12 = 0 | none |
-| legacy-r4-seed-61 | 0 | 0/12 = 0 | none |
-| legacy-r4-seed-61 | 1 | 0/12 = 0 | none |
-| grade-v1-seed-17 | 0 | 0/12 = 0 | none |
-| grade-v1-seed-17 | 1 | 0/12 = 0 | none |
-| grade-v1-seed-29 | 0 | 0/12 = 0 | none |
-| grade-v1-seed-29 | 1 | 0/12 = 0 | none |
-| grade-v1-seed-43 | 0 | 0/12 = 0 | none |
-| grade-v1-seed-43 | 1 | 0/12 = 0 | none |
-| grade-v1-seed-61 | 0 | 0/12 = 0 | none |
-| grade-v1-seed-61 | 1 | 0/12 = 0 | none |
+| History | Through episode | Coverage wide | Qualifying use IDs wide | Coverage narrow | Qualifying use IDs narrow |
+| --- | --- | --- | --- | --- | --- |
+| legacy-r4-seed-17 | 0 | 0/12 = 0 | none | 0/12 = 0 | none |
+| legacy-r4-seed-17 | 1 | 0/12 = 0 | none | 0/12 = 0 | none |
+| legacy-r4-seed-29 | 0 | 0/12 = 0 | none | 0/12 = 0 | none |
+| legacy-r4-seed-29 | 1 | 0/12 = 0 | none | 0/12 = 0 | none |
+| legacy-r4-seed-43 | 0 | 0/12 = 0 | none | 0/12 = 0 | none |
+| legacy-r4-seed-43 | 1 | 0/12 = 0 | none | 0/12 = 0 | none |
+| legacy-r4-seed-61 | 0 | 0/12 = 0 | none | 0/12 = 0 | none |
+| legacy-r4-seed-61 | 1 | 0/12 = 0 | none | 0/12 = 0 | none |
+| grade-v1-seed-17 | 0 | 0/12 = 0 | none | 0/12 = 0 | none |
+| grade-v1-seed-17 | 1 | 0/12 = 0 | none | 0/12 = 0 | none |
+| grade-v1-seed-29 | 0 | 0/12 = 0 | none | 0/12 = 0 | none |
+| grade-v1-seed-29 | 1 | 0/12 = 0 | none | 0/12 = 0 | none |
+| grade-v1-seed-43 | 0 | 0/12 = 0 | none | 0/12 = 0 | none |
+| grade-v1-seed-43 | 1 | 0/12 = 0 | none | 0/12 = 0 | none |
+| grade-v1-seed-61 | 0 | 0/12 = 0 | none | 0/12 = 0 | none |
+| grade-v1-seed-61 | 1 | 0/12 = 0 | none | 0/12 = 0 | none |
 
 ## Ordered pairs
 
 Forward means source -> receiver. An empty ID set is an observed zero.
 
-| History | Source | Receiver | Relation | Forward uses | Reverse uses | Sterile | Forward IDs | Reverse IDs |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| legacy-r4-seed-17 | workshop:alice | workshop:bob | duality | 0 | 0 | True | none | none |
-| legacy-r4-seed-17 | workshop:alice | workshop:eve | benefit | 0 | 0 | True | none | none |
-| legacy-r4-seed-17 | workshop:bob | workshop:alice | duality | 0 | 0 | True | none | none |
-| legacy-r4-seed-17 | workshop:bob | workshop:eve | supervision | 0 | 0 | True | none | none |
-| legacy-r4-seed-17 | workshop:eve | workshop:alice | benefit_inverse | 0 | 0 | True | none | none |
-| legacy-r4-seed-17 | workshop:eve | workshop:bob | supervision_inverse | 0 | 0 | True | none | none |
-| legacy-r4-seed-29 | workshop:alice | workshop:bob | duality | 0 | 0 | True | none | none |
-| legacy-r4-seed-29 | workshop:alice | workshop:eve | benefit | 0 | 0 | True | none | none |
-| legacy-r4-seed-29 | workshop:bob | workshop:alice | duality | 0 | 0 | True | none | none |
-| legacy-r4-seed-29 | workshop:bob | workshop:eve | supervision | 0 | 0 | True | none | none |
-| legacy-r4-seed-29 | workshop:eve | workshop:alice | benefit_inverse | 0 | 0 | True | none | none |
-| legacy-r4-seed-29 | workshop:eve | workshop:bob | supervision_inverse | 0 | 0 | True | none | none |
-| legacy-r4-seed-43 | workshop:alice | workshop:bob | duality | 0 | 0 | True | none | none |
-| legacy-r4-seed-43 | workshop:alice | workshop:eve | benefit | 0 | 0 | True | none | none |
-| legacy-r4-seed-43 | workshop:bob | workshop:alice | duality | 0 | 0 | True | none | none |
-| legacy-r4-seed-43 | workshop:bob | workshop:eve | supervision | 0 | 0 | True | none | none |
-| legacy-r4-seed-43 | workshop:eve | workshop:alice | benefit_inverse | 0 | 0 | True | none | none |
-| legacy-r4-seed-43 | workshop:eve | workshop:bob | supervision_inverse | 0 | 0 | True | none | none |
-| legacy-r4-seed-61 | workshop:alice | workshop:bob | duality | 0 | 0 | True | none | none |
-| legacy-r4-seed-61 | workshop:alice | workshop:eve | benefit | 0 | 0 | True | none | none |
-| legacy-r4-seed-61 | workshop:bob | workshop:alice | duality | 0 | 0 | True | none | none |
-| legacy-r4-seed-61 | workshop:bob | workshop:eve | supervision | 0 | 0 | True | none | none |
-| legacy-r4-seed-61 | workshop:eve | workshop:alice | benefit_inverse | 0 | 0 | True | none | none |
-| legacy-r4-seed-61 | workshop:eve | workshop:bob | supervision_inverse | 0 | 0 | True | none | none |
-| grade-v1-seed-17 | workshop:alice | workshop:bob | duality | 0 | 0 | True | none | none |
-| grade-v1-seed-17 | workshop:alice | workshop:eve | benefit | 0 | 0 | True | none | none |
-| grade-v1-seed-17 | workshop:bob | workshop:alice | duality | 0 | 0 | True | none | none |
-| grade-v1-seed-17 | workshop:bob | workshop:eve | supervision | 0 | 0 | True | none | none |
-| grade-v1-seed-17 | workshop:eve | workshop:alice | benefit_inverse | 0 | 0 | True | none | none |
-| grade-v1-seed-17 | workshop:eve | workshop:bob | supervision_inverse | 0 | 0 | True | none | none |
-| grade-v1-seed-29 | workshop:alice | workshop:bob | duality | 0 | 0 | True | none | none |
-| grade-v1-seed-29 | workshop:alice | workshop:eve | benefit | 0 | 0 | True | none | none |
-| grade-v1-seed-29 | workshop:bob | workshop:alice | duality | 0 | 0 | True | none | none |
-| grade-v1-seed-29 | workshop:bob | workshop:eve | supervision | 0 | 0 | True | none | none |
-| grade-v1-seed-29 | workshop:eve | workshop:alice | benefit_inverse | 0 | 0 | True | none | none |
-| grade-v1-seed-29 | workshop:eve | workshop:bob | supervision_inverse | 0 | 0 | True | none | none |
-| grade-v1-seed-43 | workshop:alice | workshop:bob | duality | 0 | 0 | True | none | none |
-| grade-v1-seed-43 | workshop:alice | workshop:eve | benefit | 0 | 0 | True | none | none |
-| grade-v1-seed-43 | workshop:bob | workshop:alice | duality | 0 | 0 | True | none | none |
-| grade-v1-seed-43 | workshop:bob | workshop:eve | supervision | 0 | 0 | True | none | none |
-| grade-v1-seed-43 | workshop:eve | workshop:alice | benefit_inverse | 0 | 0 | True | none | none |
-| grade-v1-seed-43 | workshop:eve | workshop:bob | supervision_inverse | 0 | 0 | True | none | none |
-| grade-v1-seed-61 | workshop:alice | workshop:bob | duality | 0 | 0 | True | none | none |
-| grade-v1-seed-61 | workshop:alice | workshop:eve | benefit | 0 | 0 | True | none | none |
-| grade-v1-seed-61 | workshop:bob | workshop:alice | duality | 0 | 0 | True | none | none |
-| grade-v1-seed-61 | workshop:bob | workshop:eve | supervision | 0 | 0 | True | none | none |
-| grade-v1-seed-61 | workshop:eve | workshop:alice | benefit_inverse | 0 | 0 | True | none | none |
-| grade-v1-seed-61 | workshop:eve | workshop:bob | supervision_inverse | 0 | 0 | True | none | none |
+| History | Source | Receiver | Relation | Forward uses wide | Reverse uses wide | Sterile wide | Forward IDs wide | Reverse IDs wide | Forward uses narrow | Reverse uses narrow | Sterile narrow | Forward IDs narrow | Reverse IDs narrow |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| legacy-r4-seed-17 | workshop:alice | workshop:bob | duality | 0 | 0 | True | none | none | 0 | 0 | True | none | none |
+| legacy-r4-seed-17 | workshop:alice | workshop:eve | benefit | 0 | 0 | True | none | none | 0 | 0 | True | none | none |
+| legacy-r4-seed-17 | workshop:bob | workshop:alice | duality | 0 | 0 | True | none | none | 0 | 0 | True | none | none |
+| legacy-r4-seed-17 | workshop:bob | workshop:eve | supervision | 0 | 0 | True | none | none | 0 | 0 | True | none | none |
+| legacy-r4-seed-17 | workshop:eve | workshop:alice | benefit_inverse | 0 | 0 | True | none | none | 0 | 0 | True | none | none |
+| legacy-r4-seed-17 | workshop:eve | workshop:bob | supervision_inverse | 0 | 0 | True | none | none | 0 | 0 | True | none | none |
+| legacy-r4-seed-29 | workshop:alice | workshop:bob | duality | 0 | 0 | True | none | none | 0 | 0 | True | none | none |
+| legacy-r4-seed-29 | workshop:alice | workshop:eve | benefit | 0 | 0 | True | none | none | 0 | 0 | True | none | none |
+| legacy-r4-seed-29 | workshop:bob | workshop:alice | duality | 0 | 0 | True | none | none | 0 | 0 | True | none | none |
+| legacy-r4-seed-29 | workshop:bob | workshop:eve | supervision | 0 | 0 | True | none | none | 0 | 0 | True | none | none |
+| legacy-r4-seed-29 | workshop:eve | workshop:alice | benefit_inverse | 0 | 0 | True | none | none | 0 | 0 | True | none | none |
+| legacy-r4-seed-29 | workshop:eve | workshop:bob | supervision_inverse | 0 | 0 | True | none | none | 0 | 0 | True | none | none |
+| legacy-r4-seed-43 | workshop:alice | workshop:bob | duality | 0 | 0 | True | none | none | 0 | 0 | True | none | none |
+| legacy-r4-seed-43 | workshop:alice | workshop:eve | benefit | 0 | 0 | True | none | none | 0 | 0 | True | none | none |
+| legacy-r4-seed-43 | workshop:bob | workshop:alice | duality | 0 | 0 | True | none | none | 0 | 0 | True | none | none |
+| legacy-r4-seed-43 | workshop:bob | workshop:eve | supervision | 0 | 0 | True | none | none | 0 | 0 | True | none | none |
+| legacy-r4-seed-43 | workshop:eve | workshop:alice | benefit_inverse | 0 | 0 | True | none | none | 0 | 0 | True | none | none |
+| legacy-r4-seed-43 | workshop:eve | workshop:bob | supervision_inverse | 0 | 0 | True | none | none | 0 | 0 | True | none | none |
+| legacy-r4-seed-61 | workshop:alice | workshop:bob | duality | 0 | 0 | True | none | none | 0 | 0 | True | none | none |
+| legacy-r4-seed-61 | workshop:alice | workshop:eve | benefit | 0 | 0 | True | none | none | 0 | 0 | True | none | none |
+| legacy-r4-seed-61 | workshop:bob | workshop:alice | duality | 0 | 0 | True | none | none | 0 | 0 | True | none | none |
+| legacy-r4-seed-61 | workshop:bob | workshop:eve | supervision | 0 | 0 | True | none | none | 0 | 0 | True | none | none |
+| legacy-r4-seed-61 | workshop:eve | workshop:alice | benefit_inverse | 0 | 0 | True | none | none | 0 | 0 | True | none | none |
+| legacy-r4-seed-61 | workshop:eve | workshop:bob | supervision_inverse | 0 | 0 | True | none | none | 0 | 0 | True | none | none |
+| grade-v1-seed-17 | workshop:alice | workshop:bob | duality | 0 | 0 | True | none | none | 0 | 0 | True | none | none |
+| grade-v1-seed-17 | workshop:alice | workshop:eve | benefit | 0 | 0 | True | none | none | 0 | 0 | True | none | none |
+| grade-v1-seed-17 | workshop:bob | workshop:alice | duality | 0 | 0 | True | none | none | 0 | 0 | True | none | none |
+| grade-v1-seed-17 | workshop:bob | workshop:eve | supervision | 0 | 0 | True | none | none | 0 | 0 | True | none | none |
+| grade-v1-seed-17 | workshop:eve | workshop:alice | benefit_inverse | 0 | 0 | True | none | none | 0 | 0 | True | none | none |
+| grade-v1-seed-17 | workshop:eve | workshop:bob | supervision_inverse | 0 | 0 | True | none | none | 0 | 0 | True | none | none |
+| grade-v1-seed-29 | workshop:alice | workshop:bob | duality | 0 | 0 | True | none | none | 0 | 0 | True | none | none |
+| grade-v1-seed-29 | workshop:alice | workshop:eve | benefit | 0 | 0 | True | none | none | 0 | 0 | True | none | none |
+| grade-v1-seed-29 | workshop:bob | workshop:alice | duality | 0 | 0 | True | none | none | 0 | 0 | True | none | none |
+| grade-v1-seed-29 | workshop:bob | workshop:eve | supervision | 0 | 0 | True | none | none | 0 | 0 | True | none | none |
+| grade-v1-seed-29 | workshop:eve | workshop:alice | benefit_inverse | 0 | 0 | True | none | none | 0 | 0 | True | none | none |
+| grade-v1-seed-29 | workshop:eve | workshop:bob | supervision_inverse | 0 | 0 | True | none | none | 0 | 0 | True | none | none |
+| grade-v1-seed-43 | workshop:alice | workshop:bob | duality | 0 | 0 | True | none | none | 0 | 0 | True | none | none |
+| grade-v1-seed-43 | workshop:alice | workshop:eve | benefit | 0 | 0 | True | none | none | 0 | 0 | True | none | none |
+| grade-v1-seed-43 | workshop:bob | workshop:alice | duality | 0 | 0 | True | none | none | 0 | 0 | True | none | none |
+| grade-v1-seed-43 | workshop:bob | workshop:eve | supervision | 0 | 0 | True | none | none | 0 | 0 | True | none | none |
+| grade-v1-seed-43 | workshop:eve | workshop:alice | benefit_inverse | 0 | 0 | True | none | none | 0 | 0 | True | none | none |
+| grade-v1-seed-43 | workshop:eve | workshop:bob | supervision_inverse | 0 | 0 | True | none | none | 0 | 0 | True | none | none |
+| grade-v1-seed-61 | workshop:alice | workshop:bob | duality | 0 | 0 | True | none | none | 0 | 0 | True | none | none |
+| grade-v1-seed-61 | workshop:alice | workshop:eve | benefit | 0 | 0 | True | none | none | 0 | 0 | True | none | none |
+| grade-v1-seed-61 | workshop:bob | workshop:alice | duality | 0 | 0 | True | none | none | 0 | 0 | True | none | none |
+| grade-v1-seed-61 | workshop:bob | workshop:eve | supervision | 0 | 0 | True | none | none | 0 | 0 | True | none | none |
+| grade-v1-seed-61 | workshop:eve | workshop:alice | benefit_inverse | 0 | 0 | True | none | none | 0 | 0 | True | none | none |
+| grade-v1-seed-61 | workshop:eve | workshop:bob | supervision_inverse | 0 | 0 | True | none | none | 0 | 0 | True | none | none |
 
 ## Benefit pairs within the triad versus triad total
 
 Pair-subset counts are observations WITHIN the same triad, not independent two-actor experiments. Benefit-family totals include benefit and benefit_inverse directions. The accepted manifest has no standalone pair histories; their comparison is unavailable, not zero.
 
-| History | Source | Receiver | Relation | Pair-subset uses | Triad benefit-family uses | Standalone pair uses | Pair-subset IDs |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| legacy-r4-seed-17 | workshop:alice | workshop:eve | benefit | 0 | 0 | N/A: not generated | none |
-| legacy-r4-seed-17 | workshop:eve | workshop:alice | benefit_inverse | 0 | 0 | N/A: not generated | none |
-| legacy-r4-seed-29 | workshop:alice | workshop:eve | benefit | 0 | 0 | N/A: not generated | none |
-| legacy-r4-seed-29 | workshop:eve | workshop:alice | benefit_inverse | 0 | 0 | N/A: not generated | none |
-| legacy-r4-seed-43 | workshop:alice | workshop:eve | benefit | 0 | 0 | N/A: not generated | none |
-| legacy-r4-seed-43 | workshop:eve | workshop:alice | benefit_inverse | 0 | 0 | N/A: not generated | none |
-| legacy-r4-seed-61 | workshop:alice | workshop:eve | benefit | 0 | 0 | N/A: not generated | none |
-| legacy-r4-seed-61 | workshop:eve | workshop:alice | benefit_inverse | 0 | 0 | N/A: not generated | none |
-| grade-v1-seed-17 | workshop:alice | workshop:eve | benefit | 0 | 0 | N/A: not generated | none |
-| grade-v1-seed-17 | workshop:eve | workshop:alice | benefit_inverse | 0 | 0 | N/A: not generated | none |
-| grade-v1-seed-29 | workshop:alice | workshop:eve | benefit | 0 | 0 | N/A: not generated | none |
-| grade-v1-seed-29 | workshop:eve | workshop:alice | benefit_inverse | 0 | 0 | N/A: not generated | none |
-| grade-v1-seed-43 | workshop:alice | workshop:eve | benefit | 0 | 0 | N/A: not generated | none |
-| grade-v1-seed-43 | workshop:eve | workshop:alice | benefit_inverse | 0 | 0 | N/A: not generated | none |
-| grade-v1-seed-61 | workshop:alice | workshop:eve | benefit | 0 | 0 | N/A: not generated | none |
-| grade-v1-seed-61 | workshop:eve | workshop:alice | benefit_inverse | 0 | 0 | N/A: not generated | none |
+| History | Source | Receiver | Relation | Pair-subset uses wide | Triad benefit-family uses wide | Standalone pair uses wide | Pair-subset IDs wide | Pair-subset uses narrow | Triad benefit-family uses narrow | Standalone pair uses narrow | Pair-subset IDs narrow |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| legacy-r4-seed-17 | workshop:alice | workshop:eve | benefit | 0 | 0 | N/A: not generated | none | 0 | 0 | N/A: not generated | none |
+| legacy-r4-seed-17 | workshop:eve | workshop:alice | benefit_inverse | 0 | 0 | N/A: not generated | none | 0 | 0 | N/A: not generated | none |
+| legacy-r4-seed-29 | workshop:alice | workshop:eve | benefit | 0 | 0 | N/A: not generated | none | 0 | 0 | N/A: not generated | none |
+| legacy-r4-seed-29 | workshop:eve | workshop:alice | benefit_inverse | 0 | 0 | N/A: not generated | none | 0 | 0 | N/A: not generated | none |
+| legacy-r4-seed-43 | workshop:alice | workshop:eve | benefit | 0 | 0 | N/A: not generated | none | 0 | 0 | N/A: not generated | none |
+| legacy-r4-seed-43 | workshop:eve | workshop:alice | benefit_inverse | 0 | 0 | N/A: not generated | none | 0 | 0 | N/A: not generated | none |
+| legacy-r4-seed-61 | workshop:alice | workshop:eve | benefit | 0 | 0 | N/A: not generated | none | 0 | 0 | N/A: not generated | none |
+| legacy-r4-seed-61 | workshop:eve | workshop:alice | benefit_inverse | 0 | 0 | N/A: not generated | none | 0 | 0 | N/A: not generated | none |
+| grade-v1-seed-17 | workshop:alice | workshop:eve | benefit | 0 | 0 | N/A: not generated | none | 0 | 0 | N/A: not generated | none |
+| grade-v1-seed-17 | workshop:eve | workshop:alice | benefit_inverse | 0 | 0 | N/A: not generated | none | 0 | 0 | N/A: not generated | none |
+| grade-v1-seed-29 | workshop:alice | workshop:eve | benefit | 0 | 0 | N/A: not generated | none | 0 | 0 | N/A: not generated | none |
+| grade-v1-seed-29 | workshop:eve | workshop:alice | benefit_inverse | 0 | 0 | N/A: not generated | none | 0 | 0 | N/A: not generated | none |
+| grade-v1-seed-43 | workshop:alice | workshop:eve | benefit | 0 | 0 | N/A: not generated | none | 0 | 0 | N/A: not generated | none |
+| grade-v1-seed-43 | workshop:eve | workshop:alice | benefit_inverse | 0 | 0 | N/A: not generated | none | 0 | 0 | N/A: not generated | none |
+| grade-v1-seed-61 | workshop:alice | workshop:eve | benefit | 0 | 0 | N/A: not generated | none | 0 | 0 | N/A: not generated | none |
+| grade-v1-seed-61 | workshop:eve | workshop:alice | benefit_inverse | 0 | 0 | N/A: not generated | none | 0 | 0 | N/A: not generated | none |
